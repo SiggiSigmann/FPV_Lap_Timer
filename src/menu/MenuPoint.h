@@ -7,11 +7,11 @@
 #include <Adafruit_SSD1306.h>
 
 class MenuPoint : public Menu{
-	private:
+	protected:
 		Menu* parent;
 
 	public:
-		MenuPoint(Adafruit_SSD1306* d);
+		MenuPoint(Adafruit_SSD1306* d, Menu* m);
 		void setParent(Menu*);
 		void acitvate(Menu* activateion);
 		void acitvateMe();

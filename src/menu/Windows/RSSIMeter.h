@@ -1,26 +1,24 @@
-#ifndef OSC_H
-#define OSC_H
+#ifndef RSSIMETER_H
+#define RSSIMETER_H
 
 #include "../Menu.h"
 #include "../MenuPoint.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
 
-class Osciloskope : public MenuPoint{
-
+class RSSIMeter : public MenuPoint{
 	private:
 		FPVScanner* scan;
 		boolean actvescann = false;
-
+		int channel = 0;
 		void osci();
 		void drawBottomline();
-		
-	public:
-		Osciloskope(Adafruit_SSD1306* , Menu* , FPVScanner*);
+		byte old[30] = {0};
 
+	public:
+		RSSIMeter(Adafruit_SSD1306* , Menu* , FPVScanner*);
 		void draw();
 		void processButton();
-
 };
 
 #endif

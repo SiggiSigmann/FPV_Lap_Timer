@@ -1,7 +1,7 @@
 #include "Osciloskope.h"
 
 
-Osciloskope::Osciloskope(Adafruit_SSD1306* d, Menu* parent, FPVScanner* s):MenuPoint(d){
+Osciloskope::Osciloskope(Adafruit_SSD1306* d, Menu* parent, FPVScanner* s):MenuPoint(d,parent){
 	Serial.println("huaa");
 	scan = s;
 	actvescann=true;
@@ -27,10 +27,15 @@ void  Osciloskope::drawBottomline(){
 		this->display->drawPixel(4+i,49,WHITE);
 		this->display->drawPixel(4+i,50,WHITE);
 	}
+
+	if(scan->isDenoiced()){
+		this->display->setCursor(50,55);
+		this->display->print("No Noice");
+	}
 }
 
 void Osciloskope::osci(){
-	while(actvescann){
+
 		for(int i = 0; i<channelAmount;i++){
 			float level = (float) scan->scanIdx(i) / (float)scan->getMax();
 			level *= 32;
@@ -42,12 +47,12 @@ void Osciloskope::osci(){
 			this->display->display();
 		}
 		processButton();
-	}
+	
 }
 
 void Osciloskope::processButton(){
 	if(digitalRead(3)){
-		actvescann = !actvescann;
+		this->parent->acitvateMe();
 	}
 	if(digitalRead(4)){
 		this->display->clearDisplay();
