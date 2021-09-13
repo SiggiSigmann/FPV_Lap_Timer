@@ -63,8 +63,6 @@ SPI_RX5808::~SPI_RX5808(){
 
 //set RX to frequenzy in MHz
 void SPI_RX5808::setFreq(int freq){
-	Serial.print("set frq");
-	Serial.println(freq);
 	if(oldChannel == freq) return;
 
 	oldChannel = freq;
