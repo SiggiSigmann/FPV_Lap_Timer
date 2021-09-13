@@ -13,6 +13,8 @@
 #include "menu/Windows/Osciloskope.h"
 #include "free.h"
 
+#include "fpv/Scanner.h"
+
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
@@ -22,6 +24,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 SPI_RX5808* rx;
 
 MainMenu* mm;
+
+FPVScanner* scanner;
 
 
 void setup(){
@@ -40,17 +44,21 @@ void setup(){
   display.setTextColor(WHITE);
   display.display();
 
+  //Rx
+  rx = new SPI_RX5808(A0);
+
 
   mm = new MainMenu(&display);
 
   Serial.println(freeMemory());
   
-  Osciloskope* o = new Osciloskope(&display, mm);
+  scanner = new FPVScanner(rx);
+
+  Osciloskope* o = new Osciloskope(&display, mm, scanner);
   mm->setMainScreen(o);
   Serial.println(freeMemory());
 
-  //Rx
-  rx = new SPI_RX5808(A0);
+
 
   Serial.println("end setup");
 }
