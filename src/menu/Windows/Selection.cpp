@@ -3,7 +3,8 @@
 Selection::Selection(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc):MenuPoint(d,m){
 	osci = new Osciloskope(d, this, sc);
 	rssi = new RSSIMeter(d, this, sc);
-	lap = new LapMenu(d, this);
+	lap = new LapMenu(d, this, sc);
+	scanSettngs = new ScanSettings(d, this, sc);
 	this->scan = sc;
 }
 
@@ -34,6 +35,14 @@ void Selection::draw(){
 	if(activePoint == 2){
 		this->display->fillRect(4,42,8,8,WHITE);
 	}
+
+	this->display->fillRect(4,54,8,8,BLACK);
+	this->display->setCursor(18,54);
+	this->display->drawRect(4,54,8,8,WHITE);
+	this->display->print("Scanner Settings");
+	if(activePoint == 3){
+		this->display->fillRect(4,54,8,8,WHITE);
+	}
 }	
 
 void Selection::buttonNext(){
@@ -49,12 +58,21 @@ void Selection::buttonNext(){
 		case 2:
 			lap->acitvateMe();
 			break;
+
+		case 3:
+			scanSettngs->acitvateMe();
+			break;
 	}
 }
+
 void Selection::buttonUp(){
-	
-	if(this->activePoint ==0 ){this->activePoint= 2;}else{this->activePoint--;}
+	if(this->activePoint ==0){
+		this->activePoint= MENUENTRIES-1;
+	}else{
+		this->activePoint--;
+	}
 }
+
 void Selection::buttonDown(){
 	this->activePoint++;
 	this->activePoint %=MENUENTRIES;

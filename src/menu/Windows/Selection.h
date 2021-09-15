@@ -8,8 +8,9 @@
 #include "Osciloskope.h"
 #include "RSSIMeter.h"
 #include "LapMenu.h"
+#include "ScanSettings.h"
 
-#define MENUENTRIES 3
+#define MENUENTRIES 4
 
 class Selection : public MenuPoint{
 	private:
@@ -18,6 +19,7 @@ class Selection : public MenuPoint{
 		byte activePoint = 0;
 		Osciloskope* osci;
 		RSSIMeter* rssi;
+		ScanSettings* scanSettngs;
 
 	public:
 		Selection(Adafruit_SSD1306* , Menu* , FPVScanner* sc);

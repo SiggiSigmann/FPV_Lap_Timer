@@ -66,9 +66,12 @@ void RSSIMeter::osci(){
 
 
 void RSSIMeter::buttonNext(){
-	this->display->clearDisplay();
-	this->display->display();
+	display->clearDisplay();
+	display->setCursor(0,0);
+	display->print("capture Noise");
+	display->display();
 	scan->captureNoise();
+	display->clearDisplay();
 	drawBottomline();
 }
 void RSSIMeter::buttonUp(){

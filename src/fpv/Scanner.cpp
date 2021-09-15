@@ -61,3 +61,10 @@ void FPVScanner::captureNoise(){
 boolean FPVScanner::isDenoiced(){
 	return denoiced;
 }
+
+void FPVScanner::resetNoise(){
+	for(int i = 0; i<channelAmount;i++){
+		noise[i] =0;
+	}
+	denoiced = false;
+}

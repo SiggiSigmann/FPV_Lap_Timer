@@ -19,6 +19,7 @@ class FPVScanner{
 		int* getLastScan();
 		int getMax();
 		void captureNoise();
+		void resetNoise();
 		boolean isDenoiced();
 };
 	
