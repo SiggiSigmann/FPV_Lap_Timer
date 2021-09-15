@@ -21,6 +21,7 @@ class Osciloskope : public MenuPoint{
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();
+		void buttonPrev();
 };
 
 #endif

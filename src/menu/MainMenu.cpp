@@ -51,7 +51,8 @@ void MainMenu::processButton(){
 	}else{
 		next = false;
 	}
-	if(!digitalRead(PREVBUTTON)){
+
+	if(digitalRead(PREVBUTTON)){
 		if(!prev){
 			this->buttonPrev();
 			prev = true;
@@ -59,6 +60,7 @@ void MainMenu::processButton(){
 	}else{
 		prev = false;
 	}
+
 	if(!digitalRead(DOWNBUTTON)){
 		if(!down){
 			this->buttonDown();
@@ -67,6 +69,7 @@ void MainMenu::processButton(){
 	}else{
 		down = false;
 	}
+
 	if(!digitalRead(UPBUTTON)){
 		if(!up){
 			this->buttonUp();

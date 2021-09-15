@@ -37,11 +37,6 @@ void setup() {
   display.setTextColor(WHITE);
   display.display();
 
-  pinMode(15,INPUT);
-  pinMode(16,INPUT);
-  //pinMode(2,INPUT);
-  pinMode( 3,INPUT);
-
   rx = new SPI_RX5808(A0);
   scanner = new FPVScanner(rx);
 

@@ -63,4 +63,7 @@ void Osciloskope::buttonUp(){
 void Osciloskope::buttonDown(){
 
 }
-
+void Osciloskope::buttonPrev(){
+	this->parent->acitvateMe();
+	i=0;
+}

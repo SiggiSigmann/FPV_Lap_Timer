@@ -34,7 +34,7 @@ void  RSSIMeter::drawBottomline(){
 	}
 
 	if(scan->isDenoiced()){
-		this->display->setCursor(60,55);
+		this->display->setCursor(70,55);
 		this->display->print("No Noice");
 	}
 }
@@ -71,7 +71,9 @@ void RSSIMeter::buttonNext(){
 }
 void RSSIMeter::buttonUp(){
 	channel--;
-	channel %= 40;
+	if(channel < 0){
+		channel = 39;
+	}
 }
 void RSSIMeter::buttonDown(){
 	channel++;
