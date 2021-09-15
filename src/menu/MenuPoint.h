@@ -15,9 +15,11 @@ class MenuPoint : public Menu{
 		void setParent(Menu*);
 		void acitvate(Menu* activateion);
 		void acitvateMe();
+		void buttonPrev();
 
-		//virtual void draw()  = 0;
-		//virtual void processButton()  = 0;
+		//virtual void buttonNext()  = 0;
+		//virtual void buttonUp()  = 0;
+		//virtual void buttonDown()  = 0;
 
 };
 

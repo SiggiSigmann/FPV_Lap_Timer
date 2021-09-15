@@ -12,8 +12,12 @@ class Menu{
 	public:
 		Menu(Adafruit_SSD1306* d);
 		virtual void draw()  = 0;
-		virtual void processButton()  = 0;
+		virtual void buttonNext()  = 0;
+		virtual void buttonPrev()  = 0;
+		virtual void buttonUp()  = 0;
+		virtual void buttonDown()  = 0;
 		virtual void acitvate(Menu* activateion) = 0;
 		virtual void acitvateMe() = 0;
+
 };
 #endif

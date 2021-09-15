@@ -15,8 +15,10 @@ void RSSIMeter::draw(){
 }
 
 void  RSSIMeter::drawBottomline(){
-	this->display->setCursor(0,0);
-	this->display->print(channel);
+	this->display->fillRect(4,55,70,8,BLACK);
+	this->display->setCursor(4,55);
+	this->display->print("Channel:");
+	this->display->print( pgm_read_word_near(channelNames+channel),HEX);
 
 	this->display->drawLine(4,48,124,48,WHITE);
 	//this->display->setCursor(4,55);
@@ -32,7 +34,7 @@ void  RSSIMeter::drawBottomline(){
 	}
 
 	if(scan->isDenoiced()){
-		this->display->setCursor(50,55);
+		this->display->setCursor(60,55);
 		this->display->print("No Noice");
 	}
 }
@@ -56,30 +58,24 @@ void RSSIMeter::osci(){
 
 		delay(100);
 
-		
-		
-		processButton();
+
 	//}
 }
 
-void RSSIMeter::processButton(){
-	if(digitalRead(16)){
-		this->parent->acitvateMe();
-	}
-	/*if(digitalRead(4)){
-		this->display->clearDisplay();
-		this->display->display();
-		scan->captureNoise();
-		drawBottomline();
-	}*/
-	if(digitalRead(15)){
-		channel++;
-		channel %= 40;
-		this->display->fillRect(0,0,30,8,BLACK);
-		this->display->setCursor(0,0);
-		this->display->print(channel);
-		this->display->display();
-	}
+
+void RSSIMeter::buttonNext(){
+	this->display->clearDisplay();
+	this->display->display();
+	scan->captureNoise();
+	drawBottomline();
+}
+void RSSIMeter::buttonUp(){
+	channel--;
+	channel %= 40;
+}
+void RSSIMeter::buttonDown(){
+	channel++;
+	channel %= 40;
 }
 
 

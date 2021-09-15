@@ -50,17 +50,17 @@ void Osciloskope::osci(){
 	
 }
 
-void Osciloskope::processButton(){
-	if(digitalRead(16)){
-		this->parent->acitvateMe();
-		i=0;
-	}
-	/*if(digitalRead(4)){
-		this->display->clearDisplay();
-		this->display->display();
-		scan->captureNoise();
-		drawBottomline();
-	}*/
-}
 
+void Osciloskope::buttonNext(){
+	this->display->clearDisplay();
+	this->display->display();
+	scan->captureNoise();
+	drawBottomline();
+}
+void Osciloskope::buttonUp(){
+
+}
+void Osciloskope::buttonDown(){
+
+}
 

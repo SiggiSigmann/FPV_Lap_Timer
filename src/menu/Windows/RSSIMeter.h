@@ -18,7 +18,9 @@ class RSSIMeter : public MenuPoint{
 	public:
 		RSSIMeter(Adafruit_SSD1306* , Menu* , FPVScanner*);
 		void draw();
-		void processButton();
+		void buttonNext();
+		void buttonUp();
+		void buttonDown();
 };
 
 #endif

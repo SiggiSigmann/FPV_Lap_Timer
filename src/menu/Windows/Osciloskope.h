@@ -18,7 +18,9 @@ class Osciloskope : public MenuPoint{
 	public:
 		Osciloskope(Adafruit_SSD1306* , Menu* , FPVScanner*);
 		void draw();
-		void processButton();
+		void buttonNext();
+		void buttonUp();
+		void buttonDown();
 };
 
 #endif

@@ -17,3 +17,7 @@ void MenuPoint::acitvate(Menu* activateion){
 	this->parent->acitvate(activateion);
 	this->display->clearDisplay();
 }
+
+void MenuPoint::buttonPrev(){
+	this->parent->acitvateMe();
+}

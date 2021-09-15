@@ -18,7 +18,9 @@ class Selection : public MenuPoint{
 	public:
 		Selection(Adafruit_SSD1306* , Menu* , FPVScanner* sc);
 		void draw();
-		void processButton();
+		void buttonNext();
+		void buttonUp();
+		void buttonDown();
 };
 
 #endif
