@@ -15,6 +15,8 @@ void RSSIMeter::draw(){
 }
 
 void  RSSIMeter::drawBottomline(){
+	this->display->setCursor(0,0);
+	this->display->print("RSSI - Scope");
 	this->display->fillRect(4,55,70,8,BLACK);
 	this->display->setCursor(4,55);
 	this->display->print("Channel:");

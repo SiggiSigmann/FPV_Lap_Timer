@@ -14,6 +14,8 @@ void Osciloskope::draw(){
 }
 
 void  Osciloskope::drawBottomline(){
+	this->display->setCursor(0,0);
+	this->display->print("Channel - Scope");
 	this->display->drawLine(4,48,124,48,WHITE);
 	this->display->setCursor(4,55);
 	this->display->print("5645");

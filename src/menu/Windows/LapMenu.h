@@ -1,5 +1,5 @@
-#ifndef SELECTION_H
-#define SELECTION_H
+#ifndef LAPMENU_H
+#define LAPMENU_H
 
 #include "../Menu.h"
 #include "../MenuPoint.h"
@@ -7,20 +7,15 @@
 #include "../../RX5808/channels.h"
 #include "Osciloskope.h"
 #include "RSSIMeter.h"
-#include "LapMenu.h"
 
 #define MENUENTRIES 3
 
-class Selection : public MenuPoint{
+class LapMenu : public MenuPoint{
 	private:
-		FPVScanner* scan;
-		LapMenu* lap;
-		byte activePoint = 0;
-		Osciloskope* osci;
-		RSSIMeter* rssi;
+		int activePoint = 0;
 
 	public:
-		Selection(Adafruit_SSD1306* , Menu* , FPVScanner* sc);
+		LapMenu(Adafruit_SSD1306* , Menu*);
 		void draw();
 		void buttonNext();
 		void buttonUp();
