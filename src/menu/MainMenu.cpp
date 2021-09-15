@@ -1,11 +1,11 @@
 #include "MainMenu.h"
 
 MainMenu::MainMenu(Adafruit_SSD1306* d):Menu(d){
-	Serial.println("kmd");
 }
 
 void MainMenu::draw(){
 	this->active->draw();
+	this->display->display();
 }
 void MainMenu::processButton(){
 	this->active->processButton();

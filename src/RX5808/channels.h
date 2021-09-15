@@ -1,6 +1,6 @@
 #ifndef channels
 #define channels
-#include <Arduino.h>
+#include <ESP8266WiFi.h>
 
 //amounts of cannels
 const int channelAmount = 40;

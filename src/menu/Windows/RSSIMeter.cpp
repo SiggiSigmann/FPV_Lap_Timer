@@ -43,41 +43,36 @@ void RSSIMeter::osci(){
 		float level = (float) scan->scanIdx(channel) / (float)scan->getMax();
 		level *= 32;
 		int o = level;
-		for(int i = 29; i>=0;i--){
+		for(int i = 119; i>=0;i--){
 			int ol = old[i];
 			old[i] = o;
 			o = ol;
 
-			this->display->drawFastVLine((i*4)+3+5,8,40,BLACK);
-			this->display->drawPixel((i*4)+3+5,48-old[i],WHITE);
-			this->display->drawFastVLine((i*4)+2+5,8,40,BLACK);
-			this->display->drawPixel((i*4)+2+5,48-old[i],WHITE);
-			this->display->drawFastVLine((i*4)+1+5,8,40,BLACK);
-			this->display->drawPixel((i*4)+1+5,48-old[i],WHITE);
-			this->display->drawFastVLine((i*4)+5,8,40,BLACK);
-			this->display->drawPixel((i*4)+5,48-old[i],WHITE);
+			this->display->drawFastVLine(i+5,8,40,BLACK);
+			this->display->drawPixel(i+5,48-old[i],WHITE);
+			
 		}
 		
 
 		delay(100);
 
-		this->display->display();
+		
 		
 		processButton();
 	//}
 }
 
 void RSSIMeter::processButton(){
-	if(digitalRead(3)){
+	if(digitalRead(16)){
 		this->parent->acitvateMe();
 	}
-	if(digitalRead(4)){
+	/*if(digitalRead(4)){
 		this->display->clearDisplay();
 		this->display->display();
 		scan->captureNoise();
 		drawBottomline();
-	}
-	if(digitalRead(5)){
+	}*/
+	if(digitalRead(15)){
 		channel++;
 		channel %= 40;
 		this->display->fillRect(0,0,30,8,BLACK);

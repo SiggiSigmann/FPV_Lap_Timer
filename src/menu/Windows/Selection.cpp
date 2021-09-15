@@ -24,15 +24,18 @@ void Selection::draw(){
 		this->display->drawRect(10,40,10,10,WHITE);
 	}
 
+
+	this->display->setCursor(20,60);
+	this->display->print(millis());
 	this->display->display();
 }	
 
 void Selection::processButton(){
-	if(digitalRead(4)){
+	if(!digitalRead(3)){
 		activePoint++;
 		activePoint %=2;
 	}
-	if(digitalRead(5)){
+	if(digitalRead(15)){
 		if(activePoint == 0){
 			osci->acitvateMe();
 		}else{

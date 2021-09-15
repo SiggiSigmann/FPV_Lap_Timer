@@ -1,7 +1,7 @@
 #ifndef SPI_RX5808_H
 #define SPI_RX5808_H
 
-#include <Arduino.h>
+#include <ESP8266WiFi.h>
 #include "spi_pin.h"
 #include "mySPI.h"
 

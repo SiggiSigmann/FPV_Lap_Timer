@@ -1,7 +1,6 @@
 #include "MenuPoint.h"
 
 MenuPoint::MenuPoint(Adafruit_SSD1306* d, Menu* m):Menu(d){
-	Serial.println("huaa2");
 	this->parent = m;
 };
 

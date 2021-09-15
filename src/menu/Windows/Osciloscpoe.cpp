@@ -2,7 +2,6 @@
 
 
 Osciloskope::Osciloskope(Adafruit_SSD1306* d, Menu* parent, FPVScanner* s):MenuPoint(d,parent){
-	Serial.println("huaa");
 	scan = s;
 	actvescann=true;
 }
@@ -36,30 +35,32 @@ void  Osciloskope::drawBottomline(){
 
 void Osciloskope::osci(){
 
-		for(int i = 0; i<channelAmount;i++){
-			float level = (float) scan->scanIdx(i) / (float)scan->getMax();
-			level *= 32;
-			for(int j=0; j<3;j++){
-				this->display->drawFastVLine((i*3)+5+j,8,40,BLACK);
-				this->display->drawPixel((i*3)+j+5,48-level,WHITE);
-			}
-			this->display->drawFastVLine(((i+1)*3)+5,8,40,BLACK);
-			this->display->display();
+	
+		float level = (float) scan->scanIdx(i) / (float)scan->getMax();
+		level *= 32;
+		for(byte j=0; j<3;j++){
+			this->display->drawFastVLine((i*3)+5+j,8,40,BLACK);
+			this->display->drawPixel((i*3)+j+5,48-level,WHITE);
 		}
-		processButton();
+		this->display->drawFastVLine(((i+1)*3)+5,8,40,BLACK);
+		this->display->display();
+
+	i++;
+	i %=40;
 	
 }
 
 void Osciloskope::processButton(){
-	if(digitalRead(3)){
+	if(digitalRead(16)){
 		this->parent->acitvateMe();
+		i=0;
 	}
-	if(digitalRead(4)){
+	/*if(digitalRead(4)){
 		this->display->clearDisplay();
 		this->display->display();
 		scan->captureNoise();
 		drawBottomline();
-	}
+	}*/
 }
 
 

@@ -13,7 +13,7 @@ class RSSIMeter : public MenuPoint{
 		int channel = 0;
 		void osci();
 		void drawBottomline();
-		byte old[30] = {0};
+		byte old[120] = {0};
 
 	public:
 		RSSIMeter(Adafruit_SSD1306* , Menu* , FPVScanner*);

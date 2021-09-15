@@ -5,8 +5,8 @@
 //chan2 = SSP 
 //chan3 = CLOCK
 
-#define SSP 8
-#define DATA 9
-#define CLOCK 7
+#define DATA 14
+#define SSP 12
+#define CLOCK 13
 
 #endif

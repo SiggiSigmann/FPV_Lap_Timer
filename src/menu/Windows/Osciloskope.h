@@ -7,20 +7,18 @@
 #include "../../RX5808/channels.h"
 
 class Osciloskope : public MenuPoint{
-
 	private:
 		FPVScanner* scan;
 		boolean actvescann = false;
+		byte i = 0;
 
 		void osci();
 		void drawBottomline();
 		
 	public:
 		Osciloskope(Adafruit_SSD1306* , Menu* , FPVScanner*);
-
 		void draw();
 		void processButton();
-
 };
 
 #endif
