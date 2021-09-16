@@ -8,7 +8,7 @@ Meter::Meter(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc):MenuPoint(d,m){
 
 void Meter::draw(){
 	this->display->setCursor(0,0);
-	this->display->print("MENU:");
+	this->display->print("Meter:");
 
 	this->display->fillRect(4,18,8,8,BLACK);
 	this->display->setCursor(18,18);

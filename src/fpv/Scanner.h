@@ -8,6 +8,7 @@ class FPVScanner{
 	private:
 		int noise[40];
 		int max=400;
+		int maxNoice = 400;
 		int* lastScann;
 		boolean denoiced = false;
 		SPI_RX5808* rx;
@@ -21,6 +22,7 @@ class FPVScanner{
 		void captureNoise();
 		void resetNoise();
 		boolean isDenoiced();
+		int getMaxNoice();
 };
 	
 #endif

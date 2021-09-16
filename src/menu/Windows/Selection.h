@@ -5,7 +5,7 @@
 #include "../MenuPoint.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
-#include "LapMenu.h"
+#include "Tracker/LapMenu.h"
 #include "ScanSettings.h"
 #include "Meter/Meter.h"
 

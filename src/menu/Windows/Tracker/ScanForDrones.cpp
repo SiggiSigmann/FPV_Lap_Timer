@@ -60,7 +60,11 @@ void ScanForDrones::draw(){
 		i++;
 		if(i==40){
 			scann = false;
+			if(sc->isDenoiced()){
+				tracker->setMaxOffset(sc->getMaxNoice());
+			}
 			tracker->setMeasurements(measurement);
+			
 		}
 	}else{
 		i=0;
@@ -101,6 +105,7 @@ void ScanForDrones::draw(){
 void ScanForDrones::buttonNext(){
 	switch (activePoint){
 	case 0:
+	    tracker->reset();
 		scann = true;
 		break;
 	

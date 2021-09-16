@@ -1,11 +1,11 @@
 #ifndef SCANFORDRONES_H
 #define SCANFORDRONES_H
 
-#include "../Menu.h"
-#include "../MenuPoint.h"
-#include "../../fpv/Scanner.h"
-#include "../../fpv/LapTracker.h"
-#include "../../RX5808/channels.h"
+#include "../../Menu.h"
+#include "../../MenuPoint.h"
+#include "../../../fpv/Scanner.h"
+#include "../../../fpv/LapTracker.h"
+#include "../../../RX5808/channels.h"
 
 #define MENUENTRIES 4
 
