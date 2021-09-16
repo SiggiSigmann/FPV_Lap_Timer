@@ -1,9 +1,10 @@
 #ifndef channels
 #define channels
-#include <ESP8266WiFi.h>
+
+#include <Arduino.h>
 
 //amounts of cannels
-const int channelAmount = 40;
+#define CHANNELAMOUT 40;
 
 // Channels with their Mhz Values
 const int channelFreqTable[] PROGMEM = {

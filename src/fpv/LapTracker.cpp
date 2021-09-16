@@ -2,8 +2,8 @@
 
 void LapTracker::setMeasurements(int* level){
 	measurevalues = level;
-
-	for(int i = 0; i<channelAmount;i++){
+	short amount = CHANNELAMOUT;
+	for(int i = 0; i< amount ;i++){
 		int index = i;
 		boolean peak = true;
 
@@ -19,7 +19,7 @@ void LapTracker::setMeasurements(int* level){
 
 		index = i;
 		for(int j = 0; j<scannPM; j++){
-			if(++index > channelAmount-1) break;
+			if(++index > CHANNELAMOUT-1) break;
 			if(measurevalues[i]<measurevalues[index]){
 				peak = false;
 				break;

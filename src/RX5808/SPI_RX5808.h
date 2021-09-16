@@ -1,7 +1,7 @@
 #ifndef SPI_RX5808_H
 #define SPI_RX5808_H
 
-#include <ESP8266WiFi.h>
+#include <Arduino.h>
 #include "spi_pin.h"
 #include "mySPI.h"
 
@@ -13,7 +13,7 @@ class SPI_RX5808{
 		byte* info;
 		int rssiPin;
 		unsigned long timeSinceChannel = 0;
-		unsigned long valideTime = 30; // lower and there will be low spices in the rssi values
+		unsigned long valideTime = 30;  		// lower and there will be low spices in the rssi values
 		int oldChannel = 0;
 		MySPI* myspi;
 

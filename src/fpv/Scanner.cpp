@@ -2,7 +2,8 @@
 
 void FPVScanner::scan(int saveto[]){
 	lastScann = saveto;
-	for(int i = 0; i<channelAmount;i++){
+	short amount = CHANNELAMOUT;
+	for(int i = 0; i< amount ;i++){
 		saveto[pgm_read_word_near(channelList+i)] = scanIdx(i);
 	}
 }
@@ -43,7 +44,8 @@ int FPVScanner::getMax(){
 void FPVScanner::captureNoise(){
 	denoiced = true;
 	long total = 0;
-	for(int i = 0; i<channelAmount;i++){
+	short amount = CHANNELAMOUT;
+	for(int i = 0; i < amount ;i++){
 		rx->setFreq(pgm_read_word_near(channelFreqTable+i));
 		delay(rx->getValideTime());
 		long sum = 0;
@@ -55,7 +57,7 @@ void FPVScanner::captureNoise(){
 		noise[i] = sum/100;
 		total += noise[i];
 	}
-	this->maxNoice = total/channelAmount;
+	this->maxNoice = total/CHANNELAMOUT;
 	if(maxNoice>max){
 		max = maxNoice;
 	}
@@ -66,7 +68,8 @@ boolean FPVScanner::isDenoiced(){
 }
 
 void FPVScanner::resetNoise(){
-	for(int i = 0; i<channelAmount;i++){
+	short amount = CHANNELAMOUT;
+	for(int i = 0; i< amount ;i++){
 		noise[i] =0;
 	}
 	denoiced = false;

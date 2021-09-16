@@ -40,12 +40,17 @@ void SPI_RX5808::setPayload(long payload){
  */
 //start SPI and set Reag A to 8 => defaultmultiplyer
 SPI_RX5808::SPI_RX5808(int rssiPin){
+	//create Array for data
 	info = new byte[4];
 
 	this->rssiPin = rssiPin;
 
 	pinMode(SSP, OUTPUT);
 
+	//create MySPI so every Pin can be used
+	//I had problem while Using I2C and SPI from Arduino Together.
+	//It wil work with this class
+	//pin defined in spi_pin.h
 	this->myspi = new MySPI();
 	this->myspi->begin();
 

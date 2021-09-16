@@ -18,35 +18,39 @@
 #define SCREEN_ADDRESS 0x3C
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
+
 SPI_RX5808* rx;
 MainMenu* mm;
 FPVScanner* scanner;
 
 
 void setup() {
-  Serial.begin(115200);
+	Serial.begin(115200);
+	while(!Serial){}
 
-  if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { 
-    Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Don't proceed, loop forever
-  }
-  display.clearDisplay();
-  display.setTextSize(1);
-  display.setTextColor(WHITE);
-  display.display();
+	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { 
+	Serial.println(F("SSD1306 allocation failed"));
+	for(;;); // Don't proceed, loop forever
+	}
+	display.clearDisplay();
+	display.setTextSize(0);
+	display.setTextColor(WHITE);
+	display.display();
 
-  rx = new SPI_RX5808(A0);
-  scanner = new FPVScanner(rx);
+	//setup receiver
+	rx = new SPI_RX5808(A0);
+	scanner = new FPVScanner(rx);
 
-  //main Menu
-  mm = new MainMenu(&display);
+	//main Menu
+	mm = new MainMenu(&display);
 
-  //selection
-  Selection* sel = new Selection(&display, mm, scanner);
-  mm->setMainScreen(sel);
-  Serial.println(F("setup"));
+	//selection
+	Selection* sel = new Selection(&display, mm, scanner);
+	mm->setMainScreen(sel);
+	Serial.println(F("setup"));   
 }
 
 void loop() {
-  mm->run();
+	//draw and handel Buttons
+	mm->run();
 }

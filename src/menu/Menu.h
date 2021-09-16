@@ -4,7 +4,9 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-
+/**
+ * Can be inhered from to create a MenuPoint
+ */
 class Menu{
 	protected:
 		Adafruit_SSD1306* display;
@@ -12,6 +14,7 @@ class Menu{
 	public:
 		Menu(Adafruit_SSD1306* d);
 		Adafruit_SSD1306* getDisplay();
+		
 		virtual void draw()  = 0;
 		virtual void buttonNext()  = 0;
 		virtual void buttonPrev()  = 0;

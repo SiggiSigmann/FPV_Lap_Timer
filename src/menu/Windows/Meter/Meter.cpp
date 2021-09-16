@@ -13,7 +13,7 @@ void Meter::draw(){
 	this->display->fillRect(4,18,8,8,BLACK);
 	this->display->setCursor(18,18);
 	this->display->drawRect(4,18,8,8,WHITE);
-	this->display->print("OSCI");
+	this->display->print("Channel Scanner");
 	if(activePoint == 0){
 		this->display->fillRect(4,18,8,8,WHITE);
 	}
@@ -21,7 +21,7 @@ void Meter::draw(){
 	this->display->fillRect(4,30,8,8,BLACK);
 	this->display->setCursor(18,30);
 	this->display->drawRect(4,30,8,8,WHITE);
-	this->display->print("RSSI");
+	this->display->print("RSSI Oscilloscope");
 	if(activePoint == 1){
 		this->display->fillRect(4,30,8,8,WHITE);
 	}
