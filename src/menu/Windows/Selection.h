@@ -5,20 +5,18 @@
 #include "../MenuPoint.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
-#include "Osciloskope.h"
-#include "RSSIMeter.h"
 #include "LapMenu.h"
 #include "ScanSettings.h"
+#include "Meter/Meter.h"
 
-#define MENUENTRIES 4
+#define MENUENTRIES 3
 
 class Selection : public MenuPoint{
 	private:
 		FPVScanner* scan;
 		LapMenu* lap;
 		byte activePoint = 0;
-		Osciloskope* osci;
-		RSSIMeter* rssi;
+		Meter* meter;
 		ScanSettings* scanSettngs;
 
 	public:

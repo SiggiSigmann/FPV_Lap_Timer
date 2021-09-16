@@ -5,11 +5,9 @@
 #include "../MenuPoint.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
-#include "Osciloskope.h"
-#include "RSSIMeter.h"
 #include "ScanForDrones.h"
 
-#define MENUENTRIES 4
+#define MENUENTRIES 2
 
 class LapMenu : public MenuPoint{
 	private:

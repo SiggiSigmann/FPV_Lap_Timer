@@ -6,8 +6,6 @@
 #include "../../fpv/Scanner.h"
 #include "../../fpv/LapTracker.h"
 #include "../../RX5808/channels.h"
-#include "Osciloskope.h"
-#include "RSSIMeter.h"
 
 #define MENUENTRIES 2
 

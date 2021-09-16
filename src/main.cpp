@@ -10,8 +10,6 @@
 #include "fpv/Scanner.h"
 
 #include "menu/MainMenu.h"
-#include "menu/Windows/Osciloskope.h"
-#include "menu/Windows/RSSIMeter.h"
 #include "menu/Windows/Selection.h"
 
 #define SCREEN_WIDTH 128 
