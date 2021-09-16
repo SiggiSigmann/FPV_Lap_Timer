@@ -2,7 +2,7 @@
 
 LapMenu::LapMenu(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc):MenuPoint(d,m){
 	this->sc = sc;
-	sfc = new ScanForDrones(d,m,sc);
+	sfc = new ScanForDrones(d,this,sc);
 }
 
 void LapMenu::draw(){

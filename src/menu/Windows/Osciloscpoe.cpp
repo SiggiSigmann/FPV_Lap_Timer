@@ -59,7 +59,7 @@ void Osciloskope::buttonNext(){
 			display->print("capture Noise");
 			display->display();
 	scan->captureNoise();
-	display->clearDisplay();
+	
 	drawBottomline();
 }
 void Osciloskope::buttonUp(){

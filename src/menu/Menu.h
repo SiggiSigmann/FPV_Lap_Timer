@@ -11,6 +11,7 @@ class Menu{
 	
 	public:
 		Menu(Adafruit_SSD1306* d);
+		Adafruit_SSD1306* getDisplay();
 		virtual void draw()  = 0;
 		virtual void buttonNext()  = 0;
 		virtual void buttonPrev()  = 0;

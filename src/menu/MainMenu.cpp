@@ -61,7 +61,7 @@ void MainMenu::processButton(){
 		prev = false;
 	}
 
-	if(!digitalRead(DOWNBUTTON)){
+	if(digitalRead(DOWNBUTTON)){
 		if(!down){
 			this->buttonDown();
 			down = true;
@@ -70,7 +70,7 @@ void MainMenu::processButton(){
 		down = false;
 	}
 
-	if(!digitalRead(UPBUTTON)){
+	if(digitalRead(UPBUTTON)){
 		if(!up){
 			this->buttonUp();
 			up = true;

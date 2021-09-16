@@ -55,7 +55,7 @@ void FPVScanner::captureNoise(){
 		noise[i] = sum/100;
 		total += noise[i];
 	}
-	this->max = 400- total/channelAmount;
+	this->max = total/channelAmount;
 }
 
 boolean FPVScanner::isDenoiced(){
