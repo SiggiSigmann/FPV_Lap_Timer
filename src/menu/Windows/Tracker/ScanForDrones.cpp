@@ -11,6 +11,28 @@ void ScanForDrones::draw(){
 	this->display->print("ScanForDrones:");
 	this->display->print(tracker->getNumberOfDrones());
 
+	this->display->drawLine(84,48,124,48,WHITE);
+	this->display->setCursor(4,55);
+	this->display->drawFastVLine(84,16,34,WHITE);
+	this->display->drawFastVLine(124,16,34,WHITE);
+
+	/*this->display->setCursor(84,55);
+	this->display->print("5645");
+
+	this->display->setCursor(105,55);
+	this->display->print("5945");*/
+
+	for(int i = 0; i<=40;i+=10){
+		this->display->drawPixel(84+i,49,WHITE);
+		this->display->drawPixel(84+i,50,WHITE);
+	}
+
+	if(sc->isDenoiced()){
+		this->display->setCursor(84,55);
+		this->display->print("No Noice");
+	}
+
+
 	byte x = 18;
 
 	this->display->fillRect(4,x,8,8,BLACK);
@@ -53,8 +75,8 @@ void ScanForDrones::draw(){
 		float level = (float) measurement[i] / (float)sc->getMax();
 		level *= 32;
 		
-		this->display->drawFastVLine((i+1)+76,8,40,BLACK);
-		this->display->drawPixel((i)+76,48-level,WHITE);
+		this->display->drawFastVLine((i+1)+84,8,40,BLACK);
+		this->display->drawPixel((i)+84,48-level,WHITE);
 		
 		this->display->display();
 		i++;
@@ -74,7 +96,7 @@ void ScanForDrones::draw(){
 
 	for(int j = 0; j<tracker->getNumberOfDrones();j++){
 		if((j!=lineidx) || !edit){
-			this->display->drawFastVLine(dr[j]+76,16,30,WHITE);
+			this->display->drawFastVLine(dr[j]+84,18,30,WHITE);
 		}else{
 			int towait = 1000;
 			if(editline){
@@ -83,20 +105,19 @@ void ScanForDrones::draw(){
 			if(time + towait < millis()){
 				time = millis();
 				drawline = !drawline;
-				this->display->drawFastVLine(dr[j]+76,16,30,BLACK);
+				this->display->drawFastVLine(dr[j]+84,18,30,BLACK);
 				if(drawline){
-					this->display->drawFastVLine(dr[j]+76,16,30,WHITE);
+					this->display->drawFastVLine(dr[j]+84,18,30,WHITE);
 				}else{
 					float level = (float) measurement[dr[j]] / (float)sc->getMax();
 					level *= 32;
-					this->display->drawPixel((dr[j])+76,48-level,WHITE);
+					this->display->drawPixel((dr[j])+84,48-level,WHITE);
 				}
 			}
 		}
 	}
 
-	this->display->drawFastVLine(0+76,12,40,WHITE);
-	this->display->drawFastVLine(39+76,12,40,WHITE);
+
 
 
 	/**/
@@ -148,8 +169,8 @@ void ScanForDrones::buttonUp(){
 			byte* dr = tracker->getDroneFreqs();
 			float level = (float) measurement[dr[lineidx]] / (float)sc->getMax();
 			level *= 32;
-			this->display->drawFastVLine(dr[lineidx]+76,16,30,BLACK);
-			this->display->drawPixel((dr[lineidx])+76,48-level,WHITE);
+			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
+			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
 			if(dr[lineidx] == 0){
 				dr[lineidx] = 39;
 			}else{
@@ -175,8 +196,8 @@ void ScanForDrones::buttonDown(){
 			byte* dr = tracker->getDroneFreqs();
 			float level = (float) measurement[dr[lineidx]] / (float)sc->getMax();
 			level *= 32;
-			this->display->drawFastVLine(dr[lineidx]+76,16,30,BLACK);
-			this->display->drawPixel((dr[lineidx])+76,48-level,WHITE);
+			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
+			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
 			dr[lineidx]++;
 			dr[lineidx] %=40;
 		}else{
