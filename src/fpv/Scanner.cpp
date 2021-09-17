@@ -1,7 +1,7 @@
 #include "Scanner.h"
 
-void FPVScanner::scan(int saveto[]){
-	lastScann = saveto;
+void FPVScanner::scan(){
+	int* saveto = measurement;
 	short amount = CHANNELAMOUT;
 	for(int i = 0; i< amount ;i++){
 		saveto[pgm_read_word_near(channelList+i)] = scanIdx(i);
@@ -10,6 +10,7 @@ void FPVScanner::scan(int saveto[]){
 
 FPVScanner::FPVScanner(SPI_RX5808*rx){
 	this->rx = rx;
+	measurement =new int[40];
 }
 
 int FPVScanner::scanIdx(short i){
@@ -25,16 +26,20 @@ int FPVScanner::scanIdx(short i){
 		if(res<0){
 			noise[i] = maxval;
 		}
+		measurement[i] =  maxval - noise[i];
 		return maxval - noise[i];
 	}else{
 		if(max<maxval) max=maxval;
+		measurement[i] = maxval;
 		return maxval;
 	}
+
+	
 }
 
 
 int* FPVScanner::getLastScan(){
-	return lastScann;
+	return measurement;
 }
 
 int FPVScanner::getMax(){
@@ -77,4 +82,12 @@ void FPVScanner::resetNoise(){
 
 int FPVScanner::getMaxNoice(){
 	return maxNoice;
+}
+
+int FPVScanner::noiceAt(byte i){
+	return noise[i];
+}
+
+int FPVScanner::getLastScanValue(byte i){
+	return measurement[i];
 }

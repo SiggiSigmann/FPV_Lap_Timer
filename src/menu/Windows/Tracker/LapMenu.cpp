@@ -2,7 +2,10 @@
 
 LapMenu::LapMenu(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc):MenuPoint(d,m){
 	this->sc = sc;
-	sfc = new ScanForDrones(d,this,sc);
+	LapTracker* tracker = new LapTracker();
+	sfc = new ScanForDrones(d,this,sc,tracker);
+	dt = new DroneTracker(d,this,sc,tracker);
+	tr = new Trackersettings(d,this,tracker);
 }
 
 void LapMenu::draw(){
@@ -24,6 +27,14 @@ void LapMenu::draw(){
 	if(activePoint == 1){
 		this->display->fillRect(4,30,8,8,WHITE);
 	}
+
+	this->display->fillRect(4,42,8,8,BLACK);
+	this->display->setCursor(18,42);
+	this->display->drawRect(4,42,8,8,WHITE);
+	this->display->print("Trackersettings");
+	if(activePoint == 2){
+		this->display->fillRect(4,42,8,8,WHITE);
+	}
 }	
 
 void LapMenu::buttonNext(){
@@ -32,7 +43,10 @@ void LapMenu::buttonNext(){
 			sfc->acitvateMe();
 			break;
 		case 1:
-			
+			dt->acitvateMe();
+			break;
+		case 2:
+			tr->acitvateMe();
 			break;
 	}
 }

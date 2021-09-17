@@ -27,7 +27,9 @@ void ScanSettings::draw(){
 
 	this->display->fillRect(4,42,116,8,BLACK);
 	this->display->setCursor(18,42);
-	this->display->print("MaxValue: ");
+	this->display->print("values: ");
+	this->display->print(sc->getMaxNoice());
+	this->display->print(" / ");
 	this->display->print(sc->getMax());
 
 

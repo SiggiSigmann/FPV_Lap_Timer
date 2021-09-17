@@ -21,6 +21,8 @@ class LapTracker{
 		byte* getDroneFreqs();
 		void setMaxOffset(int);
 		void reset();
+		int getScannPM();
+		void setScannPM(int);
 };
 
 #endif
