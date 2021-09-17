@@ -41,7 +41,7 @@ void DroneTracker::draw(){
 			this->display->setCursor(xVal,(yVal*6)+18);
 			this->display->print(i);
 			xVal += 10;
-			for(int j = 0;j<48;j++){
+			for(int j = 0;j<RSSIVALUEBUFFER;j++){
 				this->display->drawLine(xVal+j, ((yVal*6)+16), xVal+j, ((yVal*6)+26),BLACK);
 				byte level = scaleRSSI(drones[i].getRSSI()[j], 10, sc->getMax());
 				this->display->drawPixel(xVal+j, ((yVal*6)+26)-level, WHITE);
@@ -49,14 +49,13 @@ void DroneTracker::draw(){
 		}
 
 		//add RSSI Value
-		drones[isx].addRSSI(sc->scanFreq(drones[isx].getFreq()));
+		int val = sc->scanFreq(drones[isx].getFreq());
+		drones[isx].addRSSI(val);
 
 		//move droneiterator
 		isx++;
 		isx %= this->tracker->getNumberOfDrones();	
-		
 	}
-	
 }
 
 void DroneTracker::buttonNext(){
@@ -68,9 +67,9 @@ void DroneTracker::buttonNext(){
 	drones = new Drone[this->tracker->getNumberOfDrones()];
 	byte* dr = tracker->getDroneFreqs();
 	for(int i =0;i<this->tracker->getNumberOfDrones();i++){
-		drones[i].setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+ dr[i])));
-		//drones[i].setNoiseLevel(sc->noiceAt(dr[i]));
-		//drones[i].setMaxLevel(sc->getLastScanValue(dr[i]));
+		drones[i].setFreq(pgm_read_word_near(channelFreqTable+dr[i]));
+		drones[i].setNoiseLevel(sc->getNoise()[dr[i]]);
+		drones[i].setMaxLevel(sc->getLastScan()[dr[i]]);
 
 	}
 	exists = true;

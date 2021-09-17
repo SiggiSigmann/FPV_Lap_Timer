@@ -50,15 +50,23 @@ void ScanForDrones::draw(){
 	//draw drones
 	byte* drones = tracker->getDroneFreqs();
 	for(int j = 0; j<tracker->getNumberOfDrones();j++){
+		//celar channelname
+		this->display->fillRect(64,55,60,10,BLACK);
+
 		if((j!=lineidx) || !edit){
 			//only display if nothing will be moved or edit
 			this->display->drawFastVLine(drones[j]+84,18,30,WHITE);
 		}else{
 
+			//draw Channelname
+			this->display->setCursor(64,55);
+			this->display->print(pgm_read_word_near(channelNames+drones[j]),HEX);
+
 			//line blinks in different speed
 			int towait = 1000;
 			if(editline){
 				towait = 200;
+
 			}
 			if(time + towait < millis()){
 				time = millis();
@@ -76,6 +84,7 @@ void ScanForDrones::draw(){
 		}
 	}
 
+	if(scan->isDenoise()) tracker->setOffset(scan->getMaxNoise());
 }
 
 void ScanForDrones::buttonNext(){
@@ -140,6 +149,8 @@ void ScanForDrones::buttonUp(){
 			}else{
 				drones[lineidx]--;
 			}
+
+			
 		}else{
 			//choose line
 			if(this->lineidx == 0){

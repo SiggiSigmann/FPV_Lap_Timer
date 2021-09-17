@@ -4,11 +4,11 @@
 #include <Arduino.h>
 #include "../util/util.h"
 
-#define RSSIVALUEBUFFER 48						//because this is the number wich can be displayed
+#define RSSIVALUEBUFFER 48						//because this is the number which can be displayed
 
 class Drone{
 	private:
-		short freq =0;
+		int freq =0;
 		int noiselevel =0;
 		int maxlevel =0;
 		int values[RSSIVALUEBUFFER] = {0};			//last values
@@ -16,8 +16,8 @@ class Drone{
 	public:
 		Drone(){};
 
-		byte getFreq();
-		void setFreq(byte);
+		int getFreq();
+		void setFreq(int);
 
 		int getNoiseLevel();
 		void setNoiseLevel(int);

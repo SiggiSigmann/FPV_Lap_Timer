@@ -7,6 +7,7 @@ void LapTracker::setMeasurements(int* level){
 	for(byte i = 0; i< CHANNELAMOUT ;i++){
 		//check if value is big enough
 		if(measurevalues[i]<this->strengthoffset) continue;
+		//Serial.println("bigger");
 
 		//asuem a peek in rssi is found
 		boolean peak = true;

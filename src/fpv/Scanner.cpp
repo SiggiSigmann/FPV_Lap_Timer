@@ -6,6 +6,7 @@ Scanner::Scanner(SPI_RX5808*rx){
 
 void Scanner::captureNoise(){
 	long sum = 0;
+	maxNoise=0;
 
 	//scann
 	for(byte i = 0; i < CHANNELAMOUT ;i++){
@@ -90,7 +91,8 @@ int Scanner::scanFreq(int freq){
 	//search for index in channelFreqTable
 	for(byte i=0; i<CHANNELAMOUT;i++){
 		if(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)) == freq){
-			return scanIdx(freq);
+
+			return scanIdx(i);
 		}
 	}
 

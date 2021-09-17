@@ -6,11 +6,11 @@
 	this->maxlevel = maxlevel;
 }*/
 
-byte Drone::getFreq(){
+int Drone::getFreq(){
 	return freq;
 }
 
-void Drone::setFreq(byte x){
+void Drone::setFreq(int x){
 	this->freq = x;
 
 }
