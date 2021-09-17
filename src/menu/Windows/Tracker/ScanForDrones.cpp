@@ -1,103 +1,61 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc, LapTracker* tracer):MenuPoint(d,m){
-	this->sc = sc;
+ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, Scanner* sc, LapTracker* tracer):MenuList(d,m,4){
+	this->scan = sc;
 	this->tracker = tracer;
 }
 
 void ScanForDrones::draw(){
+	//top
 	this->display->fillRect(0,0,120,10,BLACK);
 	this->display->setCursor(0,0);
-	this->display->print("ScanForDrones:");
+	this->display->print("Scan For Drones: ");
 	this->display->print(tracker->getNumberOfDrones());
 
+	//menu
+	byte idx = 0;
+	drawPoint(idx++,"Scan");
+	drawPoint(idx++,"Edit");
+	drawPoint(idx++,"Denoise");
+	drawPoint(idx++,"Reset");
+
+	//graph
 	this->display->drawLine(84,48,124,48,WHITE);
 	this->display->setCursor(4,55);
 	this->display->drawFastVLine(84,16,34,WHITE);
 	this->display->drawFastVLine(124,16,34,WHITE);
-
-	/*this->display->setCursor(84,55);
-	this->display->print("5645");
-
-	this->display->setCursor(105,55);
-	this->display->print("5945");*/
-
 	for(int i = 0; i<=40;i+=10){
 		this->display->drawPixel(84+i,49,WHITE);
 		this->display->drawPixel(84+i,50,WHITE);
 	}
 
-	if(sc->isDenoiced()){
-		this->display->setCursor(84,55);
-		this->display->print("No Noice");
-	}
-
-
-	byte x = 18;
-
-	this->display->fillRect(4,x,8,8,BLACK);
-	this->display->setCursor(18,x);
-	this->display->drawRect(4,x,8,8,WHITE);
-	this->display->print("Scann");
-	if(activePoint == 0){
-		this->display->fillRect(4,x,8,8,WHITE);
-	}
-
-	x +=12;
-	this->display->fillRect(4,x,8,8,BLACK);
-	this->display->setCursor(18,x);
-	this->display->drawRect(4,x,8,8,WHITE);
-	this->display->print("edit");
-	if(activePoint == 1){
-		this->display->fillRect(4,x,8,8,WHITE);
-	}
-
-	x +=12;
-	this->display->fillRect(4,x,8,8,BLACK);
-	this->display->setCursor(18,x);
-	this->display->drawRect(4,x,8,8,WHITE);
-	this->display->print("denoice");
-	if(activePoint == 2){
-		this->display->fillRect(4,x,8,8,WHITE);
-	}
-
-	x +=12;
-	this->display->fillRect(4,x,8,8,BLACK);
-	this->display->setCursor(18,x);
-	this->display->drawRect(4,x,8,8,WHITE);
-	this->display->print("reset");
-	if(activePoint == 3){
-		this->display->fillRect(4,x,8,8,WHITE);
-	}
-	
-	if(scann){
-		sc->scanIdx(i);
-		float level = (float ) sc->getLastScanValue(i) / (float)sc->getMax();
-		level *= 32;
-		
+	//scann
+	if(isScanning){
+		byte level = scaleRSSI(scan->scanIdx(i), 32,scan->getMax());
 		this->display->drawFastVLine((i+1)+84,8,40,BLACK);
 		this->display->drawPixel((i)+84,48-level,WHITE);
 		
-		this->display->display();
+		//push itterateor and stop if finised
 		i++;
 		if(i==40){
-			scann = false;
-			if(sc->isDenoiced()){
-				tracker->setMaxOffset(sc->getMaxNoice());
-			}
-			tracker->setMeasurements(sc->getLastScan());
-			
+			isScanning = false;
+
+			//execute detection
+			tracker->setMeasurements(scan->getLastScan());
 		}
 	}else{
 		i=0;
 	}
 
-	byte* dr = tracker->getDroneFreqs();
-
+	//draw drones
+	byte* drones = tracker->getDroneFreqs();
 	for(int j = 0; j<tracker->getNumberOfDrones();j++){
 		if((j!=lineidx) || !edit){
-			this->display->drawFastVLine(dr[j]+84,18,30,WHITE);
+			//only display if nothing will be moved or edit
+			this->display->drawFastVLine(drones[j]+84,18,30,WHITE);
 		}else{
+
+			//line blinks in different speed
 			int towait = 1000;
 			if(editline){
 				towait = 200;
@@ -105,106 +63,122 @@ void ScanForDrones::draw(){
 			if(time + towait < millis()){
 				time = millis();
 				drawline = !drawline;
-				this->display->drawFastVLine(dr[j]+84,18,30,BLACK);
+				this->display->drawFastVLine(drones[j]+84,18,30,BLACK);
 				if(drawline){
-					this->display->drawFastVLine(dr[j]+84,18,30,WHITE);
+					//draw line
+					this->display->drawFastVLine(drones[j]+84,18,30,WHITE);
 				}else{
-					
-					float level = (float) sc->getLastScanValue(dr[j]) / (float)sc->getMax();
-					level *= 32;
-					this->display->drawPixel((dr[j])+84,48-level,WHITE);
+					//if no line 0> draw point
+					byte level = scaleRSSI(scan->getLastScan()[drones[j]], 32,scan->getMax());
+					this->display->drawPixel((drones[j])+84,48-level,WHITE);
 				}
 			}
 		}
 	}
 
-
-
-
-	/**/
 }
 
 void ScanForDrones::buttonNext(){
 	switch (activePoint){
-	case 0:
-	    tracker->reset();
-		scann = true;
-		break;
-	
-	case 1:
-		if(tracker->getNumberOfDrones() >0){
-			edit = true;
-			activePoint = 4;
-			time = millis();
-		}
+		case 0:
+			//scan for Drones
+			tracker->reset();
+			isScanning = true;
+			break;
+		
+		case 1:
+			//edit if there is someting
+			if(tracker->getNumberOfDrones() >0){
+				edit = true;
+				activePoint = 4;
+				time = millis();
+			}
+			break;
+		case 2:
+			//scan noise
+			display->clearDisplay();
+			display->setCursor(0,0);
+			display->print("capture Noise");
+			display->display();
 
-		/* code */
-		break;
-	case 2:
-		display->clearDisplay();
-		display->setCursor(0,0);
-		display->print("capture Noise");
-		display->display();
-		sc->captureNoise();
-		tracker->setMaxOffset(sc->getMax());
-		break;
-	case 3:
-		this->display->clearDisplay();
-		tracker->reset();
-		break;
-	case 4:
-		editline = !editline;
-		break;
+			scan->captureNoise();
+			tracker->setOffset(scan->getMaxNoise());
+			break;
+		case 3:
+			//reset
+			this->display->clearDisplay();
+			tracker->reset();
+			break;
+		case 4:
+			// a trick => switch between edit
+			editline = !editline;
+			break;
 	}
 }
 
 void ScanForDrones::buttonUp(){
 	if(!edit){
+		//normal menu stuff
 		if(this->activePoint ==0){
-			this->activePoint= MENUENTRIES-1;
+			this->activePoint= getNumberOfPoints()-1;
 		}else{
 			this->activePoint--;
 		}
 	}else{
 		if(editline){
-			byte* dr = tracker->getDroneFreqs();
-			float level = (float) sc->getLastScanValue(dr[lineidx])/ (float)sc->getMax();
-			level *= 32;
-			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
-			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
-			if(dr[lineidx] == 0){
-				dr[lineidx] = 39;
+			//move line
+			byte* drones = tracker->getDroneFreqs();
+			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
+
+			//remove old line
+			this->display->drawFastVLine(drones[lineidx]+84,18,30,BLACK);
+			this->display->drawPixel((drones[lineidx])+84,48-level,WHITE);
+
+			//move
+			if(drones[lineidx] == 0){
+				drones[lineidx] = 39;
 			}else{
-				dr[lineidx]--;
+				drones[lineidx]--;
 			}
 		}else{
+			//choose line
 			if(this->lineidx == 0){
 				this->lineidx= tracker->getNumberOfDrones()-1;
 			}else{
 				this->lineidx--;
 			}
 		}
+
+		//make line appear faster
 		time = millis();
 	}
 }
 
 void ScanForDrones::buttonDown(){
 	if(!edit){
+		//nomral menu stuff
 		this->activePoint++;
-		this->activePoint %=MENUENTRIES;
+		this->activePoint %=getNumberOfPoints();
 	}else{
 		if(editline){
-			byte* dr = tracker->getDroneFreqs();
-			float level =  (float) sc->getLastScanValue(dr[lineidx]) / (float)sc->getMax();
-			level *= 32;
-			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
-			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
-			dr[lineidx]++;
-			dr[lineidx] %=40;
+			//move lines
+			byte* drones = tracker->getDroneFreqs();
+			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
+
+			//remove old line
+			this->display->drawFastVLine(drones[lineidx]+84,18,30,BLACK);
+			this->display->drawPixel((drones[lineidx])+84,48-level,WHITE);
+
+			drones[lineidx]++;
+			drones[lineidx] %=40;
 		}else{
+
+			//select line
 			this->lineidx++;
 			this->lineidx %=  tracker->getNumberOfDrones();
 		}
+
+		//make line appear faster
 		time = millis();
 	}
 }
@@ -212,11 +186,13 @@ void ScanForDrones::buttonDown(){
 void ScanForDrones::buttonPrev(){
 	if(edit){
 		if(editline){
+			//stop moving the line
 			editline = false;
 		}else{
-		edit = false;
-		activePoint = 1;
-		drawline = true;
+			//stop choosing a line
+			edit = false;
+			activePoint = 1;
+			drawline = true;
 		}
 	}else{
 		this->parent->acitvateMe();

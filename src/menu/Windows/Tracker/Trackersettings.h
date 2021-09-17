@@ -3,14 +3,11 @@
 
 #include <Arduino.h>
 #include "../../Menu.h"
-#include "../../MenuPoint.h"
+#include "../../MenuList.h"
 #include "../../../fpv/LapTracker.h"
 
-#define MENUENTRIES 2
-
-class Trackersettings : public MenuPoint{
+class Trackersettings : public MenuList{
 	private:
-		int activePoint = 0;
 		LapTracker* tracker;
 		boolean editNumber;
 

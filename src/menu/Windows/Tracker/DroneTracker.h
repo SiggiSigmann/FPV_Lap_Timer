@@ -8,21 +8,19 @@
 #include "../../../fpv/LapTracker.h"
 #include "../../../fpv/Drone.h"
 #include "../../../RX5808/channels.h"
-
-#define MENUENTRIES 1
+#include "../../../util/util.h"
 
 class DroneTracker : public MenuPoint{
 	private:
-		int activePoint = 0;
-		FPVScanner* sc;
+		Scanner* sc;
 		LapTracker* tracker;
 		Drone* drones;
 		int isx = 0;
 		bool exists = 0;
-		unsigned long last = millis();
+		unsigned long last = millis();				//time till last update
 
 	public:
-		DroneTracker(Adafruit_SSD1306* , Menu*, FPVScanner* sc, LapTracker* tracker);
+		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, LapTracker* tracker);
 		void draw();
 		void buttonNext();
 		void buttonUp();

@@ -2,29 +2,30 @@
 #define SCANFORDRONES_H
 
 #include "../../Menu.h"
-#include "../../MenuPoint.h"
+#include "../../MenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/LapTracker.h"
 #include "../../../RX5808/channels.h"
+#include "../../../util/util.h"
 
-#define MENUENTRIES 4
-
-class ScanForDrones : public MenuPoint{
+class ScanForDrones : public MenuList{
 	private:
-		int activePoint = 0;
-		FPVScanner* sc;
+		Scanner* scan;
 		LapTracker* tracker;
+
+		//scan for drones
+		boolean isScanning = false;
+		byte i = 0;					//index of channel
 		
-		byte i = 0;
-		boolean scann = false;
+		//edit drone channels
 		boolean edit = false;
-		byte lineidx = 0;
 		boolean editline = false;
+		byte lineidx = 0;
 		boolean drawline = true;
 		unsigned long time;
 
 	public:
-		ScanForDrones(Adafruit_SSD1306* , Menu*, FPVScanner* sc, LapTracker*);
+		ScanForDrones(Adafruit_SSD1306* , Menu*, Scanner*, LapTracker*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

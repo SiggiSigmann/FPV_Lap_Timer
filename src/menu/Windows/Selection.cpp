@@ -1,41 +1,22 @@
 #include "Selection.h"
 
-Selection::Selection(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc):MenuPoint(d,m){
-	meter = new Meter(d, this, sc);
+Selection::Selection(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d, m, 3){
+	meter = new Measuring(d, this, sc);
 	lap = new LapMenu(d, this, sc);
-	scanSettngs = new ScanSettings(d, this, sc);
-	this->scan = sc;
+	scanSettings = new ScanSettings(d, this, sc);
 }
 
 void Selection::draw(){
+	//top
 	this->display->setCursor(0,0);
 	this->display->print("MENU:");
 
-	this->display->fillRect(4,18,8,8,BLACK);
-	this->display->setCursor(18,18);
-	this->display->drawRect(4,18,8,8,WHITE);
-	this->display->print("Meter");
-	if(activePoint == 0){
-		this->display->fillRect(4,18,8,8,WHITE);
-	}
+	//menu
+	byte idx = 0;
+	drawPoint(idx++, "Measurings");
+	drawPoint(idx++, "LAPTRACKER");
+	drawPoint(idx++, "Scanner Settings");
 
-	this->display->fillRect(4,30,8,8,BLACK);
-	this->display->setCursor(18,30);
-	this->display->drawRect(4,30,8,8,WHITE);
-	this->display->print("LAPTRACKER");
-	if(activePoint == 1){
-		this->display->fillRect(4,30,8,8,WHITE);
-	}
-
-	this->display->fillRect(4,42,8,8,BLACK);
-	this->display->setCursor(18,42);
-	this->display->drawRect(4,42,8,8,WHITE);
-	this->display->print("Scanner Settings");
-	if(activePoint == 2){
-		this->display->fillRect(4,42,8,8,WHITE);
-	}
-
-	
 }	
 
 void Selection::buttonNext(){
@@ -49,20 +30,7 @@ void Selection::buttonNext(){
 			break;
 
 		case 2:
-			scanSettngs->acitvateMe();
+			scanSettings->acitvateMe();
 			break;
 	}
-}
-
-void Selection::buttonUp(){
-	if(this->activePoint ==0){
-		this->activePoint= MENUENTRIES-1;
-	}else{
-		this->activePoint--;
-	}
-}
-
-void Selection::buttonDown(){
-	this->activePoint++;
-	this->activePoint %=MENUENTRIES;
 }

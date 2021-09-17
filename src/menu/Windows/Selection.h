@@ -2,29 +2,25 @@
 #define SELECTION_H
 
 #include "../Menu.h"
-#include "../MenuPoint.h"
+#include "../MenuList.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
 #include "Tracker/LapMenu.h"
 #include "ScanSettings.h"
-#include "Meter/Meter.h"
+#include "meter/Measuring.h"
 
-#define MENUENTRIES 3
 
-class Selection : public MenuPoint{
+
+class Selection : public MenuList{
 	private:
-		FPVScanner* scan;
 		LapMenu* lap;
-		byte activePoint = 0;
-		Meter* meter;
-		ScanSettings* scanSettngs;
+		Measuring* meter;
+		ScanSettings* scanSettings;
 
 	public:
-		Selection(Adafruit_SSD1306* , Menu* , FPVScanner* sc);
+		Selection(Adafruit_SSD1306* , Menu* , Scanner* sc);
 		void draw();
 		void buttonNext();
-		void buttonUp();
-		void buttonDown();
 };
 
 #endif

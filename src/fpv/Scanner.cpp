@@ -1,114 +1,112 @@
 #include "Scanner.h"
 
-void FPVScanner::scan(){
-	int* saveto = measurement;
-	short amount = CHANNELAMOUT;
-	for(int i = 0; i< amount ;i++){
-		saveto[pgm_read_word_near(channelList+i)] = scanIdx(i);
-	}
-}
-
-FPVScanner::FPVScanner(SPI_RX5808*rx){
+Scanner::Scanner(SPI_RX5808*rx){
 	this->rx = rx;
-	measurement =new int[40];
 }
 
-int FPVScanner::scanIdx(short i){
-	if(i<0) return -1;
-	if(i>=40) return -1;
-	rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
-	rx->waitTillValid();
-	int maxval = rx->getRSSI();
-	
-	if(denoiced){
-		int res = maxval - noise[i];
-		if(max<res) max=res;
-		if(res<0){
-			noise[i] = maxval;
-		}
-		measurement[i] =  maxval - noise[i];
-		return maxval - noise[i];
-	}else{
-		if(max<maxval) max=maxval;
-		measurement[i] = maxval;
-		return maxval;
-	}
+void Scanner::captureNoise(){
+	long sum = 0;
 
-	
-}
-
-
-int* FPVScanner::getLastScan(){
-	return measurement;
-}
-
-int FPVScanner::getMax(){
-	return max;
-}
-
-void FPVScanner::captureNoise(){
-	denoiced = true;
-	long total = 0;
-	short amount = CHANNELAMOUT;
-	for(int i = 0; i < amount ;i++){
+	//scann
+	for(byte i = 0; i < CHANNELAMOUT ;i++){
 		rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
-		delay(rx->getValideTime());
+		rx->waitTillValid();
+
+		//capture 100 values and calc mean
 		long sum = 0;
-		for(int j = 0;j<100;j++){
-			//Serial.println(i);
+		for(byte j = 0;j<100;j++){
 			sum += rx->getRSSI();
 			delay(1);
 		}
 		noise[i] = sum/100;
-		total += noise[i];
+		sum += noise[i];
+
+		if(maxNoise < noise[i]) maxNoise = noise[i];
 	}
-	this->maxNoice = total/CHANNELAMOUT;
-	if(maxNoice>max){
-		max = maxNoice;
-	}
+
+	//calc average noice and subtract form max
+	sum /= CHANNELAMOUT;
+	if(max > sum) max -= sum;
+
+	//check if max is realy max
+	if(maxNoise > max )max = maxNoise;
+
+	denoised = true;
 }
 
-boolean FPVScanner::isDenoiced(){
-	return denoiced;
-}
-
-void FPVScanner::resetNoise(){
-	short amount = CHANNELAMOUT;
-	for(int i = 0; i< amount ;i++){
+void Scanner::resetNoise(){
+	for(byte i = 0; i< CHANNELAMOUT ;i++){
+		//set all todefault
 		noise[i] =0;
 	}
-	denoiced = false;
+	denoised = false;
 }
 
-int FPVScanner::getMaxNoice(){
-	return maxNoice;
+boolean Scanner::isDenoise(){
+	return denoised;
 }
 
-int FPVScanner::noiceAt(byte i){
-	return noise[i];
+int Scanner::getMaxNoise(){
+	return maxNoise;
 }
 
-int FPVScanner::getLastScanValue(byte i){
-	return measurement[i];
+int* Scanner::getNoise(){
+	return noise;
 }
 
-int FPVScanner::scanFreq(short i){
-	//Serial.println(i);
-	rx->setFreq(i);
-	rx->waitTillValid();
-	int maxval = rx->getRSSI();
-	
-	if(denoiced){
-		int res = maxval - noise[i];
-		if(max<res) max=res;
-		if(res<0){
-			noise[i] = maxval;
-		}
-		measurement[i] =  maxval - noise[i];
-		return maxval - noise[i];
-	}else{
-		if(max<maxval) max=maxval;
-		measurement[i] = maxval;
-		return maxval;
+
+
+void Scanner::scan(){
+	//scann all
+	for(byte i = 0; i< CHANNELAMOUT ;i++){
+		measurement[i] = scanIdx(i);
 	}
 }
+
+int Scanner::scanIdx(byte i){
+	//cehck idx
+	if(i<0) return -1;
+	if(i>=CHANNELAMOUT) return -1;
+
+	//set rx to frequenzy and wait till rssi is valid
+	rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
+	rx->waitTillValid();
+
+	int rssi = rx->getRSSI();
+	
+	//denoise
+	//if not denoiced then noise[i] => 0
+	rssi -= noise[i];
+
+	//store rssi
+	measurement[i] = rssi;
+
+	if(max < rssi) max=rssi;
+	
+	return rssi;
+}
+
+int Scanner::scanFreq(int freq){
+	//search for index in channelFreqTable
+	for(byte i=0; i<CHANNELAMOUT;i++){
+		if(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)) == freq){
+			return scanIdx(freq);
+		}
+	}
+
+	return 0;
+}
+
+int* Scanner::getLastScan(){
+	return measurement;
+}
+
+int Scanner::getMax(){
+	return max;
+}
+
+
+
+
+
+

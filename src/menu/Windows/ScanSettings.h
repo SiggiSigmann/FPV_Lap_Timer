@@ -2,25 +2,23 @@
 #define ScanSettings_H
 
 #include "../Menu.h"
-#include "../MenuPoint.h"
+#include "../MenuList.h"
 #include "../../fpv/Scanner.h"
 #include "../../fpv/LapTracker.h"
 #include "../../RX5808/channels.h"
 
-#define MENUENTRIES 2
 
-class ScanSettings : public MenuPoint{
+
+class ScanSettings : public MenuList{
 	private:
 		int activePoint = 0;
-		FPVScanner* sc;
+		Scanner* sc;
 		LapTracker* tracker;
 
 	public:
-		ScanSettings(Adafruit_SSD1306* , Menu*, FPVScanner* sc);
+		ScanSettings(Adafruit_SSD1306* , Menu*, Scanner* sc);
 		void draw();
 		void buttonNext();
-		void buttonUp();
-		void buttonDown();
 };
 
 #endif

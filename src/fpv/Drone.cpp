@@ -6,37 +6,40 @@
 	this->maxlevel = maxlevel;
 }*/
 
-short Drone::getFreq(){
+byte Drone::getFreq(){
 	return freq;
 }
+
+void Drone::setFreq(byte x){
+	this->freq = x;
+
+}
+
 
 int Drone::getNoiseLevel(){
 	return noiselevel;
 }
 
+void Drone::setNoiseLevel(int x){
+	this->noiselevel  = x;
+}
+
+
 int Drone::getMaxLevel(){
 	return maxlevel;
 }
 
-void Drone::setFreq(short x){
-	this->freq = x;
-	//Serial.println(x);
-}
-void Drone::setNoiseLevel(int x){
-	this->noiselevel  = x;
-}
 void Drone::setMaxLevel(int x){
 	this->maxlevel = x;
 }
 
+
+
 void Drone::addRSSI(int x){
-	int temp = x;
-	for(int i=47;i>=0;i--){
-		int old = values[i];
-		values[i] = temp;
-		temp = old;
-	}
+	//put values at the end of the value array and shift array
+	insertAtEnd(values,x,RSSIVALUEBUFFER);
 }
-int Drone::getRSSI(int x){
-	return values[x];
+
+int* Drone::getRSSI(){
+	return values;
 }

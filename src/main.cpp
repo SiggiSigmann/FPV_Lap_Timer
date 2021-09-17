@@ -21,7 +21,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 SPI_RX5808* rx;
 MainMenu* mm;
-FPVScanner* scanner;
+Scanner* scanner;
 
 
 void setup() {
@@ -39,7 +39,7 @@ void setup() {
 
 	//setup receiver
 	rx = new SPI_RX5808(A0);
-	scanner = new FPVScanner(rx);
+	scanner = new Scanner(rx);
 
 	//main Menu
 	mm = new MainMenu(&display);

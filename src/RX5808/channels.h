@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 //amounts of cannels
-#define CHANNELAMOUT 40;
+#define CHANNELAMOUT 40
 
 // Channels with their Mhz Values
 const int channelFreqTable[] PROGMEM = {

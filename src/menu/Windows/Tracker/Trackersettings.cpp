@@ -1,34 +1,18 @@
 #include "Trackersettings.h"
 
-Trackersettings::Trackersettings(Adafruit_SSD1306* d, Menu* m, LapTracker* tracker):MenuPoint(d,m){
+Trackersettings::Trackersettings(Adafruit_SSD1306* d, Menu* m, LapTracker* tracker):MenuList(d,m,2){
 	this->tracker = tracker;
 }
 
 void Trackersettings::draw(){
+	//top
 	this->display->setCursor(0,0);
-	this->display->print("Settings - LAPTRACKER:");
+	this->display->print("Tracker Setting:");
 
-	this->display->fillRect(4,18,100,8,BLACK);
-	this->display->setCursor(18,18);
-	this->display->drawRect(4,18,8,8,WHITE);
-	this->display->print("ChannelsPM: ");
-	this->display->print(this->tracker->getScannPM());
-	if(activePoint == 0){
-		this->display->fillRect(4,18,8,8,WHITE);
-	}
-
-	this->display->fillRect(4,30,100,8,BLACK);
-	this->display->setCursor(18,30);
-	this->display->drawRect(4,30,8,8,WHITE);
-	this->display->print("reset");
-	if(activePoint == 1){
-		this->display->fillRect(4,30,8,8,WHITE);
-	}
-
-	this->display->fillRect(4,54,116,8,BLACK);
-	this->display->setCursor(18,54);
-	this->display->print("Detected Drones:");
-	this->display->print(this->tracker->getNumberOfDrones());
+	byte idx = 0;
+	drawPoint(idx++,"ChannelsPM: " + String(this->tracker->getScannPM()));
+	drawPoint(idx++,"reset");
+	drawInfo(idx++ +1,"Detected Drones:"+String(this->tracker->getNumberOfDrones()));
 }
 
 void Trackersettings::buttonNext(){
@@ -53,7 +37,7 @@ void Trackersettings::buttonUp(){
 		this->tracker->setScannPM(number);
 	}else{
 		if(this->activePoint == 0 ){
-			this->activePoint= MENUENTRIES-1;
+			this->activePoint= getNumberOfPoints()-1;
 		}else{
 			this->activePoint--;
 		}
@@ -70,7 +54,7 @@ void Trackersettings::buttonDown(){
 		this->tracker->setScannPM(number);
 	}else{
 		activePoint++;
-		activePoint %=MENUENTRIES;
+		activePoint %=getNumberOfPoints();
 	}
 }
 

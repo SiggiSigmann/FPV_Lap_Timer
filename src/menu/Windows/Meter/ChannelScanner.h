@@ -5,18 +5,15 @@
 #include "../../MenuPoint.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../RX5808/channels.h"
+#include "../../../util/util.h"
 
-class Osciloskope : public MenuPoint{
+class ChannelScanner : public MenuPoint{
 	private:
-		FPVScanner* scan;
-		boolean actvescann = false;
-		byte i = 0;
-
-		void osci();
-		void drawBottomline();
+		Scanner* scan;
+		byte i = 0;					//index of scann
 		
 	public:
-		Osciloskope(Adafruit_SSD1306* , Menu* , FPVScanner*);
+		ChannelScanner(Adafruit_SSD1306* , Menu* , Scanner*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

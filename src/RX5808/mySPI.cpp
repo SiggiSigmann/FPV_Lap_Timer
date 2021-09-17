@@ -7,8 +7,8 @@ void MySPI::begin(){
 	pinMode(CLOCK, OUTPUT);
 }
 
+//transphere byte
 void MySPI::transfer(byte byte){
-    //transphere byte
 	for (uint8_t i = 0; i < 8; i++) {
         sendBit(byte & 0x1);
         byte >>= 1;
