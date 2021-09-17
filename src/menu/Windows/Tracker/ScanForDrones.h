@@ -14,7 +14,7 @@ class ScanForDrones : public MenuPoint{
 		int activePoint = 0;
 		FPVScanner* sc;
 		LapTracker* tracker;
-		int measurement[40];
+		
 		byte i = 0;
 		boolean scann = false;
 		boolean edit = false;
@@ -24,7 +24,7 @@ class ScanForDrones : public MenuPoint{
 		unsigned long time;
 
 	public:
-		ScanForDrones(Adafruit_SSD1306* , Menu*, FPVScanner* sc);
+		ScanForDrones(Adafruit_SSD1306* , Menu*, FPVScanner* sc, LapTracker*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

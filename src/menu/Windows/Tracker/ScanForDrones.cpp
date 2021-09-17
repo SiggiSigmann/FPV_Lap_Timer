@@ -1,8 +1,8 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc ):MenuPoint(d,m){
+ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, FPVScanner* sc, LapTracker* tracer):MenuPoint(d,m){
 	this->sc = sc;
-	tracker = new LapTracker();
+	this->tracker = tracer;
 }
 
 void ScanForDrones::draw(){
@@ -71,8 +71,8 @@ void ScanForDrones::draw(){
 	}
 	
 	if(scann){
-		measurement[i] = sc->scanIdx(i);
-		float level = (float) measurement[i] / (float)sc->getMax();
+		sc->scanIdx(i);
+		float level = (float ) sc->getLastScanValue(i) / (float)sc->getMax();
 		level *= 32;
 		
 		this->display->drawFastVLine((i+1)+84,8,40,BLACK);
@@ -85,7 +85,7 @@ void ScanForDrones::draw(){
 			if(sc->isDenoiced()){
 				tracker->setMaxOffset(sc->getMaxNoice());
 			}
-			tracker->setMeasurements(measurement);
+			tracker->setMeasurements(sc->getLastScan());
 			
 		}
 	}else{
@@ -109,7 +109,8 @@ void ScanForDrones::draw(){
 				if(drawline){
 					this->display->drawFastVLine(dr[j]+84,18,30,WHITE);
 				}else{
-					float level = (float) measurement[dr[j]] / (float)sc->getMax();
+					
+					float level = (float) sc->getLastScanValue(dr[j]) / (float)sc->getMax();
 					level *= 32;
 					this->display->drawPixel((dr[j])+84,48-level,WHITE);
 				}
@@ -167,7 +168,7 @@ void ScanForDrones::buttonUp(){
 	}else{
 		if(editline){
 			byte* dr = tracker->getDroneFreqs();
-			float level = (float) measurement[dr[lineidx]] / (float)sc->getMax();
+			float level = (float) sc->getLastScanValue(dr[lineidx])/ (float)sc->getMax();
 			level *= 32;
 			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
 			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
@@ -194,7 +195,7 @@ void ScanForDrones::buttonDown(){
 	}else{
 		if(editline){
 			byte* dr = tracker->getDroneFreqs();
-			float level = (float) measurement[dr[lineidx]] / (float)sc->getMax();
+			float level =  (float) sc->getLastScanValue(dr[lineidx]) / (float)sc->getMax();
 			level *= 32;
 			this->display->drawFastVLine(dr[lineidx]+84,18,30,BLACK);
 			this->display->drawPixel((dr[lineidx])+84,48-level,WHITE);
