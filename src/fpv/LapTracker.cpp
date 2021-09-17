@@ -29,7 +29,7 @@ void LapTracker::setMeasurements(int* level){
 
 		if(peak){
 			drones[numberOfDrones] = i;
-
+			Serial.println(pgm_read_word_near(channelFreqTable +i));
 			i += scannPM-1;
 			numberOfDrones++;
 			if(numberOfDrones == 10){

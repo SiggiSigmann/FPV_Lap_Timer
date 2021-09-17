@@ -2,7 +2,7 @@
 
 
 RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, Menu* parent, FPVScanner* s):MenuPoint(d,parent){
-	Serial.println("huaa");
+	//Serial.println("huaa");
 	scan = s;
 	actvescann=true;
 }

@@ -51,7 +51,7 @@ void FPVScanner::captureNoise(){
 	long total = 0;
 	short amount = CHANNELAMOUT;
 	for(int i = 0; i < amount ;i++){
-		rx->setFreq(pgm_read_word_near(channelFreqTable+i));
+		rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
 		delay(rx->getValideTime());
 		long sum = 0;
 		for(int j = 0;j<100;j++){
@@ -90,4 +90,25 @@ int FPVScanner::noiceAt(byte i){
 
 int FPVScanner::getLastScanValue(byte i){
 	return measurement[i];
+}
+
+int FPVScanner::scanFreq(short i){
+	//Serial.println(i);
+	rx->setFreq(i);
+	rx->waitTillValid();
+	int maxval = rx->getRSSI();
+	
+	if(denoiced){
+		int res = maxval - noise[i];
+		if(max<res) max=res;
+		if(res<0){
+			noise[i] = maxval;
+		}
+		measurement[i] =  maxval - noise[i];
+		return maxval - noise[i];
+	}else{
+		if(max<maxval) max=maxval;
+		measurement[i] = maxval;
+		return maxval;
+	}
 }

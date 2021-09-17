@@ -53,4 +53,5 @@ void setup() {
 void loop() {
 	//draw and handel Buttons
 	mm->run();
+	//Serial.println(ESP.getFreeHeap());
 }

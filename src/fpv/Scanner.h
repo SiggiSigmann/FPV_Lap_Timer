@@ -17,6 +17,7 @@ class FPVScanner{
 		FPVScanner(SPI_RX5808* rx);
 		void scan();
 		int scanIdx(short i);
+		int scanFreq(short i);
 		int* getLastScan();
 		int getLastScanValue(byte);
 		int getMax();
