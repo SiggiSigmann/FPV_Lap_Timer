@@ -6,8 +6,9 @@ void DroneDetector::setMeasurements(int* level){
 	//itterate over all measurements
 	for(byte i = 0; i< CHANNELAMOUT ;i++){
 		//check if value is big enough
+		Serial.println(String(measurevalues[i]) +" "+String(this->strengthoffset));
 		if(measurevalues[i]<this->strengthoffset) continue;
-		//Serial.println("bigger");
+		Serial.println("bigger");
 
 		//asuem a peek in rssi is found
 		boolean peak = true;

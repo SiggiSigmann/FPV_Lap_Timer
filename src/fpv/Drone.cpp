@@ -51,3 +51,9 @@ int* Drone::getRSSI(){
 unsigned long Drone::getLastTime(){
 	return millis() - lastTime;
 }
+
+void Drone::reset(){
+	for(byte i; i<RSSIVALUEBUFFER; i++){
+		values[i] = 0;
+	}
+}

@@ -11,7 +11,7 @@
 class ScanForDrones : public MenuList{
 	private:
 		Scanner* scan;
-		DroneDetector* tracker;
+		DroneDetector* detector;
 
 		//scan for drones
 		boolean isScanning = false;

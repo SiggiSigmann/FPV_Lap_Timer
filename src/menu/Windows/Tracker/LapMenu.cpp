@@ -2,11 +2,11 @@
 
 LapMenu::LapMenu(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,3){
 	//create Tracker
-	DroneDetector* tracker = new DroneDetector();
+	DroneDetector* detector = new DroneDetector();
 
-	sfc = new ScanForDrones(d,this,sc,tracker);
-	dt = new DroneTracker(d,this,sc,tracker);
-	tr = new Trackersettings(d,this,tracker);
+	sfc = new ScanForDrones(d,this,sc,detector);
+	dt = new DroneTracker(d,this,sc,detector);
+	tr = new Trackersettings(d,this,detector);
 }
 
 void LapMenu::draw(){

@@ -1,7 +1,7 @@
 #include "Trackersettings.h"
 
-Trackersettings::Trackersettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* tracker):MenuList(d,m,2){
-	this->tracker = tracker;
+Trackersettings::Trackersettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* detector):MenuList(d,m,2){
+	this->detector = detector;
 }
 
 void Trackersettings::draw(){
@@ -10,9 +10,9 @@ void Trackersettings::draw(){
 	this->display->print("Tracker Setting:");
 
 	byte idx = 0;
-	drawPoint(idx++,"ChannelsPM: " + String(this->tracker->getScannPM()));
+	drawPoint(idx++,"ChannelsPM: " + String(this->detector->getScannPM()));
 	drawPoint(idx++,"reset");
-	drawInfo(idx++ +1,"Detected Drones:"+String(this->tracker->getNumberOfDrones()));
+	drawInfo(idx++ +1,"Detected Drones:"+String(this->detector->getNumberOfDrones()));
 }
 
 void Trackersettings::buttonNext(){
@@ -21,20 +21,20 @@ void Trackersettings::buttonNext(){
 			editNumber = true;
 			break;
 		case 1:
-			this->tracker->reset();
+			this->detector->reset();
 			break;
 	}
 }
 
 void Trackersettings::buttonUp(){
 	if(editNumber){
-		int number = this->tracker->getScannPM();
+		int number = this->detector->getScannPM();
 		if(number == 1 ){
 			number = 39;
 		}else{
 			number--;
 		}
-		this->tracker->setScannPM(number);
+		this->detector->setScannPM(number);
 	}else{
 		if(this->activePoint == 0 ){
 			this->activePoint= getNumberOfPoints()-1;
@@ -46,12 +46,12 @@ void Trackersettings::buttonUp(){
 
 void Trackersettings::buttonDown(){
 	if(editNumber){
-		int number = this->tracker->getScannPM();
+		int number = this->detector->getScannPM();
 		number++;
 		if(number>40){
 			number = 1;
 		}
-		this->tracker->setScannPM(number);
+		this->detector->setScannPM(number);
 	}else{
 		activePoint++;
 		activePoint %=getNumberOfPoints();

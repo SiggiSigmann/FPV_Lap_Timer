@@ -30,7 +30,7 @@ void Scanner::captureNoise(){
 	if(max > sum) max -= sum;
 
 	//check if max is realy max
-	if(maxNoise > max )max = maxNoise;
+	//if(maxNoise > max )max = maxNoise;
 
 	denoised = true;
 }

@@ -16,6 +16,7 @@ class Drone{
 
 	public:
 		Drone(){};
+		void reset();
 
 		int getFreq();
 		void setFreq(int);

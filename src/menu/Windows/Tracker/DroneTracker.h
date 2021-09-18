@@ -6,26 +6,27 @@
 #include "../../MenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/DroneDetector.h"
-#include "../../../fpv/Drone.h"
+#include "../../../fpv/LapTracker.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
+#include "tracking/Multidrone.h"
+#include "tracking/Singeldrone.h"
 
 class DroneTracker : public MenuList{
 	private:
 		Scanner* sc;
-		DroneDetector* tracker;
-		Drone* drones;
+		DroneDetector* detector;
+		LapTracker* tracker;
 
-		int isx = 0;
+		Multidrone* multi;
+		Singeldrone* singel;
+
 		unsigned long last = millis();				//time till last update
 	
 	public:
-		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, DroneDetector* tracker);
+		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, DroneDetector* detector);
 		void draw();
 		void buttonNext();
-		void buttonUp();
-		void buttonDown();
-		void buttonPrev();
 };
 
 #endif

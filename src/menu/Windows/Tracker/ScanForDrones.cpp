@@ -2,7 +2,7 @@
 
 ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, Scanner* sc, DroneDetector* tracer):MenuList(d,m,4){
 	this->scan = sc;
-	this->tracker = tracer;
+	this->detector = tracer;
 }
 
 void ScanForDrones::draw(){
@@ -10,14 +10,14 @@ void ScanForDrones::draw(){
 	this->display->fillRect(0,0,120,10,BLACK);
 	this->display->setCursor(0,0);
 	this->display->print("Scan For Drones: ");
-	this->display->print(tracker->getNumberOfDrones());
+	this->display->print(detector->getNumberOfDrones());
 
 	//menu
 	byte idx = 0;
-	drawPoint(idx++,"Scan");
-	drawPoint(idx++,"Edit");
-	drawPoint(idx++,"Denoise");
-	drawPoint(idx++,"Reset");
+	drawPoint(idx++,"Scan", 70);
+	drawPoint(idx++,"Edit",70);
+	drawPoint(idx++,"Denoise",70);
+	drawPoint(idx++,"Reset",70);
 
 	//graph
 	this->display->drawLine(84,48,124,48,WHITE);
@@ -41,15 +41,15 @@ void ScanForDrones::draw(){
 			isScanning = false;
 
 			//execute detection
-			tracker->setMeasurements(scan->getLastScan());
+			detector->setMeasurements(scan->getLastScan());
 		}
 	}else{
 		i=0;
 	}
 
 	//draw drones
-	byte* drones = tracker->getDroneFreqs();
-	for(int j = 0; j<tracker->getNumberOfDrones();j++){
+	byte* drones = detector->getDroneFreqs();
+	for(int j = 0; j<detector->getNumberOfDrones();j++){
 		//celar channelname
 		this->display->fillRect(64,55,60,10,BLACK);
 
@@ -84,20 +84,20 @@ void ScanForDrones::draw(){
 		}
 	}
 
-	if(scan->isDenoise()) tracker->setOffset(scan->getMaxNoise());
+	if(scan->isDenoise()) detector->setOffset(scan->getMaxNoise());
 }
 
 void ScanForDrones::buttonNext(){
 	switch (activePoint){
 		case 0:
 			//scan for Drones
-			tracker->reset();
+			detector->reset();
 			isScanning = true;
 			break;
 		
 		case 1:
 			//edit if there is someting
-			if(tracker->getNumberOfDrones() >0){
+			if(detector->getNumberOfDrones() >0){
 				edit = true;
 				activePoint = 4;
 				time = millis();
@@ -111,12 +111,12 @@ void ScanForDrones::buttonNext(){
 			display->display();
 
 			scan->captureNoise();
-			tracker->setOffset(scan->getMaxNoise());
+			detector->setOffset(scan->getMaxNoise());
 			break;
 		case 3:
 			//reset
 			this->display->clearDisplay();
-			tracker->reset();
+			detector->reset();
 			break;
 		case 4:
 			// a trick => switch between edit
@@ -136,7 +136,7 @@ void ScanForDrones::buttonUp(){
 	}else{
 		if(editline){
 			//move line
-			byte* drones = tracker->getDroneFreqs();
+			byte* drones = detector->getDroneFreqs();
 			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
 
 			//remove old line
@@ -154,7 +154,7 @@ void ScanForDrones::buttonUp(){
 		}else{
 			//choose line
 			if(this->lineidx == 0){
-				this->lineidx= tracker->getNumberOfDrones()-1;
+				this->lineidx= detector->getNumberOfDrones()-1;
 			}else{
 				this->lineidx--;
 			}
@@ -173,7 +173,7 @@ void ScanForDrones::buttonDown(){
 	}else{
 		if(editline){
 			//move lines
-			byte* drones = tracker->getDroneFreqs();
+			byte* drones = detector->getDroneFreqs();
 			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
 
 			//remove old line
@@ -186,7 +186,7 @@ void ScanForDrones::buttonDown(){
 
 			//select line
 			this->lineidx++;
-			this->lineidx %=  tracker->getNumberOfDrones();
+			this->lineidx %=  detector->getNumberOfDrones();
 		}
 
 		//make line appear faster
