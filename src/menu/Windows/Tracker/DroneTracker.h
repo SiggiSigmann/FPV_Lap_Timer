@@ -3,24 +3,24 @@
 
 #include <Arduino.h>
 #include "../../Menu.h"
-#include "../../MenuPoint.h"
+#include "../../MenuList.h"
 #include "../../../fpv/Scanner.h"
-#include "../../../fpv/LapTracker.h"
+#include "../../../fpv/DroneDetector.h"
 #include "../../../fpv/Drone.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 
-class DroneTracker : public MenuPoint{
+class DroneTracker : public MenuList{
 	private:
 		Scanner* sc;
-		LapTracker* tracker;
+		DroneDetector* tracker;
 		Drone* drones;
-		int isx = 0;
-		bool exists = 0;
-		unsigned long last = millis();				//time till last update
 
+		int isx = 0;
+		unsigned long last = millis();				//time till last update
+	
 	public:
-		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, LapTracker* tracker);
+		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, DroneDetector* tracker);
 		void draw();
 		void buttonNext();
 		void buttonUp();

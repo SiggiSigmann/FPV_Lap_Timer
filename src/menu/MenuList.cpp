@@ -20,7 +20,7 @@ void MenuList::buttonDown(){
 void MenuList::drawPoint(byte i, String name){
 	byte menuX = 18;
 	menuX += (i*12);
-	this->display->fillRect(4,menuX,8,8,BLACK);
+	this->display->fillRect(4,menuX,120,8,BLACK);
 	this->display->setCursor(18,menuX);
 	this->display->drawRect(4,menuX,8,8,WHITE);
 	this->display->print(name);
@@ -32,6 +32,7 @@ void MenuList::drawPoint(byte i, String name){
 void MenuList::drawInfo(byte i, String name){
 	byte menuX = 18;
 	menuX += (i*12);
+	this->display->fillRect(4,menuX,120,8,BLACK);
 	this->display->setCursor(18,menuX);
 	this->display->print(name);
 }

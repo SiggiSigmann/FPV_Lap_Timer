@@ -4,15 +4,15 @@
 #include <Arduino.h>
 #include "../../Menu.h"
 #include "../../MenuList.h"
-#include "../../../fpv/LapTracker.h"
+#include "../../../fpv/DroneDetector.h"
 
 class Trackersettings : public MenuList{
 	private:
-		LapTracker* tracker;
+		DroneDetector* tracker;
 		boolean editNumber;
 
 	public:
-		Trackersettings(Adafruit_SSD1306* , Menu*, LapTracker* tracker);
+		Trackersettings(Adafruit_SSD1306* , Menu*, DroneDetector* tracker);
 		void draw();
 		void buttonNext();
 		void buttonUp();

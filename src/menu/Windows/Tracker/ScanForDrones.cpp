@@ -1,6 +1,6 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, Scanner* sc, LapTracker* tracer):MenuList(d,m,4){
+ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, Menu* m, Scanner* sc, DroneDetector* tracer):MenuList(d,m,4){
 	this->scan = sc;
 	this->tracker = tracer;
 }

@@ -12,6 +12,7 @@ class Drone{
 		int noiselevel =0;
 		int maxlevel =0;
 		int values[RSSIVALUEBUFFER] = {0};			//last values
+		unsigned long lastTime=millis();
 
 	public:
 		Drone(){};
@@ -27,6 +28,8 @@ class Drone{
 
 		void addRSSI(int);
 		int* getRSSI();
+
+		unsigned long getLastTime();
 };
 
 #endif

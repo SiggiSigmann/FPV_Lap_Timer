@@ -8,7 +8,7 @@ RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, Menu* parent, Scanner* s):MenuPoint(d,
 void RSSIMeter::draw(){
 	//top
 	this->display->setCursor(0,0);
-	this->display->print("RSSI - Scope");
+	this->display->print("RSSI - Scope:");
 
 	//drawchannelname
 	this->display->fillRect(4,55,70,8,BLACK);

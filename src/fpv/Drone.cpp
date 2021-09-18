@@ -38,8 +38,16 @@ void Drone::setMaxLevel(int x){
 void Drone::addRSSI(int x){
 	//put values at the end of the value array and shift array
 	insertAtEnd(values,x,RSSIVALUEBUFFER);
+
+	if(maxlevel<x){
+		maxlevel = x;
+	}
 }
 
 int* Drone::getRSSI(){
 	return values;
+}
+
+unsigned long Drone::getLastTime(){
+	return millis() - lastTime;
 }

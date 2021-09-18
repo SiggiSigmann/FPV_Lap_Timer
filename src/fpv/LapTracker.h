@@ -1,32 +1,22 @@
 #ifndef LapTracker_H
 #define LapTracker_H
 
-#include "RX5808/channels.h"
-#include "RX5808/SPI_RX5808.h"
+#include "Drone.h"
 
 #define MAXDRONENUMBER 8
 
 class LapTracker{
 	private:
-		int* measurevalues;				//pointer to rssivalues to scan in shpuld be CHANNELAMOUT long
-		int strengthoffset = 200;		//offset for values to be ignored if they are smaler
-		short scannPM = 8;				//number of chanels left and right where the rssi value has to be smaler
-		
-		//store detected drones
-		byte drones[MAXDRONENUMBER];
-		byte numberOfDrones=0;
+		Drone drones[8];
+		byte droneSize = 0;
 
 
 	public:
-		void setMeasurements(int*);
-		short getNumberOfDrones();
-		byte* getDroneFreqs();
-		void setOffset(int);
-		void reset();
+		byte getNumberOfDrones();
+		Drone* getDrones();
 
-		//getter and setter for scannPM
-		int getScannPM();
-		void setScannPM(int);
+		void addDrone(int, int, int);
+		void reset();
 };
 
 #endif

@@ -4,14 +4,14 @@
 #include "../../Menu.h"
 #include "../../MenuList.h"
 #include "../../../fpv/Scanner.h"
-#include "../../../fpv/LapTracker.h"
+#include "../../../fpv/DroneDetector.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 
 class ScanForDrones : public MenuList{
 	private:
 		Scanner* scan;
-		LapTracker* tracker;
+		DroneDetector* tracker;
 
 		//scan for drones
 		boolean isScanning = false;
@@ -25,7 +25,7 @@ class ScanForDrones : public MenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(Adafruit_SSD1306* , Menu*, Scanner*, LapTracker*);
+		ScanForDrones(Adafruit_SSD1306* , Menu*, Scanner*, DroneDetector*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

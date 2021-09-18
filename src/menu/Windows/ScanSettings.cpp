@@ -2,7 +2,6 @@
 
 ScanSettings::ScanSettings(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,2){
 	this->sc = sc;
-	tracker = new LapTracker();
 }
 
 void ScanSettings::draw(){
@@ -14,7 +13,7 @@ void ScanSettings::draw(){
 	drawPoint(idx++,"Scan Noise");
 	drawPoint(idx++,"Clear Noise");
 	drawInfo(idx++,"values: " + String(sc->getMaxNoise()) + " / " + String(sc->getMax()));
-	drawInfo(idx++,"Denoise: " + sc->isDenoise());
+	drawInfo(idx++,"Denoise: " + String(sc->isDenoise()));
 }
 
 void ScanSettings::buttonNext(){
