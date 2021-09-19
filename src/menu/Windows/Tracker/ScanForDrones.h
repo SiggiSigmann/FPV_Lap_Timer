@@ -1,6 +1,7 @@
 #ifndef SCANFORDRONES_H
 #define SCANFORDRONES_H
 
+#include <Arduino.h>
 #include "../../Menu.h"
 #include "../../MenuList.h"
 #include "../../../fpv/Scanner.h"

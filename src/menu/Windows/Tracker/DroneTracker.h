@@ -22,6 +22,7 @@ class DroneTracker : public MenuList{
 		Singeldrone* singel;
 
 		unsigned long last = millis();				//time till last update
+		boolean ok = false;
 	
 	public:
 		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, DroneDetector* detector);

@@ -12,9 +12,9 @@ Drone* LapTracker::getDrones(){
 	return drones;
 }
 
-void LapTracker::addDrone(int freq, int noise, int max){
+void LapTracker::addDrone(byte i, int noise, int max){
 	drones[droneSize].reset();
-	drones[droneSize].setFreq(freq);
+	drones[droneSize].setIndex(i);
 	drones[droneSize].setNoiseLevel(noise);
 	drones[droneSize++].setMaxLevel(max);
 }
@@ -25,7 +25,7 @@ void LapTracker::reset(){
 
 void LapTracker::update(){
 	for(byte i = 0; i<droneSize; i++){
-		int val = sc->scanFreq(drones[i].getFreq());
+		int val = sc->scanIdx(drones[i].getIndex());
 		drones[i].addRSSI(val);
 	}
 }

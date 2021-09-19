@@ -32,17 +32,25 @@ void DroneTracker::buttonNext(){
 
 	switch (activePoint){
 		case 0:
+			tracker->reset();
 			for(int i =0;i<this->detector->getNumberOfDrones();i++){
-				tracker->addDrone(pgm_read_word_near(channelFreqTable+dr[i]),sc->getNoise()[dr[i]],sc->getLastScan()[dr[i]]);
+				tracker->addDrone(dr[i],sc->getNoise()[dr[i]],sc->getLastScan()[dr[i]]);
+			}
+			if(this->detector->getNumberOfDrones()!=0){
+				ok = true;
 			}
 			break;
 			
 		case 1:
-			singel->acitvateMe();
+			if(ok){
+				singel->acitvateMe();
+			}
 			break;
 
 		case 2:
-			multi->acitvateMe();
+			if(ok){
+				multi->acitvateMe();
+			}
 			break;
 	}
 }

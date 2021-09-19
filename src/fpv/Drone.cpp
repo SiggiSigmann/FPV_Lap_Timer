@@ -6,14 +6,23 @@
 	this->maxlevel = maxlevel;
 }*/
 
+
+void Drone::setIndex(byte x){
+	this->i = x;
+}
+
+byte Drone::getIndex(){
+	return i;
+}
+
 int Drone::getFreq(){
-	return freq;
+	return pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i));
 }
 
-void Drone::setFreq(int x){
-	this->freq = x;
-
+byte Drone::getChannel(){
+	return pgm_read_word_near(channelNames+pgm_read_word_near(channelList+i));
 }
+
 
 
 int Drone::getNoiseLevel(){
@@ -56,4 +65,8 @@ void Drone::reset(){
 	for(byte i; i<RSSIVALUEBUFFER; i++){
 		values[i] = 0;
 	}
+}
+
+int* Drone::getLaps(){
+	return laps;
 }

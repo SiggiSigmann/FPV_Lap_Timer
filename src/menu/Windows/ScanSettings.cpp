@@ -18,16 +18,16 @@ void ScanSettings::draw(){
 
 void ScanSettings::buttonNext(){
 	switch (activePoint){
-	case 0:
-		this->display->setCursor(18,18);
-		this->display->drawRect(4,18,8,8,WHITE);
-		this->display->print("Scan Noise (run)");
-		this->display->display();
-		sc->captureNoise();
-		break;
-	
-	case 1:
-		sc->resetNoise();
-		break;
+		case 0:
+			this->display->setCursor(18,18);
+			this->display->drawRect(4,18,8,8,WHITE);
+			this->display->print("Scan Noise (run)");
+			this->display->display();
+			sc->captureNoise();
+			break;
+		
+		case 1:
+			sc->resetNoise();
+			break;
 	}
 }

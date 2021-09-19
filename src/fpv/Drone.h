@@ -3,23 +3,28 @@
 
 #include <Arduino.h>
 #include "../util/util.h"
+#include "../rx5808/channels.h"
 
 #define RSSIVALUEBUFFER 48						//because this is the number which can be displayed
 
 class Drone{
 	private:
-		int freq =0;
+		byte i =0;
 		int noiselevel =0;
 		int maxlevel =0;
 		int values[RSSIVALUEBUFFER] = {0};			//last values
 		unsigned long lastTime=millis();
+		int laps[4] = {0};
 
 	public:
 		Drone(){};
 		void reset();
 
+		void setIndex(byte);
+		byte getIndex();
 		int getFreq();
-		void setFreq(int);
+		byte getChannel();
+
 
 		int getNoiseLevel();
 		void setNoiseLevel(int);
@@ -31,6 +36,8 @@ class Drone{
 		int* getRSSI();
 
 		unsigned long getLastTime();
+
+		int* getLaps();
 };
 
 #endif

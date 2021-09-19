@@ -18,7 +18,7 @@ class LapTracker{
 		byte getNumberOfDrones();
 		Drone* getDrones();
 
-		void addDrone(int, int, int);
+		void addDrone(byte, int, int);
 		void reset();
 
 		void update();
