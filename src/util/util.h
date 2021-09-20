@@ -3,6 +3,6 @@
 
 int scaleRSSI(int, int, int);
 void insertAtEnd(int*, int, int);
-
+void insertAtFront(int*, int, int);
 
 #endif

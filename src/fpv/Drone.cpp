@@ -40,6 +40,7 @@ int Drone::getMaxLevel(){
 
 void Drone::setMaxLevel(int x){
 	this->maxlevel = x;
+	threshold = maxlevel*0.9;
 }
 
 
@@ -49,7 +50,7 @@ void Drone::addRSSI(int x){
 	insertAtEnd(values,x,RSSIVALUEBUFFER);
 
 	if(maxlevel<x){
-		maxlevel = x;
+		setMaxLevel(x);
 	}
 }
 
@@ -62,11 +63,23 @@ unsigned long Drone::getLastTime(){
 }
 
 void Drone::reset(){
-	for(byte i; i<RSSIVALUEBUFFER; i++){
+	for(byte i=0; i<RSSIVALUEBUFFER; i++){
 		values[i] = 0;
 	}
 }
 
 int* Drone::getLaps(){
 	return laps;
+}
+
+void Drone::addLap(){
+	int newTime =  millis() - lastTime;
+	insertAtFront(laps, newTime, 4);
+
+	lastTime =  millis();
+	digitalWrite(1,1);
+}
+
+int Drone::getThreshold(){
+	return threshold;
 }

@@ -12,6 +12,7 @@ class LapTracker{
 		byte droneSize = 0;
 		Scanner* sc;
 
+		boolean detectLap();
 
 	public:
 		LapTracker(Scanner*);
@@ -22,6 +23,8 @@ class LapTracker{
 		void reset();
 
 		void update();
+
+		boolean detectLap(byte i);
 };
 
 #endif

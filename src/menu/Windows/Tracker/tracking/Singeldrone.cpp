@@ -41,11 +41,12 @@ void Singeldrone::draw(){
 			this->display->drawPixel((idx)+84, 48-level, WHITE);
 		}
 
-		byte idx = 0;
-		drawInfo(idx++,String(tracker->getDrones()[i].getLaps()[0]),40);
-		drawInfo(idx++,String(tracker->getDrones()[i].getLaps()[0]),40);
-		drawInfo(idx++,String(tracker->getDrones()[i].getLaps()[0]),40);
-		drawInfo(idx++,String(tracker->getDrones()[i].getLaps()[0]),40);
+		byte level = scaleRSSI(tracker->getDrones()[i].getThreshold(), 32, sc->getMax());
+		this->display->drawFastHLine(84,48-level,48,WHITE);
+
+		for(byte idx = 0; idx<4; idx++){
+			drawInfo(idx,String(tracker->getDrones()[i].getLaps()[idx]),60);
+		}
 	}
 
 	tracker->update();

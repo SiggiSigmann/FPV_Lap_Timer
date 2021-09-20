@@ -12,6 +12,7 @@ class Drone{
 		byte i =0;
 		int noiselevel =0;
 		int maxlevel =0;
+		int threshold = 0;
 		int values[RSSIVALUEBUFFER] = {0};			//last values
 		unsigned long lastTime=millis();
 		int laps[4] = {0};
@@ -32,12 +33,16 @@ class Drone{
 		int getMaxLevel();
 		void setMaxLevel(int);
 
+		int getThreshold();
+
 		void addRSSI(int);
 		int* getRSSI();
 
 		unsigned long getLastTime();
 
 		int* getLaps();
+
+		void addLap();
 };
 
 #endif

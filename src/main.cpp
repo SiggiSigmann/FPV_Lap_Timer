@@ -23,14 +23,15 @@ SPI_RX5808* rx;
 MainMenu* mm;
 Scanner* scanner;
 
-
 void setup() {
-	Serial.begin(115200);
-	while(!Serial){}
+	//Serial.begin(115200);
+	//while(!Serial){}
+
+	pinMode(1,OUTPUT);
 
 	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { 
-	Serial.println(F("SSD1306 allocation failed"));
-	for(;;); // Don't proceed, loop forever
+	//Serial.println(F("SSD1306 allocation failed"));
+		for(;;); // Don't proceed, loop forever
 	}
 	display.clearDisplay();
 	display.setTextSize(0);
@@ -47,11 +48,11 @@ void setup() {
 	//selection
 	Selection* sel = new Selection(&display, mm, scanner);
 	mm->setMainScreen(sel);
-	Serial.println(F("setup"));   
 }
 
 void loop() {
 	//draw and handel Buttons
 	mm->run();
-	//Serial.println(ESP.getFreeHeap());
+
+	digitalWrite(1,0);
 }
