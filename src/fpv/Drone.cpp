@@ -83,3 +83,11 @@ void Drone::addLap(){
 int Drone::getThreshold(){
 	return threshold;
 }
+
+void Drone::setFareAway(boolean x ){
+	faraway = x;
+}
+
+boolean Drone::getFareAway(){
+	return faraway;
+}

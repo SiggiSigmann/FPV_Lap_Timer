@@ -41,7 +41,12 @@ void Singeldrone::draw(){
 			this->display->drawPixel((idx)+84, 48-level, WHITE);
 		}
 
+		//draw upperlimit
 		byte level = scaleRSSI(tracker->getDrones()[i].getThreshold(), 32, sc->getMax());
+		this->display->drawFastHLine(84,48-level,48,WHITE);
+		
+		//drow bottumlimit
+		level = scaleRSSI(tracker->getDrones()[i].getThreshold()/2, 32, sc->getMax());
 		this->display->drawFastHLine(84,48-level,48,WHITE);
 
 		for(byte idx = 0; idx<4; idx++){

@@ -36,17 +36,28 @@ void LapTracker::update(){
 boolean LapTracker::detectLap(byte i){
 	int threshold = drones[i].getThreshold();
 
-
 	int amount = 20;
 
-	for(byte j = 0; j<amount;j++){
-		if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount-1)+j] < threshold){
+	if(drones[i].getFareAway()){
+
+		for(byte j = 0; j<amount;j++){
+			if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount-1)+j] < threshold){
+				return false;
+			}
+		}
+
+		if(drones[i].getRSSI()[RSSIVALUEBUFFER-1] > threshold){
 			return false;
 		}
+		drones[i].setFareAway(false);
+		return true;
+	}else{
+		for(byte j = 0; j<amount;j++){
+			if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount)+j] > threshold/2){
+				return false;
+			}
+		}
+		drones[i].setFareAway(true);
 	}
-
-	if(drones[i].getRSSI()[RSSIVALUEBUFFER-1] > threshold){
-		return false;
-	}
-	return true;
+	return false;
 }

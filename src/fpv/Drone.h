@@ -16,6 +16,7 @@ class Drone{
 		int values[RSSIVALUEBUFFER] = {0};			//last values
 		unsigned long lastTime=millis();
 		int laps[4] = {0};
+		boolean faraway = false;
 
 	public:
 		Drone(){};
@@ -43,6 +44,9 @@ class Drone{
 		int* getLaps();
 
 		void addLap();
+
+		void setFareAway(boolean);
+		boolean getFareAway();
 };
 
 #endif
