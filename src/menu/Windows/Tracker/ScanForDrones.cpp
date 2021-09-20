@@ -87,7 +87,7 @@ void ScanForDrones::draw(){
 		}
 	}
 
-	if(scan->isDenoise()) detector->setOffset(scan->getMax()-40);
+	if(scan->isDenoise()) detector->setOffset(scan->getMax()/2);
 }
 
 void ScanForDrones::buttonNext(){
