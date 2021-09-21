@@ -4,6 +4,9 @@
 #include "Menu.h"
 #include "pins.h"
 
+#define LONGEPRESS 1500
+#define FREQUENZE 100
+
 /**
  * Main Menu class to handel draw and buttons
  */
@@ -17,6 +20,15 @@ class MainMenu : public Menu{
 		boolean next=false;
 		boolean prev=false;
 
+		boolean longup=false;
+		boolean longdown=false;
+		boolean longnext=false;
+		boolean longprev=false;
+
+		unsigned long pressedUp = 0;
+		unsigned long pressedDown = 0;
+		unsigned long pressedNext = 0;
+		unsigned long pressedPrev = 0;
 
 		void acitvate(Menu* activateion);
 		void acitvateMe();

@@ -38,7 +38,7 @@ void Multidrone::draw(){
 		if(showtimes){
 			this->display->fillRect(xVal, ((yVal*6)+16), xVal+42, ((yVal*6)+26),BLACK);
 			this->display->setCursor(xVal,(yVal*6)+18);
-			this->display->print(tracker->getDrones()[i].getLastTime());
+			this->display->print(tracker->getDrones()[i].getBest());
 		}else{
 			for(int j = 0;j<RSSIVALUEBUFFER;j++){
 				this->display->drawLine(xVal+j, ((yVal*6)+16), xVal+j, ((yVal*6)+26),BLACK);
