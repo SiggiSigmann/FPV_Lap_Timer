@@ -41,6 +41,7 @@ void Scanner::resetNoise(){
 		noise[i] =0;
 	}
 	denoised = false;
+	maxNoise = 0;
 }
 
 boolean Scanner::isDenoise(){

@@ -24,7 +24,7 @@ void TrackerSettings::buttonNext(){
 			editLower = true;
 			break;
 		case 2:
-			//editNumber = true;
+			tracker->resetTimes();
 			break;
 	}
 }

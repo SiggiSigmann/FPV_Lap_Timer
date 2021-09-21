@@ -10,7 +10,6 @@
 
 class ScanSettings : public MenuList{
 	private:
-		int activePoint = 0;
 		Scanner* sc;
 
 	public:
