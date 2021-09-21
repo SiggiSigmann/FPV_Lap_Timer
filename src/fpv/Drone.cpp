@@ -40,7 +40,10 @@ int Drone::getMaxLevel(){
 
 void Drone::setMaxLevel(int x){
 	this->maxlevel = x;
-	threshold = maxlevel*0.9;
+
+	//update value
+	setUpper(upper);
+	setLower(lower);
 }
 
 
@@ -76,13 +79,12 @@ void Drone::addLap(){
 	int newTime =  millis() - lastTime;
 	insertAtFront(laps, newTime, 4);
 
+	if(newTime<bestLap) bestLap = newTime;
+
 	lastTime =  millis();
 	digitalWrite(1,1);
 }
 
-int Drone::getThreshold(){
-	return threshold;
-}
 
 void Drone::setFareAway(boolean x ){
 	faraway = x;
@@ -90,4 +92,30 @@ void Drone::setFareAway(boolean x ){
 
 boolean Drone::getFareAway(){
 	return faraway;
+}
+
+void Drone::setUpper(byte x ){
+	upper = x;
+	upperValue = (maxlevel*x) / 100;
+}
+int Drone::getUpper(){
+	return upperValue;
+}
+void Drone::setLower(byte x){
+	lower = x;
+	lowerValue = (maxlevel*x) / 100;	
+}
+int Drone::getLower(){
+	return lowerValue;
+}
+
+void Drone::resetTime(){
+	for(byte i=0;i<4;i++){
+		laps[i] = 0;
+	}
+	bestLap = 999999;
+}
+
+int Drone::getBest(){
+	return bestLap;
 }

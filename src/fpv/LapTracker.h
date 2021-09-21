@@ -11,6 +11,8 @@ class LapTracker{
 		Drone drones[8];
 		byte droneSize = 0;
 		Scanner* sc;
+		byte upperpercentage = 90;
+		byte lowerpercentage = 60;
 
 		boolean detectLap();
 
@@ -25,6 +27,15 @@ class LapTracker{
 		void update();
 
 		boolean detectLap(byte i);
+
+		byte getUpper();
+		void setUpper(byte);
+
+		byte getLower();
+		void setLower(byte);
+
+		void resetTimes();
+
 };
 
 #endif

@@ -1,12 +1,14 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(Adafruit_SSD1306* d, Menu* m, Scanner* sc, DroneDetector* detector):MenuList(d,m,3){
+DroneTracker::DroneTracker(Adafruit_SSD1306* d, Menu* m, Scanner* sc, DroneDetector* detector):MenuList(d,m,4){
 	this->sc = sc;
 	this->detector = detector;
 	this->tracker = new LapTracker(sc);
 
 	multi = new Multidrone(d,this,sc,tracker);
 	singel = new Singeldrone(d,this,sc,tracker);
+
+	trackersetings = new TrackerSettings(d,this,tracker);
 }
 
 void DroneTracker::draw(){
@@ -23,6 +25,7 @@ void DroneTracker::draw(){
 	drawPoint(idx++,"Load Drones");
 	drawPoint(idx++,"Singel view");
 	drawPoint(idx++,"Multi view");
+	drawPoint(idx++,"Settings");
 
 	tracker->update();
 }
@@ -51,6 +54,9 @@ void DroneTracker::buttonNext(){
 			if(ok){
 				multi->acitvateMe();
 			}
+			break;
+		case 3:
+				trackersetings->acitvateMe();
 			break;
 	}
 }

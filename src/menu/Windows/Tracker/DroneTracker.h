@@ -11,6 +11,7 @@
 #include "../../../util/util.h"
 #include "tracking/Multidrone.h"
 #include "tracking/Singeldrone.h"
+#include "tracking/Trackersettings.h"
 
 class DroneTracker : public MenuList{
 	private:
@@ -20,6 +21,7 @@ class DroneTracker : public MenuList{
 
 		Multidrone* multi;
 		Singeldrone* singel;
+		TrackerSettings* trackersetings;
 
 		unsigned long last = millis();				//time till last update
 		boolean ok = false;

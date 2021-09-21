@@ -16,7 +16,9 @@ void LapTracker::addDrone(byte i, int noise, int max){
 	drones[droneSize].reset();
 	drones[droneSize].setIndex(i);
 	drones[droneSize].setNoiseLevel(noise);
-	drones[droneSize++].setMaxLevel(max);
+	drones[droneSize].setMaxLevel(noise);
+	drones[droneSize].setUpper(upperpercentage);
+	drones[droneSize++].setLower(lowerpercentage);
 }
 
 void LapTracker::reset(){
@@ -34,11 +36,10 @@ void LapTracker::update(){
 }
 
 boolean LapTracker::detectLap(byte i){
-	int threshold = drones[i].getThreshold();
-
 	int amount = 20;
 
 	if(drones[i].getFareAway()){
+		int threshold = drones[i].getUpper();
 
 		for(byte j = 0; j<amount;j++){
 			if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount-1)+j] < threshold){
@@ -52,12 +53,42 @@ boolean LapTracker::detectLap(byte i){
 		drones[i].setFareAway(false);
 		return true;
 	}else{
+		int threshold = drones[i].getLower();
+
 		for(byte j = 0; j<amount;j++){
-			if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount)+j] > threshold/2){
+			if(drones[i].getRSSI()[(RSSIVALUEBUFFER-amount)+j] > threshold){
 				return false;
 			}
 		}
 		drones[i].setFareAway(true);
 	}
 	return false;
+}
+
+byte LapTracker::getUpper(){
+	return upperpercentage;
+}
+
+void LapTracker::setUpper(byte x){
+	upperpercentage = x;
+	for(byte i = 0; i<droneSize; i++){
+		drones[i].setUpper(upperpercentage);
+	}
+}
+
+byte LapTracker::getLower(){
+	return lowerpercentage;
+}
+
+void LapTracker::setLower(byte x){
+	lowerpercentage = x;
+	for(byte i = 0; i<droneSize; i++){
+		drones[i].setLower(lowerpercentage);
+	}
+}
+
+void LapTracker::resetTimes(){
+	for(byte i = 0; i<droneSize; i++){
+		drones[i].resetTime();
+	}
 }

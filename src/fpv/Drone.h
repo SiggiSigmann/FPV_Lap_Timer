@@ -12,10 +12,17 @@ class Drone{
 		byte i =0;
 		int noiselevel =0;
 		int maxlevel =0;
-		int threshold = 0;
+		
 		int values[RSSIVALUEBUFFER] = {0};			//last values
 		unsigned long lastTime=millis();
 		int laps[4] = {0};
+		int bestLap = 999999;
+		
+
+		byte upper;
+		byte lower;
+		int upperValue = 0;
+		int lowerValue = 0;
 		boolean faraway = false;
 
 	public:
@@ -34,8 +41,6 @@ class Drone{
 		int getMaxLevel();
 		void setMaxLevel(int);
 
-		int getThreshold();
-
 		void addRSSI(int);
 		int* getRSSI();
 
@@ -47,6 +52,15 @@ class Drone{
 
 		void setFareAway(boolean);
 		boolean getFareAway();
+
+		void setUpper(byte);
+		int getUpper();
+		void setLower(byte);
+		int getLower();
+
+		void resetTime();
+
+		int getBest();
 };
 
 #endif

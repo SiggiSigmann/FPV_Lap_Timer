@@ -22,7 +22,7 @@ void Singeldrone::draw(){
 		drawInfo(idx++,"FREQ: " + String(tracker->getDrones()[i].getFreq())+"|"+ String(tracker->getDrones()[i].getChannel(),HEX));
 		drawInfo(idx++,"Noise: " + String(tracker->getDrones()[i].getNoiseLevel()));
 		drawInfo(idx++,"Max: " + String(tracker->getDrones()[i].getMaxLevel()));
-		drawInfo(idx++,"LastTime: " + String(tracker->getDrones()[i].getLastTime()));
+		drawInfo(idx++,"Best: " + String(tracker->getDrones()[i].getBest()));
 	}else{
 		//graph
 		this->display->drawLine(84,48,124,48,WHITE);
@@ -42,15 +42,21 @@ void Singeldrone::draw(){
 		}
 
 		//draw upperlimit
-		byte level = scaleRSSI(tracker->getDrones()[i].getThreshold(), 32, sc->getMax());
+		byte level = scaleRSSI(tracker->getDrones()[i].getUpper(), 32, sc->getMax());
 		this->display->drawFastHLine(84,48-level,48,WHITE);
 		
 		//drow bottumlimit
-		level = scaleRSSI(tracker->getDrones()[i].getThreshold()/2, 32, sc->getMax());
+		level = scaleRSSI(tracker->getDrones()[i].getLower(), 32, sc->getMax());
 		this->display->drawFastHLine(84,48-level,48,WHITE);
 
 		for(byte idx = 0; idx<4; idx++){
 			drawInfo(idx,String(tracker->getDrones()[i].getLaps()[idx]),60);
+		}
+
+		this->display->fillRect(64,55,20,10,BLACK);
+		if(tracker->getDrones()[i].getFareAway()){
+			this->display->setCursor(64,55);
+			this->display->print("far");
 		}
 	}
 

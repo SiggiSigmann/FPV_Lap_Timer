@@ -7,13 +7,13 @@
 #include "../../../RX5808/channels.h"
 #include "ScanForDrones.h"
 #include "DroneTracker.h"
-#include "Trackersettings.h"
+#include "Detectorsettings.h"
 
 class LapMenu : public MenuList{
 	private:
 		ScanForDrones* sfc;
 		DroneTracker* dt;
-		Trackersettings* tr;
+		Detectorsettings* tr;
 
 	public:
 		LapMenu(Adafruit_SSD1306* , Menu*, Scanner* sc);

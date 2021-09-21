@@ -1,21 +1,21 @@
-#include "Trackersettings.h"
+#include "Detectorsettings.h"
 
-Trackersettings::Trackersettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* detector):MenuList(d,m,2){
+Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* detector):MenuList(d,m,2){
 	this->detector = detector;
 }
 
-void Trackersettings::draw(){
+void Detectorsettings::draw(){
 	//top
 	this->display->setCursor(0,0);
 	this->display->print("Tracker Setting:");
 
 	byte idx = 0;
 	drawPoint(idx++,"ChannelsPM: " + String(this->detector->getScannPM()));
-	drawPoint(idx++,"reset");
+	drawPoint(idx++,"Reset");
 	drawInfo(idx++ +1,"Detected Drones:"+String(this->detector->getNumberOfDrones()));
 }
 
-void Trackersettings::buttonNext(){
+void Detectorsettings::buttonNext(){
 	switch (activePoint){
 		case 0:
 			editNumber = true;
@@ -26,7 +26,7 @@ void Trackersettings::buttonNext(){
 	}
 }
 
-void Trackersettings::buttonUp(){
+void Detectorsettings::buttonUp(){
 	if(editNumber){
 		int number = this->detector->getScannPM();
 		if(number == 1 ){
@@ -44,7 +44,7 @@ void Trackersettings::buttonUp(){
 	}
 }
 
-void Trackersettings::buttonDown(){
+void Detectorsettings::buttonDown(){
 	if(editNumber){
 		int number = this->detector->getScannPM();
 		number++;
@@ -58,7 +58,7 @@ void Trackersettings::buttonDown(){
 	}
 }
 
-void Trackersettings::buttonPrev(){
+void Detectorsettings::buttonPrev(){
 	if(editNumber){
 		editNumber = false;
 	}else{
