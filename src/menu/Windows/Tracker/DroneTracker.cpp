@@ -15,7 +15,7 @@ void DroneTracker::draw(){
 	//top
 	this->display->fillRect(0,0,128,10,BLACK);
 	this->display->setCursor(0,0);
-	this->display->print("Drone Tracker:");
+	this->display->print("DRONE TRACKER: ");
 	this->display->print(detector->getNumberOfDrones());
 	this->display->print("|");
 	this->display->print(millis()-last);

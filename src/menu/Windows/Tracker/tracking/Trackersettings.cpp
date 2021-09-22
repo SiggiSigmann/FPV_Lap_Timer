@@ -7,7 +7,7 @@ TrackerSettings::TrackerSettings(Adafruit_SSD1306* d, Menu* m, LapTracker* track
 void TrackerSettings::draw(){
 	//top
 	this->display->setCursor(0,0);
-	this->display->print("Tracker Setting:");
+	this->display->print("TRACKER SETTINGS:");
 
 	byte idx=0;
 	drawPoint(idx++,"Upper: " +String(tracker->getUpper())+"%");
@@ -32,16 +32,16 @@ void TrackerSettings::buttonNext(){
 void TrackerSettings::buttonUp(){
 	if(editUpper){
 		int number = tracker->getUpper();
-		if(number == 0 ){
+		if((number-1) <= tracker->getLower() ){
 			number = 100;
 		}else{
 			number--;
 		}
-		if(number>tracker->getLower()) tracker->setUpper(number);
+		tracker->setUpper(number);
 	}else if(editLower){
 		int number = tracker->getLower();
 		if(number == 0 ){
-			number = 100;
+			number = tracker->getUpper()-1;
 		}else{
 			number--;
 		}
@@ -60,16 +60,16 @@ void TrackerSettings::buttonDown(){
 		int number =  tracker->getUpper();
 		number++;
 		if(number>100){
-			number = 1;
+			number = tracker->getLower() + 1;
 		}
 		tracker->setUpper(number);
 	}else if(editLower){
 		int number =  tracker->getLower();
 		number++;
-		if(number>100){
-			number = 1;
+		if(number>=tracker->getUpper()){
+			number = 0;
 		}
-		if(number<tracker->getUpper()) tracker->setLower(number);
+		tracker->setLower(number);
 	}else{
 		activePoint++;
 		activePoint %=getNumberOfPoints();

@@ -7,7 +7,7 @@ Measuring::Measuring(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,2){
 
 void Measuring::draw(){
 	this->display->setCursor(0,0);
-	this->display->print("Measuring:");
+	this->display->print("MEASURING:");
 
 	//menu
 	byte idx = 0;

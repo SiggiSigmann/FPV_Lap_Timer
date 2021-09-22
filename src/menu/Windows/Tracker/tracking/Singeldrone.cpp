@@ -9,7 +9,7 @@ void Singeldrone::draw(){
 	//top
 	this->display->fillRect(0,0,128,10,BLACK);
 	this->display->setCursor(0,0);
-	this->display->print("Single: ");
+	this->display->print("SINGEL: ");
 	this->display->print(i+1);
 	this->display->print("/");
 	this->display->print(tracker->getNumberOfDrones());

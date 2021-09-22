@@ -14,7 +14,7 @@ void Selection::draw(){
 	//menu
 	byte idx = 0;
 	drawPoint(idx++, "Measurings");
-	drawPoint(idx++, "LAPTRACKER");
+	drawPoint(idx++, "Laptracker");
 	drawPoint(idx++, "Scanner Settings");
 
 }	

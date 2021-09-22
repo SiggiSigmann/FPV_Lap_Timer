@@ -9,7 +9,7 @@ void ScanForDrones::draw(){
 	//top
 	this->display->fillRect(0,0,120,10,BLACK);
 	this->display->setCursor(0,0);
-	this->display->print("Scan For Drones: ");
+	this->display->print("SCAN FOR DRONES: ");
 	this->display->print(detector->getNumberOfDrones());
 
 	//menu

@@ -7,12 +7,12 @@ ScanSettings::ScanSettings(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d
 void ScanSettings::draw(){
 	//top
 	this->display->setCursor(0,0);
-	this->display->print("Scanner Settings:");
+	this->display->print("SCANNER SETTINGS:");
 
 	byte idx = 0;
 	drawPoint(idx++,"Scan Noise");
 	drawPoint(idx++,"Clear Noise");
-	drawInfo(idx++,"values: " + String(sc->getMaxNoise()) + " / " + String(sc->getMax()));
+	drawInfo(idx++,"Values: " + String(sc->getMaxNoise()) + " / " + String(sc->getMax()));
 	drawInfo(idx++,"Denoise: " + String(sc->isDenoise()));
 }
 

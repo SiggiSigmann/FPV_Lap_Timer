@@ -7,7 +7,7 @@ Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* 
 void Detectorsettings::draw(){
 	//top
 	this->display->setCursor(0,0);
-	this->display->print("Tracker Setting:");
+	this->display->print("DETECTOR SETTINGS:");
 
 	byte idx = 0;
 	drawPoint(idx++,"ChannelsPM: " + String(this->detector->getScannPM()));

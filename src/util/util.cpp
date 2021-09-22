@@ -1,8 +1,8 @@
 #include "util.h"
 
 int scaleRSSI(int value, int biggestNumber, int maxValue){
-	float level = (float)value /maxValue;
-	return level * biggestNumber;
+	long level = value * biggestNumber ;
+	return level/maxValue ;
 }
 
 void insertAtEnd(int* array, int value, int length){

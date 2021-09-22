@@ -9,7 +9,7 @@ void Multidrone::draw(){
 	//top
 	this->display->fillRect(0,0,128,10,BLACK);
 	this->display->setCursor(0,0);
-	this->display->print("Multi: ");
+	this->display->print("MULTI: ");
 	this->display->print(tracker->getNumberOfDrones());
 	this->display->print("|");
 	this->display->print(millis()-last);

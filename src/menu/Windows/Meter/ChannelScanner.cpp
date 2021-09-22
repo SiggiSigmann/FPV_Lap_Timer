@@ -8,7 +8,7 @@ ChannelScanner::ChannelScanner(Adafruit_SSD1306* d, Menu* parent, Scanner* s):Me
 void ChannelScanner::draw(){
 	//top
 	this->display->setCursor(0,0);
-	this->display->print("Channel - Scope");
+	this->display->print("CHANNEL - SCOPE");
 
 	//surounding
 	this->display->drawLine(4,48,124,48,WHITE);
