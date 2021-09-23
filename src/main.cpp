@@ -24,13 +24,13 @@ MainMenu* mm;
 Scanner* scanner;
 
 void setup() {
-	//Serial.begin(115200);
-	//while(!Serial){}
+	Serial.begin(115200);
+	while(!Serial){}
 
-	pinMode(1,OUTPUT);
+	pinMode(25,OUTPUT);
 
 	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { 
-	//Serial.println(F("SSD1306 allocation failed"));
+	Serial.println(F("SSD1306 allocation failed"));
 		for(;;); // Don't proceed, loop forever
 	}
 	display.clearDisplay();
@@ -39,7 +39,7 @@ void setup() {
 	display.display();
 
 	//setup receiver
-	rx = new SPI_RX5808(A0);
+	rx = new SPI_RX5808(34);
 	scanner = new Scanner(rx);
 
 	//main Menu
@@ -54,5 +54,5 @@ void loop() {
 	//draw and handel Buttons
 	mm->run();
 
-	digitalWrite(1,0);
+	digitalWrite(25,0);
 }

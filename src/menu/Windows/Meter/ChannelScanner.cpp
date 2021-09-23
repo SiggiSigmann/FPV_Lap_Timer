@@ -27,6 +27,8 @@ void ChannelScanner::draw(){
 	//drawPoint of scann
 	byte level = scaleRSSI(scan->scanIdx(i), 32, scan->getMax());
 
+	Serial.println("ok");
+
 	//thickness of 3
 	for(byte j=0; j<3;j++){
 		byte x = (i*3)+5+j;

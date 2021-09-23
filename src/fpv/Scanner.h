@@ -8,12 +8,12 @@ class Scanner{
 	private:
 		//used to capture and subtrac noise.
 		int noise[CHANNELAMOUT] = {0};				//orderd by frequenzy
-		int maxNoise = 0;
+		int maxNoise = 1;
 		boolean denoised = false;
 
 		//used to store last measurements
 		int measurement[CHANNELAMOUT] = {0};		//orderd as frequenzy
-		int max=0;
+		int max=1;
 		
 		SPI_RX5808* rx;
 

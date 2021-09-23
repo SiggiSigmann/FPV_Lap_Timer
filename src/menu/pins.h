@@ -2,9 +2,9 @@
 #define PINS_H
 
 //puttons for menu
-#define NEXTBUTTON 15
-#define PREVBUTTON 16
-#define DOWNBUTTON 2
-#define UPBUTTON 0
+#define NEXTBUTTON 12
+#define DOWNBUTTON 14
+#define UPBUTTON 27
+#define PREVBUTTON 26
 
 #endif
