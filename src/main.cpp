@@ -12,6 +12,8 @@
 #include "menu/MainMenu.h"
 #include "menu/Windows/Selection.h"
 
+#include "util/sdcard.h"
+
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64
 #define OLED_RESET    -1
@@ -48,6 +50,9 @@ void setup() {
 	//selection
 	Selection* sel = new Selection(&display, mm, scanner);
 	mm->setMainScreen(sel);
+
+	setupSD();
+	listDir(SD, "/", 0);
 }
 
 void loop() {
