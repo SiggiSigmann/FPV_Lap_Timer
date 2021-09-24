@@ -21,12 +21,14 @@
 #define SCREEN_ADDRESS 0x3C
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-
 SPI_RX5808* rx;
 MainMenu* mm;
 Scanner* scanner;
 
 void setup() {
+	//no interupt while drawing to the display
+	noInterrupts();
+
 	Serial.begin(115200);
 	while(!Serial){}
 
@@ -53,17 +55,13 @@ void setup() {
 	mm->setMainScreen(sel);
 
 	setupSD();
-	listDir(SD, "/", 0);
 
 	setupGPS();
+
+
 }
 
 void loop() {
 	//draw and handel Buttons
 	mm->run();
-
-	digitalWrite(25,0);
-
-
-	//updateGPS();
 }

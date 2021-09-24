@@ -3,7 +3,7 @@
 Selection::Selection(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d, m, 3){
 	meter = new Measuring(d, this, sc);
 	lap = new LapMenu(d, this, sc);
-	scanSettings = new ScanSettings(d, this, sc);
+	settings = new Settings(d, this, sc);
 }
 
 void Selection::draw(){
@@ -15,7 +15,7 @@ void Selection::draw(){
 	byte idx = 0;
 	drawPoint(idx++, "Measurings");
 	drawPoint(idx++, "Laptracker");
-	drawPoint(idx++, "Scanner Settings");
+	drawPoint(idx++, "Settings");
 
 }	
 
@@ -30,7 +30,7 @@ void Selection::buttonNext(){
 			break;
 
 		case 2:
-			scanSettings->acitvateMe();
+			settings->acitvateMe();
 			break;
 	}
 }

@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "../util/util.h"
 #include "../rx5808/channels.h"
+#include "menu/pins.h"
 
 #define RSSIVALUEBUFFER 48						//because this is the number which can be displayed
 

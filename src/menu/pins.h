@@ -7,4 +7,6 @@
 #define UPBUTTON 27
 #define PREVBUTTON 26
 
+#define BEEPER 25
+
 #endif

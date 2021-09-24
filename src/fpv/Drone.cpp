@@ -82,7 +82,7 @@ void Drone::addLap(){
 	if(newTime<bestLap) bestLap = newTime;
 
 	lastTime =  millis();
-	digitalWrite(25,1);
+	digitalWrite(BEEPER,1);
 }
 
 

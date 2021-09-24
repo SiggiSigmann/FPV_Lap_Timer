@@ -6,7 +6,7 @@
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
 #include "Tracker/LapMenu.h"
-#include "ScanSettings.h"
+#include "settings/Settings.h"
 #include "meter/Measuring.h"
 
 
@@ -15,7 +15,7 @@ class Selection : public MenuList{
 	private:
 		LapMenu* lap;
 		Measuring* meter;
-		ScanSettings* scanSettings;
+		Settings* settings;
 
 	public:
 		Selection(Adafruit_SSD1306* , Menu* , Scanner* sc);

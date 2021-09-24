@@ -1,10 +1,10 @@
 #ifndef ScanSettings_H
 #define ScanSettings_H
 
-#include "../Menu.h"
-#include "../MenuList.h"
-#include "../../fpv/Scanner.h"
-#include "../../RX5808/channels.h"
+#include "../../Menu.h"
+#include "../../MenuList.h"
+#include "../../../fpv/Scanner.h"
+#include "../../../RX5808/channels.h"
 
 
 

@@ -5,10 +5,14 @@ MainMenu::MainMenu(Adafruit_SSD1306* d):Menu(d){
 	pinMode(PREVBUTTON,OUTPUT);
 	pinMode(DOWNBUTTON,OUTPUT);
 	pinMode(UPBUTTON,OUTPUT);
+	pinMode(BEEPER,OUTPUT);
 }
 
 //draw display of active MenuPoint
 void MainMenu::draw(){
+	//stop beeper
+	digitalWrite(BEEPER,0);
+
 	this->active->draw();
 	this->display->display();
 }
