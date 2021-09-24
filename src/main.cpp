@@ -13,6 +13,7 @@
 #include "menu/Windows/Selection.h"
 
 #include "util/sdcard.h"
+#include "util/gps.h"
 
 #define SCREEN_WIDTH 128 
 #define SCREEN_HEIGHT 64
@@ -53,6 +54,8 @@ void setup() {
 
 	setupSD();
 	listDir(SD, "/", 0);
+
+	setupGPS();
 }
 
 void loop() {
@@ -60,4 +63,7 @@ void loop() {
 	mm->run();
 
 	digitalWrite(25,0);
+
+
+	//updateGPS();
 }
