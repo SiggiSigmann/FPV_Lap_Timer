@@ -35,6 +35,7 @@ void DroneTracker::buttonNext(){
 
 	switch (activePoint){
 		case 0:
+			logStr("------------------------------");
 			tracker->reset();
 			for(int i =0;i<this->detector->getNumberOfDrones();i++){
 				tracker->addDrone(dr[i],sc->getNoise()[dr[i]],sc->getLastScan()[dr[i]]);

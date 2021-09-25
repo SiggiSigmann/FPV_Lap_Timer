@@ -30,7 +30,7 @@ void LapTracker::update(){
 		int val = sc->scanIdx(drones[i].getIndex());
 		drones[i].addRSSI(val);
 		if(detectLap(i)){
-			drones[i].addLap();
+			drones[i].addLap(i);
 		}
 	}
 }

@@ -75,7 +75,7 @@ int* Drone::getLaps(){
 	return laps;
 }
 
-void Drone::addLap(){
+void Drone::addLap(byte i){
 	int newTime =  millis() - lastTime;
 	insertAtFront(laps, newTime, 4);
 
@@ -83,6 +83,8 @@ void Drone::addLap(){
 
 	lastTime =  millis();
 	digitalWrite(BEEPER,1);
+
+	logSD(i, newTime);
 }
 
 

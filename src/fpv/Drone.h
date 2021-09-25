@@ -3,8 +3,10 @@
 
 #include <Arduino.h>
 #include "../util/util.h"
+#include "../util/sdcard.h"
 #include "../rx5808/channels.h"
 #include "menu/pins.h"
+
 
 #define RSSIVALUEBUFFER 48						//because this is the number which can be displayed
 
@@ -49,7 +51,7 @@ class Drone{
 
 		int* getLaps();
 
-		void addLap();
+		void addLap(byte i);
 
 		void setFareAway(boolean);
 		boolean getFareAway();

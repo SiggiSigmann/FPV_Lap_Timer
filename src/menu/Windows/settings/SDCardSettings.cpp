@@ -1,7 +1,7 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, Menu* m):MenuList(d,m,1){
+SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, Menu* m):MenuList(d,m,2){
 }
 
 void SDCardSettings::draw(){
@@ -10,7 +10,8 @@ void SDCardSettings::draw(){
 	this->display->print("SDCard SETTINGS:");
 
 	byte idx=0;
-	drawPoint(idx++,"Formate");
+	drawPoint(idx++,"Clear");
+	drawPoint(idx++,"Init");
 	drawInfo(idx++,String(getStorageSize())+ " Mb");
 
 }
@@ -22,6 +23,7 @@ void SDCardSettings::buttonNext(){
 			break;
 		
 		case 1:
+			initSD();
 			break;
 	}
 }

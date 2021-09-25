@@ -12,4 +12,10 @@ void listDir(fs::FS &fs, const char * dirname, uint8_t levels);
 int getStorageSize();
 
 void deleteAll();
+
+void initSD();
+
+void logSD(int,int);
+
+void logStr(String s);
 #endif
