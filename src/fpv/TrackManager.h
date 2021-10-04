@@ -9,6 +9,9 @@ class TrackManager{
 	private:
 		byte storedTrack = 1;
 		byte selectedTrack = 0;
+		
+		float minLng, maxLng;
+		float minLat, maxLat;
 
 		
 
@@ -16,6 +19,7 @@ class TrackManager{
 		byte getTrackNumber();
 		byte getSelected();
 		void setselected(byte);
+		void recordTrack();
 };
 
 #endif

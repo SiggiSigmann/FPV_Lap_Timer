@@ -91,16 +91,16 @@ void deleteAll(){
 
 
 void initSD(){
-  File myFile = SD.open("info.txt", FILE_WRITE);
+  File myFile = SD.open("/info.txt", FILE_WRITE);
 
   myFile.close();
 }
 
 void logSD(int drone ,int time){
-  if(!SD.exists("info.txt")){
+  if(!SD.exists("/info.txt")){
     initSD();
   }
-   File logFile = SD.open("info.txt", FILE_WRITE);
+   File logFile = SD.open("/info.txt", FILE_WRITE);
   if (logFile)
   {
     logFile.print(drone);
@@ -111,10 +111,10 @@ void logSD(int drone ,int time){
 }
 
 void logStr(String s){
-  if(!SD.exists("info.txt")){
+  if(!SD.exists("/info.txt")){
     initSD();
   }
-   File logFile = SD.open("info.txt", FILE_WRITE);
+   File logFile = SD.open("/info.txt", FILE_WRITE);
   if (logFile)
   {
     logFile.println(s);

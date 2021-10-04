@@ -90,8 +90,8 @@ F_RF = 		F_LO + 479	= 5731
 * [ ] Multithreading
 * [ ] Trackscanner
 * [ ] Trackselection
-* [ ] logging to sd card
 * [ ] permenent storage of settings
 * [ ] delete detected drone
 * [ ] add new drone manually
 * [ ] websitesupport
+* [ ] sound
