@@ -84,3 +84,14 @@ payload	= 0000 0010 1001 0000 0011	=> n = 82, a = 2
 
 F_LO = 		2(N*32 + A)	= 5252
 F_RF = 		F_LO + 479	= 5731
+
+
+## TODO
+* [ ] Multithreading
+* [ ] Trackscanner
+* [ ] Trackselection
+* [ ] logging to sd card
+* [ ] permenent storage of settings
+* [ ] delete detected drone
+* [ ] add new drone manually
+* [ ] websitesupport
