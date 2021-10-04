@@ -1,15 +1,15 @@
 #ifndef SDCARDSET_H
 #define SDCARDSET_H
 
-#include "../../Menu.h"
-#include "../../MenuList.h"
+#include "../../AbstractMenu.h"
+#include "../../SubMenuList.h"
 #include "../../../util/sdcard.h"
 
-class SDCardSettings : public MenuList{
+class SDCardSettings : public SubMenuList{
 	private:
 
 	public:
-		SDCardSettings(Adafruit_SSD1306* , Menu*);
+		SDCardSettings(Adafruit_SSD1306* , AbstractMenu*);
 		void draw();
 		void buttonNext();
 };

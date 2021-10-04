@@ -1,7 +1,7 @@
-#ifndef MENUPOINT_H
-#define MENUPOINT_H
+#ifndef MENUWINDOW_H
+#define MENUWINDOW_H
 
-#include "Menu.h"
+#include "AbstractMenu.h"
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -9,14 +9,14 @@
 /**
  * MenuPoint can be inhered from to create and entry in the menu structure
  */
-class MenuPoint : public Menu{
+class MenuWindow : public AbstractMenu{
 	protected:
-		Menu* parent;
+		AbstractMenu* parent;
 
 	public:
-		MenuPoint(Adafruit_SSD1306* d, Menu* m);
-		void setParent(Menu*);
-		void acitvate(Menu* activateion);
+		MenuWindow(Adafruit_SSD1306* d, AbstractMenu* m);
+		void setParent(AbstractMenu*);
+		void acitvate(AbstractMenu* activateion);
 		void acitvateMe();
 		void buttonPrev();
 

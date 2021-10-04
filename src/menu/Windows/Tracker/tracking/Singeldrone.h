@@ -2,14 +2,14 @@
 #define SINGLEDRONE_H
 
 #include <Arduino.h>
-#include "../../../Menu.h"
-#include "../../../MenuList.h"
+#include "../../../AbstractMenu.h"
+#include "../../../SubMenuList.h"
 #include "../../../../fpv/LapTracker.h"
 #include "../../../../fpv/Scanner.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
 
-class Singeldrone : public MenuList{
+class Singeldrone : public SubMenuList{
 	private:
 		LapTracker* tracker;
 		Scanner* sc;
@@ -20,7 +20,7 @@ class Singeldrone : public MenuList{
 		boolean windows = false;
 	
 	public:
-		Singeldrone(Adafruit_SSD1306* , Menu*,Scanner* , LapTracker* detector);
+		Singeldrone(Adafruit_SSD1306* , AbstractMenu*,Scanner* , LapTracker* detector);
 		void draw();
 		void buttonNext();
 		void buttonUp();

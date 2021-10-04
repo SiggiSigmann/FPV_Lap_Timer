@@ -2,8 +2,8 @@
 #define DRONETRACKER_H
 
 #include <Arduino.h>
-#include "../../Menu.h"
-#include "../../MenuList.h"
+#include "../../AbstractMenu.h"
+#include "../../SubMenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/DroneDetector.h"
 #include "../../../fpv/LapTracker.h"
@@ -14,7 +14,7 @@
 #include "tracking/Trackersettings.h"
 #include "../../../util/sdcard.h"
 
-class DroneTracker : public MenuList{
+class DroneTracker : public SubMenuList{
 	private:
 		Scanner* sc;
 		DroneDetector* detector;
@@ -28,7 +28,7 @@ class DroneTracker : public MenuList{
 		boolean ok = false;
 	
 	public:
-		DroneTracker(Adafruit_SSD1306* , Menu*, Scanner* sc, DroneDetector* detector);
+		DroneTracker(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc, DroneDetector* detector);
 		void draw();
 		void buttonNext();
 };

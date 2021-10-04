@@ -1,7 +1,7 @@
 #include "RSSIMeter.h"
 
 
-RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, Menu* parent, Scanner* s):MenuPoint(d,parent){
+RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow(d,parent){
 	scan = s;
 }
 

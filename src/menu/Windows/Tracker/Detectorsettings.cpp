@@ -1,6 +1,6 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, Menu* m, DroneDetector* detector):MenuList(d,m,2){
+Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, AbstractMenu* m, DroneDetector* detector):SubMenuList(d,m,2){
 	this->detector = detector;
 }
 

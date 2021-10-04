@@ -1,10 +1,10 @@
-#ifndef MENULIST_H
-#define MENULIST_H
+#ifndef SUBMENULIST_H
+#define SUBMENULIST_H
 
-#include "Menu.h"
-#include "MenuPoint.h"
+#include "AbstractMenu.h"
+#include "MenuWindow.h"
 
-class MenuList : public MenuPoint{
+class SubMenuList : public MenuWindow{
 	private:
 		byte numberOfPoints;
 
@@ -12,7 +12,7 @@ class MenuList : public MenuPoint{
 		byte activePoint = 0;
 
 	public:
-		MenuList(Adafruit_SSD1306* , Menu*, byte);
+		SubMenuList(Adafruit_SSD1306* , AbstractMenu*, byte);
 		void buttonUp();
 		void buttonDown();
 		void drawPoint(byte, String, int px=120);			//draw a menupoint (index, name)

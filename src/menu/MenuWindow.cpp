@@ -1,28 +1,28 @@
-#include "MenuPoint.h"
+#include "MenuWindow.h"
 
-MenuPoint::MenuPoint(Adafruit_SSD1306* d, Menu* m):Menu(d){
+MenuWindow::MenuWindow(Adafruit_SSD1306* d, AbstractMenu* m):AbstractMenu(d){
 	this->parent = m;
 };
 
-//set parent to parent MenuPoint
-void MenuPoint::setParent(Menu* parent){
+//set parent to parent MenuWindow
+void MenuWindow::setParent(AbstractMenu* parent){
 	this->parent = parent;
 }
 
 //activate this
-void MenuPoint::acitvateMe(){
+void MenuWindow::acitvateMe(){
 	this->parent->acitvate(this);
 	this->display->clearDisplay();
 }
 
 //activate given menu
-void MenuPoint::acitvate(Menu* activateion){
+void MenuWindow::acitvate(AbstractMenu* activateion){
 	this->parent->acitvate(activateion);
 	this->display->clearDisplay();
 }
 
 //defoult action for prev button.
 //can be overwritten but this->parent->acitvateMe(); mus be called 
-void MenuPoint::buttonPrev(){
+void MenuWindow::buttonPrev(){
 	this->parent->acitvateMe();
 }

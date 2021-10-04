@@ -1,7 +1,7 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, Menu* m):MenuList(d,m,2){
+SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, AbstractMenu* m):SubMenuList(d,m,2){
 }
 
 void SDCardSettings::draw(){

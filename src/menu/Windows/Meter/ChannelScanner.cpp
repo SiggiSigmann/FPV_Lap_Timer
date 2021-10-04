@@ -1,7 +1,7 @@
 #include "ChannelScanner.h"
 
 
-ChannelScanner::ChannelScanner(Adafruit_SSD1306* d, Menu* parent, Scanner* s):MenuPoint(d,parent){
+ChannelScanner::ChannelScanner(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow(d,parent){
 	scan = s;
 }
 

@@ -1,8 +1,8 @@
 #ifndef LAPMENU_H
 #define LAPMENU_H
 
-#include "../../Menu.h"
-#include "../../MenuList.h"
+#include "../../AbstractMenu.h"
+#include "../../SubMenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/TrackManager.h"
 #include "../../../RX5808/channels.h"
@@ -11,7 +11,7 @@
 #include "Detectorsettings.h"
 #include "track/TrackMenu.h"
 
-class LapMenu : public MenuList{
+class LapMenu : public SubMenuList{
 	private:
 		ScanForDrones* sfc;
 		DroneTracker* dt;
@@ -19,7 +19,7 @@ class LapMenu : public MenuList{
 		TrackMenu* tm;
 
 	public:
-		LapMenu(Adafruit_SSD1306* , Menu*, Scanner* sc);
+		LapMenu(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc);
 		void draw();
 		void buttonNext();
 };

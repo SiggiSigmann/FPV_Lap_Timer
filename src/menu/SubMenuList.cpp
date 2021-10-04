@@ -1,10 +1,10 @@
-#include "MenuList.h"
+#include "SubMenuList.h"
 
-MenuList::MenuList(Adafruit_SSD1306* d, Menu* m, byte numberOfPoints):MenuPoint(d,m){
+SubMenuList::SubMenuList(Adafruit_SSD1306* d, AbstractMenu* m, byte numberOfPoints):MenuWindow(d,m){
 	this->numberOfPoints = numberOfPoints;
 }
 
-void MenuList::buttonUp(){
+void SubMenuList::buttonUp(){
 	if(this->activePoint ==0){
 		this->activePoint = numberOfPoints-1;
 	}else{
@@ -12,12 +12,12 @@ void MenuList::buttonUp(){
 	}
 }
 
-void MenuList::buttonDown(){
+void SubMenuList::buttonDown(){
 	this->activePoint++;
 	this->activePoint %= numberOfPoints;
 }
 
-void MenuList::drawPoint(byte i, String name, int px){
+void SubMenuList::drawPoint(byte i, String name, int px){
 	byte menuX = 18;
 	menuX += (i*12);
 	this->display->fillRect(4,menuX,px,8,BLACK);
@@ -29,7 +29,7 @@ void MenuList::drawPoint(byte i, String name, int px){
 	}
 }
 
-void MenuList::drawInfo(byte i, String name, int px){
+void SubMenuList::drawInfo(byte i, String name, int px){
 	byte menuX = 18;
 	menuX += (i*12);
 	this->display->fillRect(4,menuX,px,8,BLACK);
@@ -37,6 +37,6 @@ void MenuList::drawInfo(byte i, String name, int px){
 	this->display->print(name);
 }
 
-byte MenuList::getNumberOfPoints(){
+byte SubMenuList::getNumberOfPoints(){
 	return numberOfPoints;
 }

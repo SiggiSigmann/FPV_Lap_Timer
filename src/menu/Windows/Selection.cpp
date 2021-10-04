@@ -1,6 +1,6 @@
 #include "Selection.h"
 
-Selection::Selection(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d, m, 3){
+Selection::Selection(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d, m, 3){
 	meter = new Measuring(d, this, sc);
 	lap = new LapMenu(d, this, sc);
 	settings = new Settings(d, this, sc);

@@ -1,6 +1,6 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone(Adafruit_SSD1306* d, Menu* m, Scanner* sc, LapTracker* tracer):MenuPoint(d,m){
+Multidrone::Multidrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow(d,m){
 	this->tracker = tracer;
 	this->sc = sc;
 }

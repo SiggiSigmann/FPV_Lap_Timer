@@ -2,18 +2,18 @@
 #define DETECTORSETTINGS_H
 
 #include <Arduino.h>
-#include "../../Menu.h"
-#include "../../MenuList.h"
+#include "../../AbstractMenu.h"
+#include "../../SubMenuList.h"
 #include "../../../fpv/DroneDetector.h"
 #include "../../../fpv/LapTracker.h"
 
-class Detectorsettings : public MenuList{
+class Detectorsettings : public SubMenuList{
 	private:
 		DroneDetector* detector;
 		boolean editNumber;
 
 	public:
-		Detectorsettings(Adafruit_SSD1306* , Menu*, DroneDetector* detector);
+		Detectorsettings(Adafruit_SSD1306* , AbstractMenu*, DroneDetector* detector);
 		void draw();
 		void buttonNext();
 		void buttonUp();

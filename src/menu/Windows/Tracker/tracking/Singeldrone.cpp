@@ -1,6 +1,6 @@
 #include "Singeldrone.h"
 
-Singeldrone::Singeldrone(Adafruit_SSD1306* d, Menu* m, Scanner* sc, LapTracker* tracer):MenuList(d,m,0){
+Singeldrone::Singeldrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):SubMenuList(d,m,0){
 	this->tracker = tracer;
 	this->sc = sc;
 }

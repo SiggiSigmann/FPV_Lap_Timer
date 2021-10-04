@@ -2,14 +2,14 @@
 #define SCANFORDRONES_H
 
 #include <Arduino.h>
-#include "../../Menu.h"
-#include "../../MenuList.h"
+#include "../../AbstractMenu.h"
+#include "../../SubMenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/DroneDetector.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 
-class ScanForDrones : public MenuList{
+class ScanForDrones : public SubMenuList{
 	private:
 		Scanner* scan;
 		DroneDetector* detector;
@@ -26,7 +26,7 @@ class ScanForDrones : public MenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(Adafruit_SSD1306* , Menu*, Scanner*, DroneDetector*);
+		ScanForDrones(Adafruit_SSD1306* , AbstractMenu*, Scanner*, DroneDetector*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

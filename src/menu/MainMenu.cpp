@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(Adafruit_SSD1306* d):Menu(d){
+MainMenu::MainMenu(Adafruit_SSD1306* d):AbstractMenu(d){
 	pinMode(NEXTBUTTON,OUTPUT);
 	pinMode(PREVBUTTON,OUTPUT);
 	pinMode(DOWNBUTTON,OUTPUT);
@@ -17,7 +17,7 @@ void MainMenu::draw(){
 	this->display->display();
 }
 
-void MainMenu::setMainScreen(Menu* m){
+void MainMenu::setMainScreen(AbstractMenu* m){
 	active = m;
 }
 
@@ -34,7 +34,7 @@ void MainMenu::buttonUp(){
 void MainMenu::buttonDown(){
 	this->active->buttonDown();
 }
-void MainMenu::acitvate(Menu* activateion){
+void MainMenu::acitvate(AbstractMenu* activateion){
 	this->active = activateion;
 }
 void MainMenu::acitvateMe(){

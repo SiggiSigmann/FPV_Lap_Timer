@@ -1,6 +1,6 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(Adafruit_SSD1306* d, Menu* m, Scanner* sc, DroneDetector* detector):MenuList(d,m,4){
+DroneTracker::DroneTracker(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList(d,m,4){
 	this->sc = sc;
 	this->detector = detector;
 	this->tracker = new LapTracker(sc);

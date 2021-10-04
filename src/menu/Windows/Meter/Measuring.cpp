@@ -1,6 +1,6 @@
 #include "Measuring.h"
 
-Measuring::Measuring(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,2){
+Measuring::Measuring(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d,m,2){
 	osci = new ChannelScanner(d, this, sc);
 	rssiMeter = new RSSIMeter(d, this, sc);
 }

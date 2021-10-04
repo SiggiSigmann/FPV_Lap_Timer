@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-Settings::Settings(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,3){
+Settings::Settings(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d,m,3){
 	scanSettings = new ScanSettings(d, this, sc);
 	gpsSettings = new GPSSettings(d, this); 
 	sdcardsettings = new SDCardSettings(d, this); 

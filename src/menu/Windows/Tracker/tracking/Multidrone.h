@@ -2,13 +2,13 @@
 #define MULTIDRONE_H
 
 #include <Arduino.h>
-#include "../../../Menu.h"
-#include "../../../MenuPoint.h"
+#include "../../../AbstractMenu.h"
+#include "../../../MenuWindow.h"
 #include "../../../../fpv/LapTracker.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
 
-class Multidrone : public MenuPoint{
+class Multidrone : public MenuWindow{
 	private:
 		LapTracker* tracker;
 		Scanner* sc;
@@ -17,7 +17,7 @@ class Multidrone : public MenuPoint{
 		boolean showtimes = false;
 	
 	public:
-		Multidrone(Adafruit_SSD1306* , Menu*, Scanner*, LapTracker*);
+		Multidrone(Adafruit_SSD1306* , AbstractMenu*, Scanner*, LapTracker*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

@@ -1,24 +1,24 @@
 #ifndef SELECTION_H
 #define SELECTION_H
 
-#include "../Menu.h"
-#include "../MenuList.h"
+#include "../AbstractMenu.h"
+#include "../SubMenuList.h"
 #include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
-#include "Tracker/LapMenu.h"
+#include "tracker/LapMenu.h"
 #include "settings/Settings.h"
 #include "meter/Measuring.h"
 
 
 
-class Selection : public MenuList{
+class Selection : public SubMenuList{
 	private:
 		LapMenu* lap;
 		Measuring* meter;
 		Settings* settings;
 
 	public:
-		Selection(Adafruit_SSD1306* , Menu* , Scanner* sc);
+		Selection(Adafruit_SSD1306* , AbstractMenu* , Scanner* sc);
 		void draw();
 		void buttonNext();
 };

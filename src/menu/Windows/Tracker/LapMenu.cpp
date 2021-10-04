@@ -1,6 +1,6 @@
 #include "LapMenu.h"
 
-LapMenu::LapMenu(Adafruit_SSD1306* d, Menu* m, Scanner* sc):MenuList(d,m,4){
+LapMenu::LapMenu(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d,m,4){
 	//create Tracker
 	DroneDetector* detector = new DroneDetector();
 

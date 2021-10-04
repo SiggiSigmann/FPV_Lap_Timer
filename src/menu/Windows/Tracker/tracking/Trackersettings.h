@@ -2,18 +2,18 @@
 #define TRACKERSETTINGS_H
 
 #include <Arduino.h>
-#include "../../../Menu.h"
-#include "../../../MenuList.h"
+#include "../../../AbstractMenu.h"
+#include "../../../SubMenuList.h"
 #include "../../../../fpv/LapTracker.h"
 
-class TrackerSettings : public MenuList{
+class TrackerSettings : public SubMenuList{
 	private:
 		LapTracker* tracker;
 		boolean editUpper;
 		boolean editLower;
 
 	public:
-		TrackerSettings(Adafruit_SSD1306* , Menu*, LapTracker* laptracker);
+		TrackerSettings(Adafruit_SSD1306* , AbstractMenu*, LapTracker* laptracker);
 		void draw();
 		void buttonNext();
 		void buttonUp();
