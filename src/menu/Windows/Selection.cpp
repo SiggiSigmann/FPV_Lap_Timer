@@ -10,6 +10,13 @@ void Selection::drawMenu(){
 	drawPoint("Measurings");
 	drawPoint("Laptracker");
 	drawPoint("Settings");
+	drawPoint("1");
+	drawPoint("2");
+	drawPoint("3");
+	drawPoint("4");
+	drawPoint("5");
+	drawPoint("6");
+	drawPoint("7");
 
 }	
 

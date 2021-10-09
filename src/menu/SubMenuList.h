@@ -9,6 +9,7 @@ class SubMenuList : public MenuWindow{
 		byte numberOfPoints;
 		byte idx = 0;
 		byte options = 0;
+		byte displaoffset=0;
 
 	protected:
 		byte activePoint = 0;

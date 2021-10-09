@@ -16,7 +16,7 @@ void MainMenu::draw(){
 	byte fps = millis()-last;
 	last = millis();
 
-	display.fillRect(0,0,128,10,BLACK);
+	display.fillRect(0,0,128,18,WHITE);
 	display.setCursor(0,0);
 	display.print(active->getName());
 	display.print(":");
