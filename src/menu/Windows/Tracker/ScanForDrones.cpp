@@ -54,7 +54,7 @@ void ScanForDrones::drawMenu(){
 			display.drawFastVLine(drones[j]+84,18,30,WHITE);
 		}else{
 			//line blinks in different speed
-			int towait = 1000;
+			int towait = 500;
 			if(editline){
 				towait = 200;
 
@@ -124,6 +124,7 @@ void ScanForDrones::buttonNext(){
 			//reset
 			display.clearDisplay();
 			droneDetector->reset();
+			this->setExtra(String(droneDetector->getNumberOfDrones()));
 			break;
 		case 6:
 			// a trick => switch between edit
@@ -134,12 +135,6 @@ void ScanForDrones::buttonNext(){
 
 void ScanForDrones::buttonUp(){
 	if(!edit){
-		//normal menu stuff
-		/*if(this->activePoint ==0){
-			this->activePoint= getNumberOfPoints()-1;
-		}else{
-			this->activePoint--;
-		}*/
 		SubMenuList::buttonUp();
 	}else{
 		if(editline){
@@ -177,8 +172,6 @@ void ScanForDrones::buttonDown(){
 	if(!edit){
 		//nomral menu stuff
 		SubMenuList::buttonDown();
-		//this->activePoint++;
-		//this->activePoint %=getNumberOfPoints();
 	}else{
 		if(editline){
 			//move lines
@@ -215,6 +208,6 @@ void ScanForDrones::buttonPrev(){
 			drawline = true;
 		}
 	}else{
-		SubMenuList::acitvateMe();
+		SubMenuList::buttonPrev();
 	}
 }

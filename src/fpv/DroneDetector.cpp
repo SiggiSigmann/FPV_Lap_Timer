@@ -77,5 +77,5 @@ void DroneDetector::setScannPM(int x){
 
 void DroneDetector::addDrone(){
 	if(numberOfDrones >= MAXDRONENUMBER) return;
-	drones[numberOfDrones++] = pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+0));
+	drones[numberOfDrones++] = 0;
 }

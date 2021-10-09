@@ -16,6 +16,7 @@ class ScanForDrones : public SubMenuList{
 		//edit drone channels
 		boolean edit = false;
 		boolean editline = false;
+		boolean deleteDrone = false;
 		byte lineidx = 0;
 		boolean drawline = true;
 		unsigned long time;
