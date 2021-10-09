@@ -65,11 +65,15 @@ void Singeldrone::buttonUp(){
 	}else{
 		this->i--;
 	}
-	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
+	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
 }
 
 void Singeldrone::buttonDown(){
 	i++;
 	i %= tracker->getNumberOfDrones();
-	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
+	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
+}
+
+void Singeldrone::updateDrones(){
+	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
 }

@@ -36,6 +36,9 @@ void DroneTracker::buttonNext(){
 			if(this->detector->getNumberOfDrones()!=0){
 				ok = true;
 			}
+			setExtra(String(detector->getNumberOfDrones()));
+			multi->updateDrones();
+			singel->updateDrones();
 			break;
 			
 		case 1:

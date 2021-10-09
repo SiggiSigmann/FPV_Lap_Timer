@@ -21,6 +21,7 @@ class Multidrone : public MenuWindow{
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();
+		void updateDrones();
 };
 
 #endif

@@ -55,3 +55,7 @@ void Multidrone::buttonUp(){
 void Multidrone::buttonDown(){
 	showtimes = !showtimes;
 }
+
+void Multidrone::updateDrones(){
+	setExtra(String(tracker->getNumberOfDrones()));
+}

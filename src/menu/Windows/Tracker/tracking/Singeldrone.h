@@ -24,6 +24,7 @@ class Singeldrone : public SubMenuList{
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();
+		void updateDrones();
 };
 
 #endif
