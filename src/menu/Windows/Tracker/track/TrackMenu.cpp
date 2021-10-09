@@ -1,14 +1,10 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(Adafruit_SSD1306* d, AbstractMenu* m, TrackManager* t):SubMenuList(d,m,3){
+TrackMenu::TrackMenu(Adafruit_SSD1306* d, AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",d,m,3){
 	tm = t;
 }
 
 void TrackMenu::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("TRACK - MENU:");
-
 	byte idx = 0;
 	drawPoint(idx++,"Record Track");
 	drawPoint(idx++,"View Track");

@@ -1,6 +1,6 @@
 #include "SubMenuList.h"
 
-SubMenuList::SubMenuList(Adafruit_SSD1306* d, AbstractMenu* m, byte numberOfPoints):MenuWindow(d,m){
+SubMenuList::SubMenuList(String name, Adafruit_SSD1306* d, AbstractMenu* m, byte numberOfPoints):MenuWindow(name,d,m){
 	this->numberOfPoints = numberOfPoints;
 }
 

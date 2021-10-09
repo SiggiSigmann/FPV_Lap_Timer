@@ -30,6 +30,8 @@ class MainMenu : public AbstractMenu{
 		unsigned long pressedNext = 0;
 		unsigned long pressedPrev = 0;
 
+		unsigned long last = millis();
+
 		void acitvate(AbstractMenu* activateion);
 		void acitvateMe();
 

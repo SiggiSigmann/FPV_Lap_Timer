@@ -23,8 +23,7 @@ class DroneTracker : public SubMenuList{
 		Multidrone* multi;
 		Singeldrone* singel;
 		TrackerSettings* trackersetings;
-
-		unsigned long last = millis();				//time till last update
+		
 		boolean ok = false;
 	
 	public:

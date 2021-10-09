@@ -1,14 +1,10 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, AbstractMenu* m):SubMenuList(d,m,2){
+SDCardSettings::SDCardSettings(Adafruit_SSD1306* d, AbstractMenu* m):SubMenuList("SDCard SETTINGS",d,m,2){
 }
 
 void SDCardSettings::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("SDCard SETTINGS:");
-
 	byte idx=0;
 	drawPoint(idx++,"Clear");
 	drawPoint(idx++,"Init");

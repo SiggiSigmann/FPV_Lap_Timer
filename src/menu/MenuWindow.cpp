@@ -1,6 +1,6 @@
 #include "MenuWindow.h"
 
-MenuWindow::MenuWindow(Adafruit_SSD1306* d, AbstractMenu* m):AbstractMenu(d){
+MenuWindow::MenuWindow(String name, Adafruit_SSD1306* d, AbstractMenu* m):AbstractMenu(d, name){
 	this->parent = m;
 };
 

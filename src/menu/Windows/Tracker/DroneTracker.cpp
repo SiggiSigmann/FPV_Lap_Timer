@@ -1,6 +1,6 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList(d,m,4){
+DroneTracker::DroneTracker(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",d,m,4){
 	this->sc = sc;
 	this->detector = detector;
 	this->tracker = new LapTracker(sc);
@@ -9,18 +9,11 @@ DroneTracker::DroneTracker(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, Dr
 	singel = new Singeldrone(d,this,sc,tracker);
 
 	trackersetings = new TrackerSettings(d,this,tracker);
+
+	setExtra(String(detector->getNumberOfDrones()));
 }
 
 void DroneTracker::draw(){
-	//top
-	this->display->fillRect(0,0,128,10,BLACK);
-	this->display->setCursor(0,0);
-	this->display->print("DRONE TRACKER: ");
-	this->display->print(detector->getNumberOfDrones());
-	this->display->print("|");
-	this->display->print(millis()-last);
-	last = millis();
-
 	byte idx = 0;
 	drawPoint(idx++,"Load Drones");
 	drawPoint(idx++,"Singel view");

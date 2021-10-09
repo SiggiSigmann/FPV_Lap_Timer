@@ -12,7 +12,7 @@ class SubMenuList : public MenuWindow{
 		byte activePoint = 0;
 
 	public:
-		SubMenuList(Adafruit_SSD1306* , AbstractMenu*, byte);
+		SubMenuList(String name, Adafruit_SSD1306* , AbstractMenu*, byte);
 		void buttonUp();
 		void buttonDown();
 		void drawPoint(byte, String, int px=120);			//draw a menupoint (index, name)

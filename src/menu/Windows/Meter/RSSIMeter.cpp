@@ -1,15 +1,11 @@
 #include "RSSIMeter.h"
 
 
-RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow(d,parent){
+RSSIMeter::RSSIMeter(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow("RSSI - SCOPE",d,parent){
 	scan = s;
 }
 
 void RSSIMeter::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("RSSI - SCOPE:");
-
 	//drawchannelname
 	this->display->fillRect(4,55,70,8,BLACK);
 	this->display->setCursor(4,55);

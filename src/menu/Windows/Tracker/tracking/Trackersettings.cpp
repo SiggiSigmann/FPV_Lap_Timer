@@ -1,14 +1,10 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(Adafruit_SSD1306* d, AbstractMenu* m, LapTracker* tracker):SubMenuList(d,m,3){
+TrackerSettings::TrackerSettings(Adafruit_SSD1306* d, AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",d,m,3){
 	this->tracker = tracker;
 }
 
 void TrackerSettings::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("TRACKER SETTINGS:");
-
 	byte idx=0;
 	drawPoint(idx++,"Upper: " +String(tracker->getUpper())+"%");
 	drawPoint(idx++,"Lower: " +String(tracker->getLower())+"%");

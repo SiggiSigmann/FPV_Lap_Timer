@@ -54,9 +54,9 @@ void setup() {
 	Selection* sel = new Selection(&display, mm, scanner);
 	mm->setMainScreen(sel);
 
-	setupSD();
+	//setupSD();
 
-	setupGPS();
+	//setupGPS();
 }
 
 void loop() {

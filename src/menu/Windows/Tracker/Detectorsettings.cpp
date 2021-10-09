@@ -1,14 +1,10 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, AbstractMenu* m, DroneDetector* detector):SubMenuList(d,m,2){
+Detectorsettings::Detectorsettings(Adafruit_SSD1306* d, AbstractMenu* m, DroneDetector* detector):SubMenuList("DETECTOR SETTINGS",d,m,2){
 	this->detector = detector;
 }
 
 void Detectorsettings::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("DETECTOR SETTINGS:");
-
 	byte idx = 0;
 	drawPoint(idx++,"ChannelsPM: " + String(this->detector->getScannPM()));
 	drawPoint(idx++,"Reset");

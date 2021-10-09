@@ -14,7 +14,7 @@ class MenuWindow : public AbstractMenu{
 		AbstractMenu* parent;
 
 	public:
-		MenuWindow(Adafruit_SSD1306* d, AbstractMenu* m);
+		MenuWindow(String name, Adafruit_SSD1306* d, AbstractMenu* m);
 		void setParent(AbstractMenu*);
 		void acitvate(AbstractMenu* activateion);
 		void acitvateMe();

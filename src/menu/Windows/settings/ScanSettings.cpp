@@ -1,14 +1,10 @@
 #include "ScanSettings.h"
 
-ScanSettings::ScanSettings(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d,m,2){
+ScanSettings::ScanSettings(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList("SDCard SETTINGS",d,m,2){
 	this->sc = sc;
 }
 
 void ScanSettings::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("SCANNER SETTINGS:");
-
 	byte idx = 0;
 	drawPoint(idx++,"Scan Noise");
 	drawPoint(idx++,"Clear Noise");

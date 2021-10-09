@@ -1,21 +1,13 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow(d,m){
+Multidrone::Multidrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow("MULTI",d,m){
 	this->tracker = tracer;
 	this->sc = sc;
+
+	setExtra(String(tracker->getNumberOfDrones()));
 }
 
 void Multidrone::draw(){
-	//top
-	this->display->fillRect(0,0,128,10,BLACK);
-	this->display->setCursor(0,0);
-	this->display->print("MULTI: ");
-	this->display->print(tracker->getNumberOfDrones());
-	this->display->print("|");
-	this->display->print(millis()-last);
-	last = millis();
-
-	
 	//for all existing drones
 	for(byte i=0;i<this->tracker->getNumberOfDrones();i++){
 		byte xVal = 0;

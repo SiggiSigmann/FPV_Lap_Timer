@@ -1,6 +1,6 @@
 #include "LapMenu.h"
 
-LapMenu::LapMenu(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d,m,4){
+LapMenu::LapMenu(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList("MENU - LAPTRACKER",d,m,4){
 	//create Tracker
 	DroneDetector* detector = new DroneDetector();
 
@@ -13,9 +13,6 @@ LapMenu::LapMenu(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(
 }
 
 void LapMenu::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("MENU - LAPTRACKER:");
 
 	byte idx = 0;
 	drawPoint(idx++,"Scann for Drones");

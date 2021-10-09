@@ -10,9 +10,10 @@
 class AbstractMenu{
 	protected:
 		Adafruit_SSD1306* display;
+		String name, extra = "";
 	
 	public:
-		AbstractMenu(Adafruit_SSD1306* d);
+		AbstractMenu(Adafruit_SSD1306* d, String name);
 		Adafruit_SSD1306* getDisplay();
 		
 		virtual void draw()  = 0;
@@ -22,6 +23,10 @@ class AbstractMenu{
 		virtual void buttonDown()  = 0;
 		virtual void acitvate(AbstractMenu* activateion) = 0;
 		virtual void acitvateMe() = 0;
+
+		String getName();
+		String getExtra();
+		void setExtra(String);
 
 };
 #endif

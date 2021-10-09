@@ -1,17 +1,12 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* tracer):SubMenuList(d,m,4){
+ScanForDrones::ScanForDrones(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* tracer):SubMenuList("SCAN FOR DRONES",d,m,4){
 	this->scan = sc;
 	this->detector = tracer;
+	this->setExtra("0");
 }
 
 void ScanForDrones::draw(){
-	//top
-	this->display->fillRect(0,0,120,10,BLACK);
-	this->display->setCursor(0,0);
-	this->display->print("SCAN FOR DRONES: ");
-	this->display->print(detector->getNumberOfDrones());
-
 	//menu
 	byte idx = 0;
 	drawPoint(idx++,"Scan", 70);
@@ -42,6 +37,7 @@ void ScanForDrones::draw(){
 
 			//execute detection
 			detector->setMeasurements(scan->getLastScan());
+			this->setExtra(String(detector->getNumberOfDrones()));
 		}
 	}else{
 		i=0;

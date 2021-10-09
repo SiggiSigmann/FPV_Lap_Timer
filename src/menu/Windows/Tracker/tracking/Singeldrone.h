@@ -15,7 +15,6 @@ class Singeldrone : public SubMenuList{
 		Scanner* sc;
 
 		byte i = 0;
-		unsigned long last = millis();				//time till last update
 
 		boolean windows = false;
 	

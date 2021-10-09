@@ -1,17 +1,12 @@
 #include "Selection.h"
 
-Selection::Selection(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList(d, m, 3){
+Selection::Selection(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList("MENU", d, m, 3){
 	meter = new Measuring(d, this, sc);
 	lap = new LapMenu(d, this, sc);
 	settings = new Settings(d, this, sc);
 }
 
 void Selection::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("MENU:");
-
-	//menu
 	byte idx = 0;
 	drawPoint(idx++, "Measurings");
 	drawPoint(idx++, "Laptracker");

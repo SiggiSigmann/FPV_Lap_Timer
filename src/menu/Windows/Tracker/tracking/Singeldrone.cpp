@@ -1,22 +1,13 @@
 #include "Singeldrone.h"
 
-Singeldrone::Singeldrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):SubMenuList(d,m,0){
+Singeldrone::Singeldrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):SubMenuList("SINGEL",d,m,0){
 	this->tracker = tracer;
 	this->sc = sc;
+
+	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
 }
 
 void Singeldrone::draw(){
-	//top
-	this->display->fillRect(0,0,128,10,BLACK);
-	this->display->setCursor(0,0);
-	this->display->print("SINGEL: ");
-	this->display->print(i+1);
-	this->display->print("/");
-	this->display->print(tracker->getNumberOfDrones());
-	this->display->print(" | ");
-	this->display->print(millis()-last);
-	last = millis();
-
 	if(!windows){
 		byte idx = 0;
 		drawInfo(idx++,"FREQ: " + String(tracker->getDrones()[i].getFreq())+"|"+ String(tracker->getDrones()[i].getChannel(),HEX));
@@ -74,9 +65,11 @@ void Singeldrone::buttonUp(){
 	}else{
 		this->i--;
 	}
+	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
 }
 
 void Singeldrone::buttonDown(){
 	i++;
 	i %= tracker->getNumberOfDrones();
+	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
 }

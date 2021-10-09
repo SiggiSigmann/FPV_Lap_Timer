@@ -1,14 +1,12 @@
 #include "ChannelScanner.h"
 
 
-ChannelScanner::ChannelScanner(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow(d,parent){
+ChannelScanner::ChannelScanner(Adafruit_SSD1306* d, AbstractMenu* parent, Scanner* s):MenuWindow("CHANNEL - SCOPE",d,parent){
 	scan = s;
 }
 
 void ChannelScanner::draw(){
-	//top
-	this->display->setCursor(0,0);
-	this->display->print("CHANNEL - SCOPE");
+	
 
 	//surounding
 	this->display->drawLine(4,48,124,48,WHITE);

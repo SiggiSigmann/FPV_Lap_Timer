@@ -13,7 +13,6 @@ class Multidrone : public MenuWindow{
 		LapTracker* tracker;
 		Scanner* sc;
 
-		unsigned long last = millis();				//time till last update
 		boolean showtimes = false;
 	
 	public:
