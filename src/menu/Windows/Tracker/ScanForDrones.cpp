@@ -8,6 +8,8 @@ ScanForDrones::ScanForDrones(AbstractMenu* m):SubMenuList("SCAN FOR DRONES",m){
 void ScanForDrones::drawMenu(){
 	drawPoint("Scan", 70);
 	drawPoint("Edit",70);
+	drawPoint("Add",70);
+	drawPoint("Delete",70);
 	drawPoint("Denoise",70);
 	drawPoint("Reset",70);
 
@@ -204,6 +206,6 @@ void ScanForDrones::buttonPrev(){
 			drawline = true;
 		}
 	}else{
-		this->parent->acitvateMe();
+		SubMenuList::acitvateMe();
 	}
 }

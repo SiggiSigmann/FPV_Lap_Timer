@@ -78,6 +78,6 @@ void TrackerSettings::buttonPrev(){
 	}else if(editLower){
 		editLower = false;
 	}else{
-		this->parent->acitvateMe();
+		SubMenuList::acitvateMe();
 	}
 }

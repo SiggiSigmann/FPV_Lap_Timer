@@ -61,7 +61,7 @@ void TrackMenu::buttonPrev(){
 	if(editNumber){
 		editNumber = false;
 	}else{
-		this->parent->acitvateMe();
+		SubMenuList::acitvateMe();
 	}
 }
 

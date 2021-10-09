@@ -22,7 +22,7 @@ void MenuWindow::acitvate(AbstractMenu* activateion){
 }
 
 //defoult action for prev button.
-//can be overwritten but this->parent->acitvateMe(); mus be called 
+//can be overwritten but this->parent->acitvateMe(); mussbe called 
 void MenuWindow::buttonPrev(){
 	this->parent->acitvateMe();
 }
