@@ -75,15 +75,15 @@ void SubMenuList::draw(){
 		if(numberOfPoints>11){
 			sliderlength = 4;
 		}else{
-			sliderlength = 44 / (numberOfPoints-4);
+			sliderlength = 44 / (numberOfPoints-3);
 		}
 		//calc position
 
 		//calc pixels per option which are not shown (therfore the -4)
-		byte position = (44-sliderlength)/(numberOfPoints-4);
+		int position = displaoffset*(44-sliderlength);
 		
 		//calc the offset amount of pixels
-		position *= displaoffset;
+		position /= (numberOfPoints-4);
 		position+=18;
 
 		//enshure to reach bottom end
