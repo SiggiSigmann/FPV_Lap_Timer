@@ -3,10 +3,11 @@
 
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
-#include "../../../fpv/Scanner.h"
 #include "ScanSettings.h"
 #include "GPSSettings.h"
 #include "SDCardSettings.h"
+#include "Detectorsettings.h"
+#include "Trackersettings.h"
 
 
 
@@ -15,6 +16,8 @@ class Settings : public SubMenuList{
 		ScanSettings* scanSettings;
 		GPSSettings* gpsSettings;
 		SDCardSettings* sdcardsettings;
+		Detectorsettings* detectionSettings;
+		TrackerSettings* trakersettings;
 
 	public:
 		Settings(AbstractMenu*);

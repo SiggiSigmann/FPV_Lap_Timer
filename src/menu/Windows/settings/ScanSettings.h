@@ -3,7 +3,6 @@
 
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
-#include "../../../fpv/Scanner.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/sdcard.h"
 

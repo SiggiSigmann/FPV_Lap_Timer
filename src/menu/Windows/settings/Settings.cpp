@@ -3,7 +3,9 @@
 Settings::Settings(AbstractMenu* m):SubMenuList("SETTINGS",m){
 	scanSettings = new ScanSettings(this);
 	gpsSettings = new GPSSettings(this); 
-	sdcardsettings = new SDCardSettings(this); 
+	sdcardsettings = new SDCardSettings(this);
+	detectionSettings = new Detectorsettings(this);
+	trakersettings = new TrackerSettings(this);
 }
 
 void Settings::drawMenu(){
@@ -19,6 +21,14 @@ void Settings::buttonNext(){
 	switch (activePoint){
 		case 0:
 			scanSettings->acitvateMe();
+			break;
+
+		case 1:
+			detectionSettings->acitvateMe();
+			break;
+
+		case 2:
+			trakersettings->acitvateMe();
 			break;
 		
 		case 3:

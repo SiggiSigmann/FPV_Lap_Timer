@@ -10,7 +10,6 @@ void LapMenu::drawMenu(){
 	drawPoint("Scann for Drones");
 	drawPoint("Start");
 	drawPoint("Tracks");
-	drawPoint("Tracker Settings");
 }	
 
 void LapMenu::buttonNext(){
