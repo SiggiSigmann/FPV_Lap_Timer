@@ -79,3 +79,12 @@ void DroneDetector::addDrone(){
 	if(numberOfDrones >= MAXDRONENUMBER) return;
 	drones[numberOfDrones++] = 0;
 }
+
+void DroneDetector::deleteDrone(byte lineidx){
+	if(numberOfDrones<=0)return;
+	if(lineidx<0) return;
+	for(byte i=lineidx;i<numberOfDrones;i++){
+		drones[i] = drones[i+1];
+	}
+	numberOfDrones--;
+}

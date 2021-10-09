@@ -24,6 +24,7 @@ class DroneDetector{
 		void setOffset(int);
 		void reset();
 		void addDrone();
+		void deleteDrone(byte);
 
 		//getter and setter for scannPM
 		int getScannPM();

@@ -49,7 +49,7 @@ void ScanForDrones::drawMenu(){
 	byte* drones = droneDetector->getDroneFreqs();
 	for(int j = 0; j<droneDetector->getNumberOfDrones();j++){
 
-		if((j!=lineidx) || !edit){
+		if((j!=lineidx) || (!edit && !deleteDrone)){
 			//only display if nothing will be moved or edit
 			display.drawFastVLine(drones[j]+84,18,30,WHITE);
 		}else{
@@ -108,6 +108,17 @@ void ScanForDrones::buttonNext(){
 			break;
 
 		case 3:
+			if(deleteDrone){
+				byte* drones = droneDetector->getDroneFreqs();
+				display.drawFastVLine(drones[lineidx]+84,18,30,BLACK);
+				byte level = scaleRSSI(scanner->getLastScan()[drones[lineidx]], 32,scanner->getMax());
+				display.drawPixel((drones[lineidx])+84,48-level,WHITE);
+
+				droneDetector->deleteDrone(lineidx);
+				this->setExtra(String(droneDetector->getNumberOfDrones()));
+				lineidx=0;
+			}
+			deleteDrone = true;
 			break;
 
 		case 4:
@@ -134,7 +145,7 @@ void ScanForDrones::buttonNext(){
 }
 
 void ScanForDrones::buttonUp(){
-	if(!edit){
+	if(!edit && !deleteDrone){
 		SubMenuList::buttonUp();
 	}else{
 		if(editline){
@@ -169,7 +180,7 @@ void ScanForDrones::buttonUp(){
 }
 
 void ScanForDrones::buttonDown(){
-	if(!edit){
+	if(!edit&&!deleteDrone){
 		//nomral menu stuff
 		SubMenuList::buttonDown();
 	}else{
@@ -207,6 +218,8 @@ void ScanForDrones::buttonPrev(){
 			activePoint = 1;
 			drawline = true;
 		}
+	}else if(deleteDrone){
+		deleteDrone = false;
 	}else{
 		SubMenuList::buttonPrev();
 	}
