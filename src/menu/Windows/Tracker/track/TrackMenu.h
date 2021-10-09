@@ -15,7 +15,7 @@ class TrackMenu : public SubMenuList{
 
 	public:
 		TrackMenu(AbstractMenu*, TrackManager*);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();

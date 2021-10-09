@@ -12,7 +12,7 @@ class GPSSettings : public SubMenuList{
 
 	public:
 		GPSSettings(AbstractMenu*);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

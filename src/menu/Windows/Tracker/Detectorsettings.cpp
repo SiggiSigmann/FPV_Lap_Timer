@@ -1,14 +1,14 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(AbstractMenu* m, DroneDetector* detector):SubMenuList("DETECTOR SETTINGS",m,2){
+Detectorsettings::Detectorsettings(AbstractMenu* m, DroneDetector* detector):SubMenuList("DETECTOR SETTINGS",m){
 	this->detector = detector;
 }
 
-void Detectorsettings::draw(){
-	byte idx = 0;
-	drawPoint(idx++,"ChannelsPM: " + String(this->detector->getScannPM()));
-	drawPoint(idx++,"Reset");
-	drawInfo(idx++ +1,"Detected Drones:"+String(this->detector->getNumberOfDrones()));
+void Detectorsettings::drawMenu(){
+	drawPoint("ChannelsPM: " + String(this->detector->getScannPM()));
+	drawPoint("Reset");
+	drawInfo("");
+	drawInfo("Detected Drones:"+String(this->detector->getNumberOfDrones()));
 }
 
 void Detectorsettings::buttonNext(){

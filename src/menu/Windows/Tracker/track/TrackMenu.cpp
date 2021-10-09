@@ -1,14 +1,13 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",m,3){
+TrackMenu::TrackMenu(AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",m){
 	tm = t;
 }
 
-void TrackMenu::draw(){
-	byte idx = 0;
-	drawPoint(idx++,"Record Track");
-	drawPoint(idx++,"View Track");
-	drawPoint(idx++,"Select: " + String(this->tm->getSelected()));
+void TrackMenu::drawMenu(){
+	drawPoint("Record Track");
+	drawPoint("View Track");
+	drawPoint("Select: " + String(this->tm->getSelected()));
 }	
 
 void TrackMenu::buttonNext(){

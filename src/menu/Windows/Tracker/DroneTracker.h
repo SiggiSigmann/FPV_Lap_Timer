@@ -28,7 +28,7 @@ class DroneTracker : public SubMenuList{
 	
 	public:
 		DroneTracker(AbstractMenu*, Scanner* sc, DroneDetector* detector);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

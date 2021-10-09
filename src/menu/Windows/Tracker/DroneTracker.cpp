@@ -1,6 +1,6 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",m,4){
+DroneTracker::DroneTracker(AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",m){
 	this->sc = sc;
 	this->detector = detector;
 	this->tracker = new LapTracker(sc);
@@ -13,12 +13,12 @@ DroneTracker::DroneTracker(AbstractMenu* m, Scanner* sc, DroneDetector* detector
 	setExtra(String(detector->getNumberOfDrones()));
 }
 
-void DroneTracker::draw(){
+void DroneTracker::drawMenu(){
 	byte idx = 0;
-	drawPoint(idx++,"Load Drones");
-	drawPoint(idx++,"Singel view");
-	drawPoint(idx++,"Multi view");
-	drawPoint(idx++,"Settings");
+	drawPoint("Load Drones");
+	drawPoint("Singel view");
+	drawPoint("Multi view");
+	drawPoint("Settings");
 
 	tracker->update();
 }

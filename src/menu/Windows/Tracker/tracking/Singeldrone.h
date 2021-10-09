@@ -20,7 +20,7 @@ class Singeldrone : public SubMenuList{
 	
 	public:
 		Singeldrone( AbstractMenu*,Scanner* , LapTracker* detector);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();

@@ -14,7 +14,7 @@ class TrackerSettings : public SubMenuList{
 
 	public:
 		TrackerSettings(AbstractMenu*, LapTracker* laptracker);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();

@@ -16,7 +16,7 @@ class Measuring  : public SubMenuList{
 
 	public:
 		Measuring(AbstractMenu* , Scanner* sc);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

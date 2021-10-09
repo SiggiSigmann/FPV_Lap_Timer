@@ -1,14 +1,13 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",m,3){
+TrackerSettings::TrackerSettings(AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",m){
 	this->tracker = tracker;
 }
 
-void TrackerSettings::draw(){
-	byte idx=0;
-	drawPoint(idx++,"Upper: " +String(tracker->getUpper())+"%");
-	drawPoint(idx++,"Lower: " +String(tracker->getLower())+"%");
-	drawPoint(idx++,"Reset Times");
+void TrackerSettings::drawMenu(){
+	drawPoint("Upper: " +String(tracker->getUpper())+"%");
+	drawPoint("Lower: " +String(tracker->getLower())+"%");
+	drawPoint("Reset Times");
 }
 
 void TrackerSettings::buttonNext(){

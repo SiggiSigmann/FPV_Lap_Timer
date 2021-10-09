@@ -18,7 +18,7 @@ class Settings : public SubMenuList{
 
 	public:
 		Settings(AbstractMenu*, Scanner* sc);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

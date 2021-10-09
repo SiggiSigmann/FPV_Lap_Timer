@@ -1,14 +1,13 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(AbstractMenu* m):SubMenuList("SDCard SETTINGS",m,2){
+SDCardSettings::SDCardSettings(AbstractMenu* m):SubMenuList("SDCard SETTINGS",m){
 }
 
-void SDCardSettings::draw(){
-	byte idx=0;
-	drawPoint(idx++,"Clear");
-	drawPoint(idx++,"Init");
-	drawInfo(idx++,String(getStorageSize())+ " Mb");
+void SDCardSettings::drawMenu(){
+	drawPoint("Clear");
+	drawPoint("Init");
+	drawInfo(String(getStorageSize())+ " Mb");
 
 }
 

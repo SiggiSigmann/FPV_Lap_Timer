@@ -1,16 +1,15 @@
 #include "Settings.h"
 
-Settings::Settings(AbstractMenu* m, Scanner* sc):SubMenuList("SETTINGS",m,3){
+Settings::Settings(AbstractMenu* m, Scanner* sc):SubMenuList("SETTINGS",m){
 	scanSettings = new ScanSettings(this, sc);
 	gpsSettings = new GPSSettings(this); 
 	sdcardsettings = new SDCardSettings(this); 
 }
 
-void Settings::draw(){
-	byte idx = 0;
-	drawPoint(idx++,"Scanner");
-	drawPoint(idx++,"GPS");
-	drawPoint(idx++,"SD-Card");
+void Settings::drawMenu(){
+	drawPoint("Scanner");
+	drawPoint("GPS");
+	drawPoint("SD-Card");
 }
 
 void Settings::buttonNext(){

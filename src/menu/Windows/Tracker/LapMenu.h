@@ -20,7 +20,7 @@ class LapMenu : public SubMenuList{
 
 	public:
 		LapMenu(AbstractMenu*, Scanner* sc);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

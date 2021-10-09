@@ -27,7 +27,7 @@ class ScanForDrones : public SubMenuList{
 
 	public:
 		ScanForDrones(AbstractMenu*, Scanner*, DroneDetector*);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();

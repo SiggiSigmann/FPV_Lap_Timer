@@ -14,7 +14,7 @@ class Detectorsettings : public SubMenuList{
 
 	public:
 		Detectorsettings(AbstractMenu*, DroneDetector* detector);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 		void buttonUp();
 		void buttonDown();

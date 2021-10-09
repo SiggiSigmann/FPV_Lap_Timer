@@ -1,16 +1,15 @@
 #include "Selection.h"
 
-Selection::Selection(AbstractMenu* m, Scanner* sc):SubMenuList("MENU", m, 3){
+Selection::Selection(AbstractMenu* m, Scanner* sc):SubMenuList("MENU", m){
 	meter = new Measuring(this, sc);
 	lap = new LapMenu(this, sc);
 	settings = new Settings(this, sc);
 }
 
-void Selection::draw(){
-	byte idx = 0;
-	drawPoint(idx++, "Measurings");
-	drawPoint(idx++, "Laptracker");
-	drawPoint(idx++, "Settings");
+void Selection::drawMenu(){
+	drawPoint("Measurings");
+	drawPoint("Laptracker");
+	drawPoint("Settings");
 
 }	
 

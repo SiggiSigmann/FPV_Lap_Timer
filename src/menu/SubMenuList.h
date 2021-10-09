@@ -7,17 +7,22 @@
 class SubMenuList : public MenuWindow{
 	private:
 		byte numberOfPoints;
+		byte idx = 0;
+		byte options = 0;
 
 	protected:
 		byte activePoint = 0;
 
 	public:
-		SubMenuList(String name, AbstractMenu*, byte);
+		SubMenuList(String name, AbstractMenu*);
 		void buttonUp();
 		void buttonDown();
-		void drawPoint(byte, String, int px=120);			//draw a menupoint (index, name)
-		void drawInfo(byte, String, int px=120);			//draw a menupoint (index, name)
+		void drawPoint(String, int px=120);			//draw a menupoint (index, name)
+		void drawInfo(String, int px=120);			//draw a menupoint (index, name)
+		void draw() final;
 		byte getNumberOfPoints();
+
+		virtual void drawMenu()  = 0;
 };
 
 #endif

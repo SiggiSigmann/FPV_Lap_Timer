@@ -1,18 +1,16 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(AbstractMenu* m, Scanner* sc, DroneDetector* tracer):SubMenuList("SCAN FOR DRONES",m,4){
+ScanForDrones::ScanForDrones(AbstractMenu* m, Scanner* sc, DroneDetector* tracer):SubMenuList("SCAN FOR DRONES",m){
 	this->scan = sc;
 	this->detector = tracer;
 	this->setExtra("0");
 }
 
-void ScanForDrones::draw(){
-	//menu
-	byte idx = 0;
-	drawPoint(idx++,"Scan", 70);
-	drawPoint(idx++,"Edit",70);
-	drawPoint(idx++,"Denoise",70);
-	drawPoint(idx++,"Reset",70);
+void ScanForDrones::drawMenu(){
+	drawPoint("Scan", 70);
+	drawPoint("Edit",70);
+	drawPoint("Denoise",70);
+	drawPoint("Reset",70);
 
 	//graph
 	display.drawLine(84,48,124,48,WHITE);

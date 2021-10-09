@@ -1,15 +1,14 @@
 #include "ScanSettings.h"
 
-ScanSettings::ScanSettings(AbstractMenu* m, Scanner* sc):SubMenuList("SDCard SETTINGS",m,2){
+ScanSettings::ScanSettings(AbstractMenu* m, Scanner* sc):SubMenuList("SDCard SETTINGS",m){
 	this->sc = sc;
 }
 
-void ScanSettings::draw(){
-	byte idx = 0;
-	drawPoint(idx++,"Scan Noise");
-	drawPoint(idx++,"Clear Noise");
-	drawInfo(idx++,"Values: " + String(sc->getMaxNoise()) + " / " + String(sc->getMax()));
-	drawInfo(idx++,"Denoise: " + String(sc->isDenoise()));
+void ScanSettings::drawMenu(){
+	drawPoint("Scan Noise");
+	drawPoint("Clear Noise");
+	drawInfo("Values: " + String(sc->getMaxNoise()) + " / " + String(sc->getMax()));
+	drawInfo("Denoise: " + String(sc->isDenoise()));
 }
 
 void ScanSettings::buttonNext(){

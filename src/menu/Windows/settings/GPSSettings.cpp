@@ -1,15 +1,14 @@
 #include "GPSSettings.h"
 
 
-GPSSettings::GPSSettings(AbstractMenu* m):SubMenuList("GPS SETTINGS",m,0){
+GPSSettings::GPSSettings(AbstractMenu* m):SubMenuList("GPS SETTINGS",m){
 }
 
-void GPSSettings::draw(){
-	byte idx = 0;
-	drawInfo(idx++,"Sats: " + String(getSat()));
-	drawInfo(idx++,"LAT: " +  String(getLat()));
-	drawInfo(idx++,"LNG: " +  String(getLng()));
-	drawInfo(idx++,"" +  String(getDate()) + ":"+  String(getTime()));
+void GPSSettings::drawMenu(){
+	drawInfo("Sats: " + String(getSat()));
+	drawInfo("LAT: " +  String(getLat()));
+	drawInfo("LNG: " +  String(getLng()));
+	drawInfo("" +  String(getDate()) + ":"+  String(getTime()));
 
 	//update gps
 	updateGPS();

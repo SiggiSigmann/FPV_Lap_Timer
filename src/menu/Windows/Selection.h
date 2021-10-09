@@ -19,7 +19,7 @@ class Selection : public SubMenuList{
 
 	public:
 		Selection(AbstractMenu* , Scanner* sc);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 

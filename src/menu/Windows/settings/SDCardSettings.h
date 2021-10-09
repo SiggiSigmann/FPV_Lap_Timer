@@ -10,7 +10,7 @@ class SDCardSettings : public SubMenuList{
 
 	public:
 		SDCardSettings(AbstractMenu*);
-		void draw();
+		void drawMenu();
 		void buttonNext();
 };
 
