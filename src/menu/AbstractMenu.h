@@ -3,6 +3,7 @@
 
 #include "../util/display.h"
 #include "../fpv/instances.h"
+#include <Arduino.h>
 
 /**
  * Can be inhered from to create a MenuPoint

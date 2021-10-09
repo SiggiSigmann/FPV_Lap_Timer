@@ -97,11 +97,20 @@ void ScanForDrones::buttonNext(){
 			//edit if there is someting
 			if(droneDetector->getNumberOfDrones() >0){
 				edit = true;
-				activePoint = 4;
+				activePoint = 6;
 				time = millis();
 			}
 			break;
+
 		case 2:
+			droneDetector->addDrone();
+			this->setExtra(String(droneDetector->getNumberOfDrones()));
+			break;
+
+		case 3:
+			break;
+
+		case 4:
 			//scan noise
 			display.clearDisplay();
 			display.setCursor(0,0);
@@ -111,12 +120,12 @@ void ScanForDrones::buttonNext(){
 			scanner->captureNoise();
 			//detector->setOffset(scan->getMaxNoise());
 			break;
-		case 3:
+		case 5:
 			//reset
 			display.clearDisplay();
 			droneDetector->reset();
 			break;
-		case 4:
+		case 6:
 			// a trick => switch between edit
 			editline = !editline;
 			break;

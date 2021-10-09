@@ -23,6 +23,7 @@ class DroneDetector{
 		byte* getDroneFreqs();
 		void setOffset(int);
 		void reset();
+		void addDrone();
 
 		//getter and setter for scannPM
 		int getScannPM();
