@@ -57,8 +57,6 @@ void setup() {
 	setupSD();
 
 	setupGPS();
-
-
 }
 
 void loop() {

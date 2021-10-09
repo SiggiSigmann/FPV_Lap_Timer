@@ -47,11 +47,12 @@ void TrackerSettings::buttonUp(){
 		}
 		tracker->setLower(number);
 	}else{
-		if(this->activePoint == 0 ){
+		SubMenuList::buttonUp();
+		/*if(this->activePoint == 0 ){
 			this->activePoint= getNumberOfPoints()-1;
 		}else{
 			this->activePoint--;
-		}
+		}*/
 	}
 }
 
@@ -71,8 +72,9 @@ void TrackerSettings::buttonDown(){
 		}
 		tracker->setLower(number);
 	}else{
-		activePoint++;
-		activePoint %=getNumberOfPoints();
+		SubMenuList::buttonDown();
+		//activePoint++;
+		//activePoint %=getNumberOfPoints();
 	}
 }
 

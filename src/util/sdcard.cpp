@@ -35,7 +35,7 @@ int getStorageSize(){
   return SD.cardSize() / (1024 * 1024);
 }
 
-
+/*
 void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
   Serial.printf("Listing directory: %s\n", dirname);
 
@@ -65,7 +65,7 @@ void listDir(fs::FS &fs, const char * dirname, uint8_t levels){
     }
     file = root.openNextFile();
   }
-}
+}*/
 
 
 
@@ -114,10 +114,11 @@ void logStr(String s){
   if(!SD.exists("/info.txt")){
     initSD();
   }
-   File logFile = SD.open("/info.txt", FILE_WRITE);
-  if (logFile)
-  {
+  
+  File logFile = SD.open("/info.txt", FILE_APPEND);
+  if (logFile){
     logFile.println(s);
     logFile.close();
+    logFile.flush();
   }
 }

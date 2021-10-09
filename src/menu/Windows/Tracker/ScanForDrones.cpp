@@ -131,11 +131,12 @@ void ScanForDrones::buttonNext(){
 void ScanForDrones::buttonUp(){
 	if(!edit){
 		//normal menu stuff
-		if(this->activePoint ==0){
+		/*if(this->activePoint ==0){
 			this->activePoint= getNumberOfPoints()-1;
 		}else{
 			this->activePoint--;
-		}
+		}*/
+		SubMenuList::buttonUp();
 	}else{
 		if(editline){
 			//move line
@@ -171,8 +172,9 @@ void ScanForDrones::buttonUp(){
 void ScanForDrones::buttonDown(){
 	if(!edit){
 		//nomral menu stuff
-		this->activePoint++;
-		this->activePoint %=getNumberOfPoints();
+		SubMenuList::buttonDown();
+		//this->activePoint++;
+		//this->activePoint %=getNumberOfPoints();
 	}else{
 		if(editline){
 			//move lines

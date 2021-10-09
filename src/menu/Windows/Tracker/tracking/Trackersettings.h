@@ -9,8 +9,8 @@
 class TrackerSettings : public SubMenuList{
 	private:
 		LapTracker* tracker;
-		boolean editUpper;
-		boolean editLower;
+		boolean editUpper = false;
+		boolean editLower = false;
 
 	public:
 		TrackerSettings(Adafruit_SSD1306* , AbstractMenu*, LapTracker* laptracker);

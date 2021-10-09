@@ -39,11 +39,12 @@ void TrackMenu::buttonUp(){
 		}
 		this->tm->setselected(number);
 	}else{
-		if(this->activePoint == 0 ){
+		SubMenuList::buttonUp();
+		/*if(this->activePoint == 0 ){
 			this->activePoint= getNumberOfPoints()-1;
 		}else{
 			this->activePoint--;
-		}
+		}*/
 	}
 }
 
@@ -56,8 +57,9 @@ void TrackMenu::buttonDown(){
 		}
 		this->tm->setselected(number);
 	}else{
-		activePoint++;
-		activePoint %=getNumberOfPoints();
+		SubMenuList::buttonDown();
+		//activePoint++;
+		//activePoint %=getNumberOfPoints();
 	}
 }
 

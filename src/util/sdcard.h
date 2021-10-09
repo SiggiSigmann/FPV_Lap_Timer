@@ -7,7 +7,7 @@
 
 void setupSD();
 
-void listDir(fs::FS &fs, const char * dirname, uint8_t levels);
+//void listDir(fs::FS &fs, const char * dirname, uint8_t levels);
 
 int getStorageSize();
 
