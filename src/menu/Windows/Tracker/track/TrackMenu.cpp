@@ -1,6 +1,6 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(Adafruit_SSD1306* d, AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",d,m,3){
+TrackMenu::TrackMenu(AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",m,3){
 	tm = t;
 }
 

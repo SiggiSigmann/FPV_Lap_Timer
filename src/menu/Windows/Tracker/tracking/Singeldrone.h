@@ -19,7 +19,7 @@ class Singeldrone : public SubMenuList{
 		boolean windows = false;
 	
 	public:
-		Singeldrone(Adafruit_SSD1306* , AbstractMenu*,Scanner* , LapTracker* detector);
+		Singeldrone( AbstractMenu*,Scanner* , LapTracker* detector);
 		void draw();
 		void buttonNext();
 		void buttonUp();

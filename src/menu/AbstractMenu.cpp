@@ -1,13 +1,8 @@
 #include "AbstractMenu.h"
 
-AbstractMenu::AbstractMenu(Adafruit_SSD1306* d, String name){
-	display = d;
+AbstractMenu::AbstractMenu(String name){
 	this->name = name;
 	this->name.toUpperCase();
-}
-
-Adafruit_SSD1306* AbstractMenu::getDisplay(){
-	return display;
 }
 
 String AbstractMenu::getName(){

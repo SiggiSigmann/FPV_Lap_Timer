@@ -23,11 +23,11 @@ class DroneTracker : public SubMenuList{
 		Multidrone* multi;
 		Singeldrone* singel;
 		TrackerSettings* trackersetings;
-		
+
 		boolean ok = false;
 	
 	public:
-		DroneTracker(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc, DroneDetector* detector);
+		DroneTracker(AbstractMenu*, Scanner* sc, DroneDetector* detector);
 		void draw();
 		void buttonNext();
 };

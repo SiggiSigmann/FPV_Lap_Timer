@@ -19,7 +19,7 @@ class LapMenu : public SubMenuList{
 		TrackMenu* tm;
 
 	public:
-		LapMenu(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc);
+		LapMenu(AbstractMenu*, Scanner* sc);
 		void draw();
 		void buttonNext();
 };

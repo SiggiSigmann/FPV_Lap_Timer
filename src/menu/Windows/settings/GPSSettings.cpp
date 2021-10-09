@@ -1,7 +1,7 @@
 #include "GPSSettings.h"
 
 
-GPSSettings::GPSSettings(Adafruit_SSD1306* d, AbstractMenu* m):SubMenuList("GPS SETTINGS",d,m,0){
+GPSSettings::GPSSettings(AbstractMenu* m):SubMenuList("GPS SETTINGS",m,0){
 }
 
 void GPSSettings::draw(){

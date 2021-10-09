@@ -13,7 +13,7 @@ class Detectorsettings : public SubMenuList{
 		boolean editNumber;
 
 	public:
-		Detectorsettings(Adafruit_SSD1306* , AbstractMenu*, DroneDetector* detector);
+		Detectorsettings(AbstractMenu*, DroneDetector* detector);
 		void draw();
 		void buttonNext();
 		void buttonUp();

@@ -17,7 +17,7 @@ class Settings : public SubMenuList{
 		SDCardSettings* sdcardsettings;
 
 	public:
-		Settings(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc);
+		Settings(AbstractMenu*, Scanner* sc);
 		void draw();
 		void buttonNext();
 };

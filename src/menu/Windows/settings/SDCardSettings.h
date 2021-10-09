@@ -9,7 +9,7 @@ class SDCardSettings : public SubMenuList{
 	private:
 
 	public:
-		SDCardSettings(Adafruit_SSD1306* , AbstractMenu*);
+		SDCardSettings(AbstractMenu*);
 		void draw();
 		void buttonNext();
 };

@@ -1,6 +1,6 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(Adafruit_SSD1306* d, AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",d,m,3){
+TrackerSettings::TrackerSettings(AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",m,3){
 	this->tracker = tracker;
 }
 

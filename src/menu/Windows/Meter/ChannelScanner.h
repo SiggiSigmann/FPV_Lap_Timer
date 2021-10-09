@@ -13,7 +13,7 @@ class ChannelScanner : public MenuWindow{
 		byte i = 0;					//index of scann
 		
 	public:
-		ChannelScanner(Adafruit_SSD1306* , AbstractMenu* , Scanner*);
+		ChannelScanner(AbstractMenu* , Scanner*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

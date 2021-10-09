@@ -14,7 +14,7 @@ class ScanSettings : public SubMenuList{
 		Scanner* sc;
 
 	public:
-		ScanSettings(Adafruit_SSD1306* , AbstractMenu*, Scanner* sc);
+		ScanSettings(AbstractMenu*, Scanner* sc);
 		void draw();
 		void buttonNext();
 };

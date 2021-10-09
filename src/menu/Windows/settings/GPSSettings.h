@@ -11,7 +11,7 @@ class GPSSettings : public SubMenuList{
 		
 
 	public:
-		GPSSettings(Adafruit_SSD1306* , AbstractMenu*);
+		GPSSettings(AbstractMenu*);
 		void draw();
 		void buttonNext();
 };

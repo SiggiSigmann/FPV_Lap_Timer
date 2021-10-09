@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu(Adafruit_SSD1306* d):AbstractMenu(d,""){
+MainMenu::MainMenu():AbstractMenu(""){
 	pinMode(NEXTBUTTON,OUTPUT);
 	pinMode(PREVBUTTON,OUTPUT);
 	pinMode(DOWNBUTTON,OUTPUT);
@@ -16,16 +16,16 @@ void MainMenu::draw(){
 	byte fps = millis()-last;
 	last = millis();
 
-	this->display->fillRect(0,0,128,10,BLACK);
-	this->display->setCursor(0,0);
-	this->display->print(active->getName());
-	this->display->print(":");
-	this->display->print(active->getExtra());
-	this->display->print("|");
-	this->display->print(String(fps));
+	display.fillRect(0,0,128,10,BLACK);
+	display.setCursor(0,0);
+	display.print(active->getName());
+	display.print(":");
+	display.print(active->getExtra());
+	display.print("|");
+	display.print(String(fps));
 
 	this->active->draw();
-	this->display->display();
+	display.display();
 }
 
 void MainMenu::setMainScreen(AbstractMenu* m){

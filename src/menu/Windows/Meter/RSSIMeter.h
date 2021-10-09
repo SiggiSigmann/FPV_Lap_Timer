@@ -17,7 +17,7 @@ class RSSIMeter : public MenuWindow{
 		int old[LASTVALUES] = {0};				// last 120 values
 
 	public:
-		RSSIMeter(Adafruit_SSD1306* , AbstractMenu* , Scanner*);
+		RSSIMeter(AbstractMenu* , Scanner*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

@@ -16,7 +16,7 @@ class Multidrone : public MenuWindow{
 		boolean showtimes = false;
 	
 	public:
-		Multidrone(Adafruit_SSD1306* , AbstractMenu*, Scanner*, LapTracker*);
+		Multidrone( AbstractMenu*, Scanner*, LapTracker*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

@@ -1,6 +1,6 @@
 #include "MenuWindow.h"
 
-MenuWindow::MenuWindow(String name, Adafruit_SSD1306* d, AbstractMenu* m):AbstractMenu(d, name){
+MenuWindow::MenuWindow(String name, AbstractMenu* m):AbstractMenu(name){
 	this->parent = m;
 };
 
@@ -12,13 +12,13 @@ void MenuWindow::setParent(AbstractMenu* parent){
 //activate this
 void MenuWindow::acitvateMe(){
 	this->parent->acitvate(this);
-	this->display->clearDisplay();
+	display.clearDisplay();
 }
 
 //activate given menu
 void MenuWindow::acitvate(AbstractMenu* activateion){
 	this->parent->acitvate(activateion);
-	this->display->clearDisplay();
+	display.clearDisplay();
 }
 
 //defoult action for prev button.

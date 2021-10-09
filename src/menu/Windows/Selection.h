@@ -18,7 +18,7 @@ class Selection : public SubMenuList{
 		Settings* settings;
 
 	public:
-		Selection(Adafruit_SSD1306* , AbstractMenu* , Scanner* sc);
+		Selection(AbstractMenu* , Scanner* sc);
 		void draw();
 		void buttonNext();
 };

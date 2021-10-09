@@ -1,6 +1,6 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow("MULTI",d,m){
+Multidrone::Multidrone( AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow("MULTI",m){
 	this->tracker = tracer;
 	this->sc = sc;
 
@@ -21,21 +21,21 @@ void Multidrone::draw(){
 			xVal = 4;
 		}
 
-		this->display->drawRect(xVal,(yVal*6)+16,10,10,WHITE);
+		display.drawRect(xVal,(yVal*6)+16,10,10,WHITE);
 		xVal += 2;
-		this->display->setCursor(xVal,(yVal*6)+18);
-		this->display->print(i);
+		display.setCursor(xVal,(yVal*6)+18);
+		display.print(i);
 		xVal += 10;
 
 		if(showtimes){
-			this->display->fillRect(xVal, ((yVal*6)+16), xVal+42, ((yVal*6)+26),BLACK);
-			this->display->setCursor(xVal,(yVal*6)+18);
-			this->display->print(tracker->getDrones()[i].getBest());
+			display.fillRect(xVal, ((yVal*6)+16), xVal+42, ((yVal*6)+26),BLACK);
+			display.setCursor(xVal,(yVal*6)+18);
+			display.print(tracker->getDrones()[i].getBest());
 		}else{
 			for(int j = 0;j<RSSIVALUEBUFFER;j++){
-				this->display->drawLine(xVal+j, ((yVal*6)+16), xVal+j, ((yVal*6)+26),BLACK);
+				display.drawLine(xVal+j, ((yVal*6)+16), xVal+j, ((yVal*6)+26),BLACK);
 				byte level = scaleRSSI(tracker->getDrones()[i].getRSSI()[j], 10, sc->getMax());
-				this->display->drawPixel(xVal+j, ((yVal*6)+26)-level, WHITE);
+				display.drawPixel(xVal+j, ((yVal*6)+26)-level, WHITE);
 			}
 		}
 

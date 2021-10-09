@@ -1,6 +1,6 @@
 #include "SubMenuList.h"
 
-SubMenuList::SubMenuList(String name, Adafruit_SSD1306* d, AbstractMenu* m, byte numberOfPoints):MenuWindow(name,d,m){
+SubMenuList::SubMenuList(String name, AbstractMenu* m, byte numberOfPoints):MenuWindow(name,m){
 	this->numberOfPoints = numberOfPoints;
 }
 
@@ -20,21 +20,21 @@ void SubMenuList::buttonDown(){
 void SubMenuList::drawPoint(byte i, String name, int px){
 	byte menuX = 18;
 	menuX += (i*12);
-	this->display->fillRect(4,menuX,px,8,BLACK);
-	this->display->setCursor(18,menuX);
-	this->display->drawRect(4,menuX,8,8,WHITE);
-	this->display->print(name);
+	display.fillRect(4,menuX,px,8,BLACK);
+	display.setCursor(18,menuX);
+	display.drawRect(4,menuX,8,8,WHITE);
+	display.print(name);
 	if(activePoint == i){
-		this->display->fillRect(4,menuX,8,8,WHITE);
+		display.fillRect(4,menuX,8,8,WHITE);
 	}
 }
 
 void SubMenuList::drawInfo(byte i, String name, int px){
 	byte menuX = 18;
 	menuX += (i*12);
-	this->display->fillRect(4,menuX,px,8,BLACK);
-	this->display->setCursor(18,menuX);
-	this->display->print(name);
+	display.fillRect(4,menuX,px,8,BLACK);
+	display.setCursor(18,menuX);
+	display.print(name);
 }
 
 byte SubMenuList::getNumberOfPoints(){

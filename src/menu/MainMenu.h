@@ -36,7 +36,7 @@ class MainMenu : public AbstractMenu{
 		void acitvateMe();
 
 	public:
-		MainMenu(Adafruit_SSD1306* d);
+		MainMenu();
 		void draw();
 		void setMainScreen(AbstractMenu* m);		//Fiven Menu will be the main screen and dispülayd after startup
 		void run();							//hav to be calles in Main loop to draw display and process buttons

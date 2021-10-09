@@ -15,7 +15,7 @@ class Measuring  : public SubMenuList{
 		ChannelScanner* osci;
 
 	public:
-		Measuring(Adafruit_SSD1306* , AbstractMenu* , Scanner* sc);
+		Measuring(AbstractMenu* , Scanner* sc);
 		void draw();
 		void buttonNext();
 };

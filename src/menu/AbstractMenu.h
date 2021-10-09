@@ -1,21 +1,18 @@
 #ifndef ABSTRACTMENU_H
 #define ABSTRACTMENU_H
 
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
+#include "../util/display.h"
 
 /**
  * Can be inhered from to create a MenuPoint
  */
 class AbstractMenu{
 	protected:
-		Adafruit_SSD1306* display;
 		String name, extra = "";
 	
 	public:
-		AbstractMenu(Adafruit_SSD1306* d, String name);
-		Adafruit_SSD1306* getDisplay();
-		
+		AbstractMenu(String name);
+
 		virtual void draw()  = 0;
 		virtual void buttonNext()  = 0;
 		virtual void buttonPrev()  = 0;

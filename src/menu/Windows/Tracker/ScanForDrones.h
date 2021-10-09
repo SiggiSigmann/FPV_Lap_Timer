@@ -26,7 +26,7 @@ class ScanForDrones : public SubMenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(Adafruit_SSD1306* , AbstractMenu*, Scanner*, DroneDetector*);
+		ScanForDrones(AbstractMenu*, Scanner*, DroneDetector*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

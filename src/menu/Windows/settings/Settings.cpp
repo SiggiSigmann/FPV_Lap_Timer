@@ -1,9 +1,9 @@
 #include "Settings.h"
 
-Settings::Settings(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc):SubMenuList("SETTINGS",d,m,3){
-	scanSettings = new ScanSettings(d, this, sc);
-	gpsSettings = new GPSSettings(d, this); 
-	sdcardsettings = new SDCardSettings(d, this); 
+Settings::Settings(AbstractMenu* m, Scanner* sc):SubMenuList("SETTINGS",m,3){
+	scanSettings = new ScanSettings(this, sc);
+	gpsSettings = new GPSSettings(this); 
+	sdcardsettings = new SDCardSettings(this); 
 }
 
 void Settings::draw(){

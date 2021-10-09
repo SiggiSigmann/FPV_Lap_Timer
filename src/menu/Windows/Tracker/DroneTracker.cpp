@@ -1,14 +1,14 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(Adafruit_SSD1306* d, AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",d,m,4){
+DroneTracker::DroneTracker(AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",m,4){
 	this->sc = sc;
 	this->detector = detector;
 	this->tracker = new LapTracker(sc);
 
-	multi = new Multidrone(d,this,sc,tracker);
-	singel = new Singeldrone(d,this,sc,tracker);
+	multi = new Multidrone(this,sc,tracker);
+	singel = new Singeldrone(this,sc,tracker);
 
-	trackersetings = new TrackerSettings(d,this,tracker);
+	trackersetings = new TrackerSettings(this,tracker);
 
 	setExtra(String(detector->getNumberOfDrones()));
 }

@@ -14,7 +14,7 @@ class TrackMenu : public SubMenuList{
 
 
 	public:
-		TrackMenu(Adafruit_SSD1306* , AbstractMenu*, TrackManager*);
+		TrackMenu(AbstractMenu*, TrackManager*);
 		void draw();
 		void buttonNext();
 		void buttonUp();
