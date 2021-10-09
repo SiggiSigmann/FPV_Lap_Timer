@@ -12,12 +12,11 @@
 
 class RSSIMeter : public MenuWindow{
 	private:
-		Scanner* scan;
 		int channel = 0;				//channel to scan
 		int old[LASTVALUES] = {0};				// last 120 values
 
 	public:
-		RSSIMeter(AbstractMenu* , Scanner*);
+		RSSIMeter(AbstractMenu*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

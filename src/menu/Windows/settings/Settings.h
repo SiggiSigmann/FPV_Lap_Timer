@@ -17,7 +17,7 @@ class Settings : public SubMenuList{
 		SDCardSettings* sdcardsettings;
 
 	public:
-		Settings(AbstractMenu*, Scanner* sc);
+		Settings(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 };

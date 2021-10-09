@@ -1,15 +1,12 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone( AbstractMenu* m, Scanner* sc, LapTracker* tracer):MenuWindow("MULTI",m){
-	this->tracker = tracer;
-	this->sc = sc;
-
-	setExtra(String(tracker->getNumberOfDrones()));
+Multidrone::Multidrone(AbstractMenu* m):MenuWindow("MULTI",m){
+	setExtra(String(lapTracker->getNumberOfDrones()));
 }
 
 void Multidrone::draw(){
 	//for all existing drones
-	for(byte i=0;i<this->tracker->getNumberOfDrones();i++){
+	for(byte i=0;i<lapTracker->getNumberOfDrones();i++){
 		byte xVal = 0;
 		byte yVal = 0;
 
@@ -30,11 +27,11 @@ void Multidrone::draw(){
 		if(showtimes){
 			display.fillRect(xVal, ((yVal*6)+16), xVal+42, ((yVal*6)+26),BLACK);
 			display.setCursor(xVal,(yVal*6)+18);
-			display.print(tracker->getDrones()[i].getBest());
+			display.print(lapTracker->getDrones()[i].getBest());
 		}else{
 			for(int j = 0;j<RSSIVALUEBUFFER;j++){
 				display.drawLine(xVal+j, ((yVal*6)+16), xVal+j, ((yVal*6)+26),BLACK);
-				byte level = scaleRSSI(tracker->getDrones()[i].getRSSI()[j], 10, sc->getMax());
+				byte level = scaleRSSI(lapTracker->getDrones()[i].getRSSI()[j], 10, scanner->getMax());
 				display.drawPixel(xVal+j, ((yVal*6)+26)-level, WHITE);
 			}
 		}
@@ -42,7 +39,7 @@ void Multidrone::draw(){
 	}
 
 
-	tracker->update();
+	lapTracker->update();
 }
 
 void Multidrone::buttonNext(){
@@ -57,5 +54,5 @@ void Multidrone::buttonDown(){
 }
 
 void Multidrone::updateDrones(){
-	setExtra(String(tracker->getNumberOfDrones()));
+	setExtra(String(lapTracker->getNumberOfDrones()));
 }

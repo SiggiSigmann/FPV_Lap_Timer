@@ -2,6 +2,7 @@
 #define ABSTRACTMENU_H
 
 #include "../util/display.h"
+#include "../fpv/instances.h"
 
 /**
  * Can be inhered from to create a MenuPoint

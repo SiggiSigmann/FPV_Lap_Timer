@@ -1,8 +1,7 @@
 #include "RSSIMeter.h"
 
 
-RSSIMeter::RSSIMeter(AbstractMenu* parent, Scanner* s):MenuWindow("RSSI - SCOPE",parent){
-	scan = s;
+RSSIMeter::RSSIMeter(AbstractMenu* parent):MenuWindow("RSSI - SCOPE",parent){
 }
 
 void RSSIMeter::draw(){
@@ -23,7 +22,7 @@ void RSSIMeter::draw(){
 	}
 
 	//draw values
-	byte level = scaleRSSI(scan->scanIdx(channel), 32, scan->getMax());
+	byte level = scaleRSSI(scanner->scanIdx(channel), 32, scanner->getMax());
 
 	//insert into array
 	insertAtEnd(old, level ,LASTVALUES);
@@ -37,7 +36,7 @@ void RSSIMeter::draw(){
 	//wait because ESP ist too fast
 	delay(DELAVFORRSSI);
 
-	if(scan->isDenoise()){
+	if(scanner->isDenoise()){
 		display.setCursor(70,55);
 		display.print("Denoised");
 	}
@@ -51,7 +50,7 @@ void RSSIMeter::buttonNext(){
 	display.print("capture Noise");
 	display.display();
 
-	scan->captureNoise();
+	scanner->captureNoise();
 
 	display.clearDisplay();
 }

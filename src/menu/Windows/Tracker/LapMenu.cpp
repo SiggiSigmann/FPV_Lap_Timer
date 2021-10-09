@@ -1,15 +1,9 @@
 #include "LapMenu.h"
 
-LapMenu::LapMenu(AbstractMenu* m, Scanner* sc):SubMenuList("MENU - LAPTRACKER",m){
-	//create Tracker
-	DroneDetector* detector = new DroneDetector();
-
-	sfc = new ScanForDrones(this,sc,detector);
-	dt = new DroneTracker(this,sc,detector);
-	tr = new Detectorsettings(this,detector);
-
-	TrackManager* tman = new TrackManager();
-	tm = new TrackMenu(this,tman);
+LapMenu::LapMenu(AbstractMenu* m):SubMenuList("MENU - LAPTRACKER",m){
+	sfc = new ScanForDrones(this);
+	dt = new DroneTracker(this);
+	tm = new TrackMenu(this);
 }
 
 void LapMenu::drawMenu(){
@@ -31,7 +25,7 @@ void LapMenu::buttonNext(){
 			tm->acitvateMe();
 			break;
 		case 3:
-			tr->acitvateMe();
+			//tr->acitvateMe();
 			break;
 	}
 }

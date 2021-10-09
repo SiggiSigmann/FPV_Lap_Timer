@@ -8,7 +8,6 @@
 
 class GPSSettings : public SubMenuList{
 	private:
-		
 
 	public:
 		GPSSettings(AbstractMenu*);

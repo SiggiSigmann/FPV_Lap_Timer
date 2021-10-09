@@ -1,13 +1,11 @@
 #include "ChannelScanner.h"
 
 
-ChannelScanner::ChannelScanner(AbstractMenu* parent, Scanner* s):MenuWindow("CHANNEL - SCOPE",parent){
-	scan = s;
+ChannelScanner::ChannelScanner(AbstractMenu* parent):MenuWindow("CHANNEL - SCOPE",parent){
+
 }
 
 void ChannelScanner::draw(){
-	
-
 	//surounding
 	display.drawLine(4,48,124,48,WHITE);
 	display.setCursor(4,55);
@@ -23,7 +21,7 @@ void ChannelScanner::draw(){
 	}
 
 	//drawPoint of scann
-	byte level = scaleRSSI(scan->scanIdx(i), 32, scan->getMax());
+	byte level = scaleRSSI(scanner->scanIdx(i), 32, scanner->getMax());
 
 	//thickness of 3
 	for(byte j=0; j<3;j++){
@@ -39,7 +37,7 @@ void ChannelScanner::draw(){
 	i %=40;
 
 	//print if denoised
-	if(scan->isDenoise()){
+	if(scanner->isDenoise()){
 		display.setCursor(50,55);
 		display.print("Denoised");
 	}
@@ -52,7 +50,7 @@ void ChannelScanner::buttonNext(){
 	display.print("capture Noise");
 	display.display();
 
-	scan->captureNoise();
+	scanner->captureNoise();
 
 	display.clearDisplay();
 }

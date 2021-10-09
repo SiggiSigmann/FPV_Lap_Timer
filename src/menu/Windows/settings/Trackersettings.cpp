@@ -1,12 +1,11 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(AbstractMenu* m, LapTracker* tracker):SubMenuList("TRACKER SETTINGS",m){
-	this->tracker = tracker;
+TrackerSettings::TrackerSettings(AbstractMenu* m):SubMenuList("TRACKER SETTINGS",m){
 }
 
 void TrackerSettings::drawMenu(){
-	drawPoint("Upper: " +String(tracker->getUpper())+"%");
-	drawPoint("Lower: " +String(tracker->getLower())+"%");
+	drawPoint("Upper: " +String(lapTracker->getUpper())+"%");
+	drawPoint("Lower: " +String(lapTracker->getLower())+"%");
 	drawPoint("Reset Times");
 }
 
@@ -19,28 +18,28 @@ void TrackerSettings::buttonNext(){
 			editLower = true;
 			break;
 		case 2:
-			tracker->resetTimes();
+			lapTracker->resetTimes();
 			break;
 	}
 }
 
 void TrackerSettings::buttonUp(){
 	if(editUpper){
-		int number = tracker->getUpper();
-		if((number-1) <= tracker->getLower() ){
+		int number = lapTracker->getUpper();
+		if((number-1) <= lapTracker->getLower() ){
 			number = 100;
 		}else{
 			number--;
 		}
-		tracker->setUpper(number);
+		lapTracker->setUpper(number);
 	}else if(editLower){
-		int number = tracker->getLower();
+		int number = lapTracker->getLower();
 		if(number == 0 ){
-			number = tracker->getUpper()-1;
+			number = lapTracker->getUpper()-1;
 		}else{
 			number--;
 		}
-		tracker->setLower(number);
+		lapTracker->setLower(number);
 	}else{
 		SubMenuList::buttonUp();
 		/*if(this->activePoint == 0 ){
@@ -53,19 +52,19 @@ void TrackerSettings::buttonUp(){
 
 void TrackerSettings::buttonDown(){
 	if(editUpper){
-		int number =  tracker->getUpper();
+		int number =  lapTracker->getUpper();
 		number++;
 		if(number>100){
-			number = tracker->getLower() + 1;
+			number = lapTracker->getLower() + 1;
 		}
-		tracker->setUpper(number);
+		lapTracker->setUpper(number);
 	}else if(editLower){
-		int number =  tracker->getLower();
+		int number =  lapTracker->getLower();
 		number++;
-		if(number>=tracker->getUpper()){
+		if(number>=lapTracker->getUpper()){
 			number = 0;
 		}
-		tracker->setLower(number);
+		lapTracker->setLower(number);
 	}else{
 		SubMenuList::buttonDown();
 		//activePoint++;

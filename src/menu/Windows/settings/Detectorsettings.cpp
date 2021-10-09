@@ -1,14 +1,13 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(AbstractMenu* m, DroneDetector* detector):SubMenuList("DETECTOR SETTINGS",m){
-	this->detector = detector;
+Detectorsettings::Detectorsettings(AbstractMenu* m):SubMenuList("DETECTOR SETTINGS",m){
 }
 
 void Detectorsettings::drawMenu(){
-	drawPoint("ChannelsPM: " + String(this->detector->getScannPM()));
+	drawPoint("ChannelsPM: " + String(droneDetector->getScannPM()));
 	drawPoint("Reset");
 	drawInfo("");
-	drawInfo("Detected Drones:"+String(this->detector->getNumberOfDrones()));
+	drawInfo("Detected Drones:"+String(droneDetector->getNumberOfDrones()));
 }
 
 void Detectorsettings::buttonNext(){
@@ -17,20 +16,20 @@ void Detectorsettings::buttonNext(){
 			editNumber = true;
 			break;
 		case 1:
-			this->detector->reset();
+			droneDetector->reset();
 			break;
 	}
 }
 
 void Detectorsettings::buttonUp(){
 	if(editNumber){
-		int number = this->detector->getScannPM();
+		int number = droneDetector->getScannPM();
 		if(number == 1 ){
 			number = 39;
 		}else{
 			number--;
 		}
-		this->detector->setScannPM(number);
+		droneDetector->setScannPM(number);
 	}else{
 		SubMenuList::buttonUp();
 		/*if(this->activePoint == 0 ){
@@ -43,12 +42,12 @@ void Detectorsettings::buttonUp(){
 
 void Detectorsettings::buttonDown(){
 	if(editNumber){
-		int number = this->detector->getScannPM();
+		int number = droneDetector->getScannPM();
 		number++;
 		if(number>40){
 			number = 1;
 		}
-		this->detector->setScannPM(number);
+		droneDetector->setScannPM(number);
 	}else{
 		SubMenuList::buttonDown();
 		//activePoint++;

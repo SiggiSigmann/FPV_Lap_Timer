@@ -1,13 +1,12 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(AbstractMenu* m, TrackManager* t):SubMenuList("TRACK - MENU",m){
-	tm = t;
+TrackMenu::TrackMenu(AbstractMenu* m):SubMenuList("TRACK - MENU",m){
 }
 
 void TrackMenu::drawMenu(){
 	drawPoint("Record Track");
 	drawPoint("View Track");
-	drawPoint("Select: " + String(this->tm->getSelected()));
+	drawPoint("Select: " + String(trackManager->getSelected()));
 }	
 
 void TrackMenu::buttonNext(){
@@ -26,13 +25,13 @@ void TrackMenu::buttonNext(){
 
 void TrackMenu::buttonUp(){
 	if(editNumber){
-		byte number = this->tm->getSelected();
+		byte number = trackManager->getSelected();
 		if(number == 0 ){
-			number = this->tm->getTrackNumber()-1;
+			number = trackManager->getTrackNumber()-1;
 		}else{
 			number--;
 		}
-		this->tm->setselected(number);
+		trackManager->setselected(number);
 	}else{
 		SubMenuList::buttonUp();
 		/*if(this->activePoint == 0 ){
@@ -45,12 +44,12 @@ void TrackMenu::buttonUp(){
 
 void TrackMenu::buttonDown(){
 	if(editNumber){
-		byte number = this->tm->getSelected();
+		byte number = trackManager->getSelected();
 		number++;
-		if(number>=this->tm->getTrackNumber()){
+		if(number>=trackManager->getTrackNumber()){
 			number = 0;
 		}
-		this->tm->setselected(number);
+		trackManager->setselected(number);
 	}else{
 		SubMenuList::buttonDown();
 		//activePoint++;

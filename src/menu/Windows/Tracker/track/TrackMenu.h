@@ -3,18 +3,16 @@
 
 #include "../../../AbstractMenu.h"
 #include "../../../SubMenuList.h"
-#include "../../../../fpv/TrackManager.h"
 #include "../../../../RX5808/channels.h"
 
 
 class TrackMenu : public SubMenuList{
 	private:
-		TrackManager* tm;
 		boolean editNumber = false;
 
 
 	public:
-		TrackMenu(AbstractMenu*, TrackManager*);
+		TrackMenu(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

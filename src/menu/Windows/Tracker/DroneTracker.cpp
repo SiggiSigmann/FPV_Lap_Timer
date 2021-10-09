@@ -1,16 +1,10 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(AbstractMenu* m, Scanner* sc, DroneDetector* detector):SubMenuList("DRONE TRACKER",m){
-	this->sc = sc;
-	this->detector = detector;
-	this->tracker = new LapTracker(sc);
+DroneTracker::DroneTracker(AbstractMenu* m):SubMenuList("DRONE TRACKER",m){
+	multi = new Multidrone(this);
+	singel = new Singeldrone(this);
 
-	multi = new Multidrone(this,sc,tracker);
-	singel = new Singeldrone(this,sc,tracker);
-
-	trackersetings = new TrackerSettings(this,tracker);
-
-	setExtra(String(detector->getNumberOfDrones()));
+	setExtra(String(droneDetector->getNumberOfDrones()));
 }
 
 void DroneTracker::drawMenu(){
@@ -18,25 +12,25 @@ void DroneTracker::drawMenu(){
 	drawPoint("Load Drones");
 	drawPoint("Singel view");
 	drawPoint("Multi view");
-	drawPoint("Settings");
+	// drawPoint("Settings");
 
-	tracker->update();
+	lapTracker->update();
 }
 
 void DroneTracker::buttonNext(){
-	byte* dr = detector->getDroneFreqs();
+	byte* dr = droneDetector->getDroneFreqs();
 
 	switch (activePoint){
 		case 0:
-			tracker->reset();
-			for(int i =0;i<this->detector->getNumberOfDrones();i++){
-				tracker->addDrone(dr[i],sc->getNoise()[dr[i]],sc->getLastScan()[dr[i]]);
+			lapTracker->reset();
+			for(int i =0;i<droneDetector->getNumberOfDrones();i++){
+				lapTracker->addDrone(dr[i],scanner->getNoise()[dr[i]],scanner->getLastScan()[dr[i]]);
 			}
 			
-			if(this->detector->getNumberOfDrones()!=0){
+			if(droneDetector->getNumberOfDrones()!=0){
 				ok = true;
 			}
-			setExtra(String(detector->getNumberOfDrones()));
+			setExtra(String(droneDetector->getNumberOfDrones()));
 			multi->updateDrones();
 			singel->updateDrones();
 			break;
@@ -53,7 +47,7 @@ void DroneTracker::buttonNext(){
 			}
 			break;
 		case 3:
-				trackersetings->acitvateMe();
+				//trackersetings->acitvateMe();
 			break;
 	}
 }

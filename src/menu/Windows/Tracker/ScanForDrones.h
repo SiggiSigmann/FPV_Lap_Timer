@@ -4,16 +4,11 @@
 #include <Arduino.h>
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
-#include "../../../fpv/Scanner.h"
-#include "../../../fpv/DroneDetector.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 
 class ScanForDrones : public SubMenuList{
 	private:
-		Scanner* scan;
-		DroneDetector* detector;
-
 		//scan for drones
 		boolean isScanning = false;
 		byte i = 0;					//index of channel
@@ -26,7 +21,7 @@ class ScanForDrones : public SubMenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(AbstractMenu*, Scanner*, DroneDetector*);
+		ScanForDrones(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

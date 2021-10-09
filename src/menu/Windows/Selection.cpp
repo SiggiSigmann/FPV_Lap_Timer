@@ -1,9 +1,10 @@
 #include "Selection.h"
 
-Selection::Selection(AbstractMenu* m, Scanner* sc):SubMenuList("MENU", m){
-	meter = new Measuring(this, sc);
-	lap = new LapMenu(this, sc);
-	settings = new Settings(this, sc);
+Selection::Selection(AbstractMenu* m):SubMenuList("MENU", m){
+	meter = new Measuring(this);
+
+	lap = new LapMenu(this);
+	settings = new Settings(this);
 }
 
 void Selection::drawMenu(){

@@ -15,7 +15,7 @@ class Measuring  : public SubMenuList{
 		ChannelScanner* osci;
 
 	public:
-		Measuring(AbstractMenu* , Scanner* sc);
+		Measuring(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 };

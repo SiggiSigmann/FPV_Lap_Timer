@@ -1,8 +1,7 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(AbstractMenu* m, Scanner* sc, DroneDetector* tracer):SubMenuList("SCAN FOR DRONES",m){
-	this->scan = sc;
-	this->detector = tracer;
+ScanForDrones::ScanForDrones(AbstractMenu* m):SubMenuList("SCAN FOR DRONES",m){
+
 	this->setExtra("0");
 }
 
@@ -24,7 +23,7 @@ void ScanForDrones::drawMenu(){
 
 	//scann
 	if(isScanning){
-		byte level = scaleRSSI(scan->scanIdx(i), 32,scan->getMax());
+		byte level = scaleRSSI(scanner->scanIdx(i), 32,scanner->getMax());
 		display.drawFastVLine((i+1)+84,8,40,BLACK);
 		display.drawPixel((i)+84,48-level,WHITE);
 		
@@ -34,8 +33,8 @@ void ScanForDrones::drawMenu(){
 			isScanning = false;
 
 			//execute detection
-			detector->setMeasurements(scan->getLastScan());
-			this->setExtra(String(detector->getNumberOfDrones()));
+			droneDetector->setMeasurements(scanner->getLastScan());
+			this->setExtra(String(droneDetector->getNumberOfDrones()));
 		}
 	}else{
 		i=0;
@@ -45,8 +44,8 @@ void ScanForDrones::drawMenu(){
 	display.fillRect(64,55,60,10,BLACK);
 
 	//draw drones
-	byte* drones = detector->getDroneFreqs();
-	for(int j = 0; j<detector->getNumberOfDrones();j++){
+	byte* drones = droneDetector->getDroneFreqs();
+	for(int j = 0; j<droneDetector->getNumberOfDrones();j++){
 
 		if((j!=lineidx) || !edit){
 			//only display if nothing will be moved or edit
@@ -74,27 +73,27 @@ void ScanForDrones::drawMenu(){
 					display.drawFastVLine(drones[j]+84,18,30,WHITE);
 				}else{
 					//if no line 0> draw point
-					byte level = scaleRSSI(scan->getLastScan()[drones[j]], 32,scan->getMax());
+					byte level = scaleRSSI(scanner->getLastScan()[drones[j]], 32,scanner->getMax());
 					display.drawPixel((drones[j])+84,48-level,WHITE);
 				}
 			}
 		}
 	}
 
-	if(scan->isDenoise()) detector->setOffset(scan->getMax()/2);
+	if(scanner->isDenoise()) droneDetector->setOffset(scanner->getMax()/2);
 }
 
 void ScanForDrones::buttonNext(){
 	switch (activePoint){
 		case 0:
 			//scan for Drones
-			detector->reset();
+			droneDetector->reset();
 			isScanning = true;
 			break;
 		
 		case 1:
 			//edit if there is someting
-			if(detector->getNumberOfDrones() >0){
+			if(droneDetector->getNumberOfDrones() >0){
 				edit = true;
 				activePoint = 4;
 				time = millis();
@@ -107,13 +106,13 @@ void ScanForDrones::buttonNext(){
 			display.print("capture Noise");
 			display.display();
 
-			scan->captureNoise();
+			scanner->captureNoise();
 			//detector->setOffset(scan->getMaxNoise());
 			break;
 		case 3:
 			//reset
 			display.clearDisplay();
-			detector->reset();
+			droneDetector->reset();
 			break;
 		case 4:
 			// a trick => switch between edit
@@ -134,8 +133,8 @@ void ScanForDrones::buttonUp(){
 	}else{
 		if(editline){
 			//move line
-			byte* drones = detector->getDroneFreqs();
-			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
+			byte* drones = droneDetector->getDroneFreqs();
+			byte level = scaleRSSI(scanner->getLastScan()[drones[lineidx]], 32,scanner->getMax());
 
 			//remove old line
 			display.drawFastVLine(drones[lineidx]+84,18,30,BLACK);
@@ -152,7 +151,7 @@ void ScanForDrones::buttonUp(){
 		}else{
 			//choose line
 			if(this->lineidx == 0){
-				this->lineidx= detector->getNumberOfDrones()-1;
+				this->lineidx= droneDetector->getNumberOfDrones()-1;
 			}else{
 				this->lineidx--;
 			}
@@ -172,8 +171,8 @@ void ScanForDrones::buttonDown(){
 	}else{
 		if(editline){
 			//move lines
-			byte* drones = detector->getDroneFreqs();
-			byte level = scaleRSSI(scan->getLastScan()[drones[lineidx]], 32,scan->getMax());
+			byte* drones = droneDetector->getDroneFreqs();
+			byte level = scaleRSSI(scanner->getLastScan()[drones[lineidx]], 32,scanner->getMax());
 
 			//remove old line
 			display.drawFastVLine(drones[lineidx]+84,18,30,BLACK);
@@ -185,7 +184,7 @@ void ScanForDrones::buttonDown(){
 
 			//select line
 			this->lineidx++;
-			this->lineidx %=  detector->getNumberOfDrones();
+			this->lineidx %=  droneDetector->getNumberOfDrones();
 		}
 
 		//make line appear faster

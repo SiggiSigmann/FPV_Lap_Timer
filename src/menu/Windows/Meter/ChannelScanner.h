@@ -3,17 +3,15 @@
 
 #include "../../AbstractMenu.h"
 #include "../../MenuWindow.h"
-#include "../../../fpv/Scanner.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 
 class ChannelScanner : public MenuWindow{
 	private:
-		Scanner* scan;
 		byte i = 0;					//index of scann
 		
 	public:
-		ChannelScanner(AbstractMenu* , Scanner*);
+		ChannelScanner(AbstractMenu*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

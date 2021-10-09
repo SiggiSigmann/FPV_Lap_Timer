@@ -11,10 +11,9 @@
 
 class ScanSettings : public SubMenuList{
 	private:
-		Scanner* sc;
 
 	public:
-		ScanSettings(AbstractMenu*, Scanner* sc);
+		ScanSettings(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 };

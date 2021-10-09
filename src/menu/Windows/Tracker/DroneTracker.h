@@ -11,23 +11,17 @@
 #include "../../../util/util.h"
 #include "tracking/Multidrone.h"
 #include "tracking/Singeldrone.h"
-#include "tracking/Trackersettings.h"
 #include "../../../util/sdcard.h"
 
 class DroneTracker : public SubMenuList{
 	private:
-		Scanner* sc;
-		DroneDetector* detector;
-		LapTracker* tracker;
-
 		Multidrone* multi;
 		Singeldrone* singel;
-		TrackerSettings* trackersetings;
 
 		boolean ok = false;
 	
 	public:
-		DroneTracker(AbstractMenu*, Scanner* sc, DroneDetector* detector);
+		DroneTracker(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 };

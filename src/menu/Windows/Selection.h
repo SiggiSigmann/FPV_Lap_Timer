@@ -3,12 +3,13 @@
 
 #include "../AbstractMenu.h"
 #include "../SubMenuList.h"
-#include "../../fpv/Scanner.h"
 #include "../../RX5808/channels.h"
 #include "tracker/LapMenu.h"
 #include "settings/Settings.h"
 #include "meter/Measuring.h"
 
+#include "../../fpv/LapTracker.h"
+#include "../../fpv/DroneDetector.h"
 
 
 class Selection : public SubMenuList{
@@ -18,7 +19,7 @@ class Selection : public SubMenuList{
 		Settings* settings;
 
 	public:
-		Selection(AbstractMenu* , Scanner* sc);
+		Selection(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 };

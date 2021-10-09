@@ -4,16 +4,13 @@
 #include <Arduino.h>
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
-#include "../../../fpv/DroneDetector.h"
-#include "../../../fpv/LapTracker.h"
 
 class Detectorsettings : public SubMenuList{
 	private:
-		DroneDetector* detector;
 		boolean editNumber;
 
 	public:
-		Detectorsettings(AbstractMenu*, DroneDetector* detector);
+		Detectorsettings(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

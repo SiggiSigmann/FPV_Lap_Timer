@@ -1,18 +1,15 @@
 #include "Singeldrone.h"
 
-Singeldrone::Singeldrone(AbstractMenu* m, Scanner* sc, LapTracker* tracer):SubMenuList("SINGEL",m){
-	this->tracker = tracer;
-	this->sc = sc;
-
-	setExtra(String(i)+"/"+String(tracker->getNumberOfDrones()));
+Singeldrone::Singeldrone(AbstractMenu* m):SubMenuList("SINGEL",m){
+	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()));
 }
 
 void Singeldrone::drawMenu(){
 	if(!windows){
-		drawInfo("FREQ: " + String(tracker->getDrones()[i].getFreq())+"|"+ String(tracker->getDrones()[i].getChannel(),HEX));
-		drawInfo("Noise: " + String(tracker->getDrones()[i].getNoiseLevel()));
-		drawInfo("Max: " + String(tracker->getDrones()[i].getMaxLevel()));
-		drawInfo("Best: " + String(tracker->getDrones()[i].getBest()));
+		drawInfo("FREQ: " + String(lapTracker->getDrones()[i].getFreq())+"|"+ String(lapTracker->getDrones()[i].getChannel(),HEX));
+		drawInfo("Noise: " + String(lapTracker->getDrones()[i].getNoiseLevel()));
+		drawInfo("Max: " + String(lapTracker->getDrones()[i].getMaxLevel()));
+		drawInfo("Best: " + String(lapTracker->getDrones()[i].getBest()));
 	}else{
 		//graph
 		display.drawLine(84,48,124,48,WHITE);
@@ -27,30 +24,30 @@ void Singeldrone::drawMenu(){
 		for(byte idx=0; idx<RSSIVALUEBUFFER;idx++){
 			display.drawFastVLine((idx+1)+84,8,40,BLACK);
 
-			byte level = scaleRSSI(tracker->getDrones()[i].getRSSI()[idx], 32, sc->getMax());
+			byte level = scaleRSSI(lapTracker->getDrones()[i].getRSSI()[idx], 32, scanner->getMax());
 			display.drawPixel((idx)+84, 48-level, WHITE);
 		}
 
 		//draw upperlimit
-		byte level = scaleRSSI(tracker->getDrones()[i].getUpper(), 32, sc->getMax());
+		byte level = scaleRSSI(lapTracker->getDrones()[i].getUpper(), 32, scanner->getMax());
 		display.drawFastHLine(84,48-level,48,WHITE);
 		
 		//drow bottumlimit
-		level = scaleRSSI(tracker->getDrones()[i].getLower(), 32, sc->getMax());
+		level = scaleRSSI(lapTracker->getDrones()[i].getLower(), 32, scanner->getMax());
 		display.drawFastHLine(84,48-level,48,WHITE);
 
 		for(byte idx = 0; idx<4; idx++){
-			drawInfo(String(tracker->getDrones()[i].getLaps()[idx]),60);
+			drawInfo(String(lapTracker->getDrones()[i].getLaps()[idx]),60);
 		}
 
 		display.fillRect(64,55,20,10,BLACK);
-		if(tracker->getDrones()[i].getFareAway()){
+		if(lapTracker->getDrones()[i].getFareAway()){
 			display.setCursor(64,55);
 			display.print("far");
 		}
 	}
 
-	tracker->update();
+	lapTracker->update();
 }
 
 void Singeldrone::buttonNext(){
@@ -60,19 +57,19 @@ void Singeldrone::buttonNext(){
 
 void Singeldrone::buttonUp(){
 	if(this->i ==0){
-		this->i = tracker->getNumberOfDrones()-1;
+		this->i = lapTracker->getNumberOfDrones()-1;
 	}else{
 		this->i--;
 	}
-	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
+	setExtra(String(i+1)+"/"+String(lapTracker->getNumberOfDrones()));
 }
 
 void Singeldrone::buttonDown(){
 	i++;
-	i %= tracker->getNumberOfDrones();
-	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
+	i %= lapTracker->getNumberOfDrones();
+	setExtra(String(i+1)+"/"+String(lapTracker->getNumberOfDrones()));
 }
 
 void Singeldrone::updateDrones(){
-	setExtra(String(i+1)+"/"+String(tracker->getNumberOfDrones()));
+	setExtra(String(i+1)+"/"+String(lapTracker->getNumberOfDrones()));
 }

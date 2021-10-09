@@ -1,15 +1,18 @@
 #include "Settings.h"
 
-Settings::Settings(AbstractMenu* m, Scanner* sc):SubMenuList("SETTINGS",m){
-	scanSettings = new ScanSettings(this, sc);
+Settings::Settings(AbstractMenu* m):SubMenuList("SETTINGS",m){
+	scanSettings = new ScanSettings(this);
 	gpsSettings = new GPSSettings(this); 
 	sdcardsettings = new SDCardSettings(this); 
 }
 
 void Settings::drawMenu(){
 	drawPoint("Scanner");
+	drawPoint("Detector Setting");
+	drawPoint("Tracker Setting");
 	drawPoint("GPS");
 	drawPoint("SD-Card");
+
 }
 
 void Settings::buttonNext(){
@@ -18,11 +21,11 @@ void Settings::buttonNext(){
 			scanSettings->acitvateMe();
 			break;
 		
-		case 1:
+		case 3:
 			gpsSettings->acitvateMe();
 			break;
 
-		case 2:
+		case 4:
 			sdcardsettings->acitvateMe();
 			break;
 	}
