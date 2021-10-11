@@ -87,9 +87,9 @@ F_RF = 		F_LO + 479	= 5731
 
 
 ## TODO
-* [ ] Multithreading
+* [ ] permenent storage of settings
 * [ ] communication to arduino nano for gps and sd card
 * [ ] Trackscanner
 * [ ] Trackselection
-* [ ] permenent storage of settings
+* [ ] Test detection
 * [ ] websitesupport

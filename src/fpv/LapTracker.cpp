@@ -97,7 +97,7 @@ void updateTracker(void * pvParameters ){
 	while(true){
 		//Serial.print("hua");
 		lapTracker->update();
-		//yield();					//let cpu do importent stuff
+		yield();					//let cpu do importent stuff
 		timeForOneScan = millis()-lastscannTime;
 		lastscannTime = millis();
 	}
