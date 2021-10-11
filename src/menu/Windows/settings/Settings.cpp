@@ -6,6 +6,7 @@ Settings::Settings(AbstractMenu* m):SubMenuList("SETTINGS",m){
 	sdcardsettings = new SDCardSettings(this);
 	detectionSettings = new Detectorsettings(this);
 	trakersettings = new TrackerSettings(this);
+	speackerCheck = new SpeackerCheck(this);
 }
 
 void Settings::drawMenu(){
@@ -14,7 +15,7 @@ void Settings::drawMenu(){
 	drawPoint("Tracker Setting");
 	drawPoint("GPS");
 	drawPoint("SD-Card");
-
+	drawPoint("SpeakerSettings");
 }
 
 void Settings::buttonNext(){
@@ -37,6 +38,10 @@ void Settings::buttonNext(){
 
 		case 4:
 			sdcardsettings->acitvateMe();
+			break;
+
+		case 5:
+			speackerCheck->acitvateMe();
 			break;
 	}
 }

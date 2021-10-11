@@ -5,7 +5,6 @@ void onTimer(){
 }
 
 void Tone::playDrone(byte i){
-	Serial.println((i+1)*440);
 	play((i+1)*440);
 }
 

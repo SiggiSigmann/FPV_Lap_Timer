@@ -8,6 +8,7 @@
 #include "SDCardSettings.h"
 #include "Detectorsettings.h"
 #include "Trackersettings.h"
+#include "SpeackerCheck.h"
 
 
 
@@ -18,6 +19,7 @@ class Settings : public SubMenuList{
 		SDCardSettings* sdcardsettings;
 		Detectorsettings* detectionSettings;
 		TrackerSettings* trakersettings;
+		SpeackerCheck* speackerCheck;
 
 	public:
 		Settings(AbstractMenu*);
