@@ -4,21 +4,24 @@
 #include "Drone.h"
 #include "Scanner.h"
 #include "../util/sdcard.h"
+#include "Scanner.h"
 
 #define MAXDRONENUMBER 8
+
+TaskHandle_t xHandle = NULL;
 
 class LapTracker{
 	private:
 		Drone drones[8];
 		byte droneSize = 0;
-		Scanner* sc;
 		byte upperpercentage = 85;
 		byte lowerpercentage = 75;
+
+		TaskHandle_t NamedesTaskhadle; 
 
 		boolean detectLap();
 
 	public:
-		LapTracker(Scanner*);
 		byte getNumberOfDrones();
 		Drone* getDrones();
 
@@ -37,6 +40,11 @@ class LapTracker{
 
 		void resetTimes();
 
+		void startThread();
+		void stopThread();
+
 };
+
+extern  LapTracker* lapTracker;
 
 #endif

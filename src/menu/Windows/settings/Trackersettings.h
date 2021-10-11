@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
+#include "../../../fpv/LapTracker.h"
 
 class TrackerSettings : public SubMenuList{
 	private:

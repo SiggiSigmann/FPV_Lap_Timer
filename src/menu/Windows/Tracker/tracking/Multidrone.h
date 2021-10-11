@@ -6,6 +6,7 @@
 #include "../../../MenuWindow.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
+#include "../../../../fpv/LapTracker.h"
 
 class Multidrone : public MenuWindow{
 	private:

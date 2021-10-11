@@ -3,9 +3,9 @@
 
 #include "../../AbstractMenu.h"
 #include "../../MenuWindow.h"
-#include "../../../fpv/Scanner.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
+#include "../../../fpv/Scanner.h"
 
 #define LASTVALUES 120
 #define DELAVFORRSSI 100

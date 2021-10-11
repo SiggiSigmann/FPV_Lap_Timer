@@ -5,6 +5,8 @@
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
 
+#include "../../../fpv/DroneDetector.h"
+
 class Detectorsettings : public SubMenuList{
 	private:
 		boolean editNumber;

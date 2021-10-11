@@ -5,6 +5,7 @@
 #include "../../MenuWindow.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
+#include "../../../fpv/Scanner.h"
 
 class ChannelScanner : public MenuWindow{
 	private:

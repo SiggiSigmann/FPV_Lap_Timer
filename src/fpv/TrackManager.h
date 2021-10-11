@@ -22,4 +22,6 @@ class TrackManager{
 		void recordTrack();
 };
 
+extern  TrackManager* trackManager;
+
 #endif

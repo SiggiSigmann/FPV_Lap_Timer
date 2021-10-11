@@ -5,7 +5,7 @@
 #include "../../SubMenuList.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/sdcard.h"
-
+#include "../../../fpv/Scanner.h"
 
 
 class ScanSettings : public SubMenuList{

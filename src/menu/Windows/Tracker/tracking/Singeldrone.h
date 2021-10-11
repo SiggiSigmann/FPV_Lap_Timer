@@ -6,6 +6,7 @@
 #include "../../../SubMenuList.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
+#include "../../../../fpv/LapTracker.h"
 
 class Singeldrone : public SubMenuList{
 	private:

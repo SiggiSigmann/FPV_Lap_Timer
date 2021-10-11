@@ -31,4 +31,6 @@ class DroneDetector{
 		void setScannPM(int);
 };
 
+extern  DroneDetector* droneDetector;
+
 #endif

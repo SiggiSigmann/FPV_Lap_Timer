@@ -35,4 +35,6 @@ class Scanner{
 		int getMax();
 };
 	
+extern  Scanner* scanner;
+
 #endif

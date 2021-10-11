@@ -14,7 +14,7 @@ void DroneTracker::drawMenu(){
 	drawPoint("Multi view");
 	// drawPoint("Settings");
 
-	lapTracker->update();
+	//lapTracker->update();
 }
 
 void DroneTracker::buttonNext(){
@@ -53,3 +53,10 @@ void DroneTracker::buttonNext(){
 }
 
 
+void DroneTracker::buttonPrev(){
+
+}
+
+void DroneTracker::acitvateMe(){
+
+}

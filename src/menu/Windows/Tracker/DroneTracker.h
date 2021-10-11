@@ -24,6 +24,9 @@ class DroneTracker : public SubMenuList{
 		DroneTracker(AbstractMenu*);
 		void drawMenu();
 		void buttonNext();
+
+		void buttonPrev();
+		void acitvateMe();
 };
 
 #endif

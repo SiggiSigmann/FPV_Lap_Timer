@@ -6,6 +6,8 @@
 #include "../../SubMenuList.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
+#include "../../../fpv/DroneDetector.h"
+#include "../../../fpv/Scanner.h"
 
 class ScanForDrones : public SubMenuList{
 	private:

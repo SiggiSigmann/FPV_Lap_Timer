@@ -4,7 +4,7 @@
 #include "../../../AbstractMenu.h"
 #include "../../../SubMenuList.h"
 #include "../../../../RX5808/channels.h"
-
+#include "../../../../fpv/TrackManager.h"
 
 class TrackMenu : public SubMenuList{
 	private:

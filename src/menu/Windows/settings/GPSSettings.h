@@ -4,7 +4,7 @@
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
 #include "../../../util/gps.h"
-
+#include "../../../fpv/Scanner.h"
 
 class GPSSettings : public SubMenuList{
 	private:

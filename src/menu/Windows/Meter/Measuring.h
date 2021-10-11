@@ -8,6 +8,7 @@
 #include "ChannelScanner.h"
 #include "RSSIMeter.h"
 
+
 class Measuring  : public SubMenuList{
 	private:
 		//options
