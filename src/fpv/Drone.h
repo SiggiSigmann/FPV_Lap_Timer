@@ -6,6 +6,7 @@
 #include "../util/sdcard.h"
 #include "../rx5808/channels.h"
 #include "menu/pins.h"
+#include "periferal/tonegenerator.h"
 
 
 #define RSSIVALUEBUFFER 48						//because this is the number which can be displayed

@@ -82,9 +82,9 @@ void Drone::addLap(byte i){
 	if(newTime<bestLap) bestLap = newTime;
 
 	lastTime =  millis();
-	digitalWrite(BEEPER,1);
+	toneGenerator->playDrone(i);
 
-	logSD(i, newTime);
+	//logSD(i, newTime);
 }
 
 

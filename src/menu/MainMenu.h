@@ -4,7 +4,7 @@
 #include "AbstractMenu.h"
 #include "pins.h"
 
-#define LONGEPRESS 1500
+#define LONGEPRESS 1000
 #define FREQUENZE 100
 
 /**

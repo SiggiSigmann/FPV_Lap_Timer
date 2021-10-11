@@ -34,11 +34,7 @@ void TrackMenu::buttonUp(){
 		trackManager->setselected(number);
 	}else{
 		SubMenuList::buttonUp();
-		/*if(this->activePoint == 0 ){
-			this->activePoint= getNumberOfPoints()-1;
-		}else{
-			this->activePoint--;
-		}*/
+
 	}
 }
 
@@ -52,8 +48,7 @@ void TrackMenu::buttonDown(){
 		trackManager->setselected(number);
 	}else{
 		SubMenuList::buttonDown();
-		//activePoint++;
-		//activePoint %=getNumberOfPoints();
+
 	}
 }
 
@@ -61,7 +56,7 @@ void TrackMenu::buttonPrev(){
 	if(editNumber){
 		editNumber = false;
 	}else{
-		SubMenuList::acitvateMe();
+		SubMenuList::buttonPrev();
 	}
 }
 

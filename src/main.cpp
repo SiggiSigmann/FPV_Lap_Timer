@@ -10,6 +10,8 @@
 #include "util/display.h"
 #include "fpv/instances.h"
 
+#include "periferal/tonegenerator.h"
+
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 MainMenu* mm;
@@ -22,6 +24,9 @@ Scanner* scanner = new Scanner(rx);
 LapTracker* lapTracker = new LapTracker(scanner);
 TrackManager* trackManager = new TrackManager();
 DroneDetector* droneDetector = new DroneDetector();
+
+//tones
+Tone* toneGenerator;
 
 
 void setup() {
@@ -48,9 +53,12 @@ void setup() {
 	//setupSD();
 
 	//setupGPS();
+
+	toneGenerator = new Tone();
 }
 
 void loop() {
 	//draw and handel Buttons
 	mm->run();
+	toneGenerator->stop();
 }
