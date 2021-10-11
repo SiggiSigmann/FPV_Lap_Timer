@@ -1,8 +1,6 @@
 #include "LapTracker.h"
 
-LapTracker::LapTracker(Scanner* sc){
-	this->sc = sc;
-}
+int timeForOneScan = 0;
 
 byte LapTracker::getNumberOfDrones(){
 	return droneSize;
@@ -27,7 +25,7 @@ void LapTracker::reset(){
 
 void LapTracker::update(){
 	for(byte i = 0; i<droneSize; i++){
-		int val = sc->scanIdx(drones[i].getIndex());
+		int val = scanner->scanIdx(drones[i].getIndex());
 		drones[i].addRSSI(val);
 		if(detectLap(i)){
 			drones[i].addLap(i);
@@ -92,4 +90,28 @@ void LapTracker::resetTimes(){
 	for(byte i = 0; i<droneSize; i++){
 		drones[i].resetTime();
 	}
+}
+
+void updateTracker(void * pvParameters ){
+	unsigned long lastscannTime = millis();
+	while(true){
+		//Serial.print("hua");
+		lapTracker->update();
+		//yield();					//let cpu do importent stuff
+		timeForOneScan = millis()-lastscannTime;
+		lastscannTime = millis();
+	}
+
+}
+
+void LapTracker::startThread(){
+	if( xHandle == NULL ) {
+	xTaskCreate(updateTracker, "Scanner", 5000, NULL, 1, &xHandle );
+	 }
+}
+
+void LapTracker::stopThread(){
+	if( xHandle != NULL ) {
+	vTaskDelete( xHandle );
+	 }
 }

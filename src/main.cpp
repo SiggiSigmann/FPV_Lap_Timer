@@ -8,7 +8,11 @@
 #include "menu/Windows/Selection.h"
 
 #include "util/display.h"
-#include "fpv/instances.h"
+
+#include "fpv/DroneDetector.h"
+#include "fpv/LapTracker.h"
+#include "fpv/Scanner.h"
+#include "fpv/TrackManager.h"
 
 #include "periferal/tonegenerator.h"
 
@@ -21,7 +25,7 @@ SPI_RX5808* rx = new SPI_RX5808(34);
 
 //global instances
 Scanner* scanner = new Scanner(rx);
-LapTracker* lapTracker = new LapTracker(scanner);
+LapTracker* lapTracker = new LapTracker();
 TrackManager* trackManager = new TrackManager();
 DroneDetector* droneDetector = new DroneDetector();
 

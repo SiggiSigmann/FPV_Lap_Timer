@@ -8,7 +8,7 @@
 
 #define MAXDRONENUMBER 8
 
-TaskHandle_t xHandle = NULL;
+extern int timeForOneScan;
 
 class LapTracker{
 	private:
@@ -17,7 +17,7 @@ class LapTracker{
 		byte upperpercentage = 85;
 		byte lowerpercentage = 75;
 
-		TaskHandle_t NamedesTaskhadle; 
+		TaskHandle_t xHandle = NULL;
 
 		boolean detectLap();
 

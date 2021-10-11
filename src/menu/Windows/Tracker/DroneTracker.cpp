@@ -4,7 +4,7 @@ DroneTracker::DroneTracker(AbstractMenu* m):SubMenuList("DRONE TRACKER",m){
 	multi = new Multidrone(this);
 	singel = new Singeldrone(this);
 
-	setExtra(String(droneDetector->getNumberOfDrones()));
+	setExtra(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void DroneTracker::drawMenu(){
@@ -15,6 +15,7 @@ void DroneTracker::drawMenu(){
 	// drawPoint("Settings");
 
 	//lapTracker->update();
+	setExtra(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void DroneTracker::buttonNext(){
@@ -30,7 +31,7 @@ void DroneTracker::buttonNext(){
 			if(droneDetector->getNumberOfDrones()!=0){
 				ok = true;
 			}
-			setExtra(String(droneDetector->getNumberOfDrones()));
+			//setExtra(String(droneDetector->getNumberOfDrones()));
 			multi->updateDrones();
 			singel->updateDrones();
 			break;
@@ -54,9 +55,11 @@ void DroneTracker::buttonNext(){
 
 
 void DroneTracker::buttonPrev(){
-
+	lapTracker->stopThread();
+	SubMenuList::buttonPrev();	
 }
 
 void DroneTracker::acitvateMe(){
-
+	lapTracker->startThread();
+	SubMenuList::acitvateMe();	
 }
