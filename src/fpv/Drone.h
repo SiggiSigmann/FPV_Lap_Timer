@@ -3,7 +3,6 @@
 
 #include <Arduino.h>
 #include "../util/util.h"
-#include "../util/sdcard.h"
 #include "../rx5808/channels.h"
 #include "menu/pins.h"
 #include "periferal/tonegenerator.h"

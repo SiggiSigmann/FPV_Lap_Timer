@@ -7,7 +7,7 @@
 #include "menu/MainMenu.h"
 #include "menu/Windows/Selection.h"
 
-#include "util/display.h"
+#include "periferal/display.h"
 
 #include "fpv/DroneDetector.h"
 #include "fpv/LapTracker.h"
@@ -59,6 +59,8 @@ void setup() {
 	//setupGPS();
 
 	toneGenerator = new Tone();
+
+	
 }
 
 void loop() {

@@ -7,18 +7,18 @@ SDCardSettings::SDCardSettings(AbstractMenu* m):SubMenuList("SDCard SETTINGS",m)
 void SDCardSettings::drawMenu(){
 	drawPoint("Clear");
 	drawPoint("Init");
-	drawInfo(String(getStorageSize())+ " Mb");
+	//drawInfo(String(getStorageSize())+ " Mb");
 
 }
 
 void SDCardSettings::buttonNext(){
 	switch (activePoint){
 		case 0:
-			deleteAll();
+			//deleteAll();
 			break;
 		
 		case 1:
-			initSD();
+			//initSD();
 			break;
 	}
 }

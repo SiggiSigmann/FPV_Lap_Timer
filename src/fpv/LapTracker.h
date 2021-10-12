@@ -3,7 +3,6 @@
 
 #include "Drone.h"
 #include "Scanner.h"
-#include "../util/sdcard.h"
 #include "Scanner.h"
 
 #define MAXDRONENUMBER 8

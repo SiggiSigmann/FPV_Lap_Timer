@@ -29,7 +29,7 @@ void LapTracker::update(){
 		drones[i].addRSSI(val);
 		if(detectLap(i)){
 			drones[i].addLap(i);
-			logStr(String(i) + ";" + String(drones[i].getFreq()) +";" + String(drones[i].getLaps()[0]));
+
 		}
 	}
 }

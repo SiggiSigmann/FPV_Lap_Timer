@@ -84,7 +84,6 @@ void Drone::addLap(byte i){
 	lastTime =  millis();
 	toneGenerator->playDrone(i);
 
-	//logSD(i, newTime);
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef TRACKMANAGER_H
 #define TRACKMANAGER_H
 
-#include "../util/gps.h"
+#include <Arduino.h>
 
 class TrackManager{
 	

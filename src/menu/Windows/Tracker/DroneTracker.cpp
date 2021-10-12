@@ -8,7 +8,6 @@ DroneTracker::DroneTracker(AbstractMenu* m):SubMenuList("DRONE TRACKER",m){
 }
 
 void DroneTracker::drawMenu(){
-	byte idx = 0;
 	drawPoint("Load Drones");
 	drawPoint("Singel view");
 	drawPoint("Multi view");

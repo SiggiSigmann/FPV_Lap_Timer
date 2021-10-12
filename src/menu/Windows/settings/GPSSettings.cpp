@@ -5,13 +5,13 @@ GPSSettings::GPSSettings(AbstractMenu* m):SubMenuList("GPS SETTINGS",m){
 }
 
 void GPSSettings::drawMenu(){
-	drawInfo("Sats: " + String(getSat()));
+	/*drawInfo("Sats: " + String(getSat()));
 	drawInfo("LAT: " +  String(getLat()));
 	drawInfo("LNG: " +  String(getLng()));
 	drawInfo("" +  String(getDate()) + ":"+  String(getTime()));
 
 	//update gps
-	updateGPS();
+	updateGPS();*/
 }
 
 void GPSSettings::buttonNext(){

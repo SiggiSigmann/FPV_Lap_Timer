@@ -11,7 +11,6 @@
 #include "../../../util/util.h"
 #include "tracking/Multidrone.h"
 #include "tracking/Singeldrone.h"
-#include "../../../util/sdcard.h"
 
 class DroneTracker : public SubMenuList{
 	private:
