@@ -1,29 +1,21 @@
 #ifndef GPSSTUFF_H
 #define GPSSTUFF_H
 
-#include <TinyGPS++.h>
+#include "Interfaces/GPSInterface.h"
+#include "I2c/Communication.h"
 
-#define RXD2 16
-#define TXD2 17
+class GPS : public GPSInterface{
+	private:
 
-void setupGPS();
+	public:
+		GPS();
+		float* getPosition();
+		byte getSatelites();
+		String getTime();
+		String getDate();
+		void setTimeOffset(byte);
 
-void updateGPS();
-
-
-float getLat();
-
-
-float getLng();
-
-
-byte getSat();
-
-
-uint getTime();
-
-
-uint getDate();
-
+		void update();
+};
 
 #endif

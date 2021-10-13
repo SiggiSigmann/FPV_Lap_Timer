@@ -15,6 +15,7 @@
 #include "fpv/TrackManager.h"
 
 #include "periferal/tonegenerator.h"
+#include "periferal/I2c/Communication.h"
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
@@ -32,11 +33,13 @@ DroneDetector* droneDetector = new DroneDetector();
 //tones
 Tone* toneGenerator;
 
+SerialCommunication* communication = new SerialCommunication();
 
 void setup() {
 	Serial.begin(115200);
 	while(!Serial){}
 
+	Serial2.begin(9600);
 
 	if(!display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS)) { 
 	Serial.println(F("SSD1306 allocation failed"));
@@ -59,8 +62,6 @@ void setup() {
 	//setupGPS();
 
 	toneGenerator = new Tone();
-
-	
 }
 
 void loop() {

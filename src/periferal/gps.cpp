@@ -1,37 +1,26 @@
 #include "gps.h"
 
-TinyGPSPlus gpsDB220;
+GPS::GPS(){}
 
-void setupGPS(){
-	Serial2.begin(9600, SERIAL_8N1, RXD2, TXD2);
-	gpsDB220 = TinyGPSPlus();
+float* GPS::getPosition(){
+	communication->getFloatArray2("gps.pos");
 }
 
-void updateGPS(){
-	while (Serial2.available() > 0) gpsDB220.encode(Serial2.read());
+byte GPS::getSatelites(){
+	communication->getFloatArray2("gps.sat");
 }
 
-float getLat(){
-	if(gpsDB220.location.isValid()) return gpsDB220.location.lat();
-	return 0;
+String GPS::getTime(){
+	communication->getString("gps.time");
 }
 
-float getLng(){
-	if(gpsDB220.location.isValid()) return gpsDB220.location.lng();
-	return 0;
+String GPS::getDate(){
+	communication->getString("gps.date");
 }
 
-byte getSat(){
-	if(gpsDB220.satellites.isValid()) return gpsDB220.satellites.value();
-	return 0;
+void GPS::setTimeOffset(byte b){
+	communication->getInt("gps.offset:"+String(b));
 }
 
-uint getTime(){
-	if(gpsDB220.time.isValid()) return gpsDB220.time.value();
-	return 0;
-}
-
-uint getDate(){
-	if(gpsDB220.date.isValid()) return gpsDB220.date.value();
-	return 0;
+void GPS::update(){
 }
