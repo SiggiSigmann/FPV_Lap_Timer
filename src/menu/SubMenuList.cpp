@@ -46,11 +46,22 @@ void SubMenuList::drawPoint(String name, int px){
 }
 
 void SubMenuList::drawInfo(String name, int px){
+	options++;
+	if(!((options > displaoffset) && (options <= (displaoffset+4)))){
+		return;
+	}
+
 	byte menuX = 18;
-	menuX += (idx++*12);
+	menuX += (idx*12);
 	display.fillRect(4,menuX,px,8,BLACK);
 	display.setCursor(18,menuX);
 	display.print(name);
+
+	display.drawFastHLine(4,menuX+2,6,BLACK);
+	if(activePoint == (idx+displaoffset)){
+		display.drawFastHLine(4,menuX+2,8,WHITE);
+	}
+	idx++;
 }
 
 byte SubMenuList::getNumberOfPoints(){

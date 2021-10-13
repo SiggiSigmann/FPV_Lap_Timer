@@ -6,6 +6,9 @@
 
 class GPS : public GPSInterface{
 	private:
+		boolean sommertime = false;
+		int timezone = 0;
+		byte minSat = 5;
 
 	public:
 		GPS();
@@ -13,9 +16,18 @@ class GPS : public GPSInterface{
 		byte getSatelites();
 		String getTime();
 		String getDate();
-		void setTimeOffset(byte);
-
+		void setTimeOffset(int);
 		void update();
+
+		boolean getSommerTime();
+		void setSommerTime(boolean);
+
+		int getTimeSzone();
+		void setTimeSzone(int);
+		boolean isValid();
+
+		byte getMinSat();
+		void setMinSat(byte);
 };
 
 extern GPS* gps;

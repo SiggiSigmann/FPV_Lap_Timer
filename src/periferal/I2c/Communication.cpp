@@ -46,6 +46,7 @@ float* SerialCommunication::getFloatArray2(String mes){
 }
 
 byte SerialCommunication::getByte(String mes){
+	//Serial.println(mes);
 	byte b=0;
 	Serial2.println(mes);
 	while(!Serial2.available()){}
