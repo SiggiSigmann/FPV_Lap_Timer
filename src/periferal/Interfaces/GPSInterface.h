@@ -11,7 +11,6 @@ class GPSInterface{
 		virtual String getTime()  = 0;
 		virtual String getDate()  = 0;
 		virtual void setTimeOffset(byte)  = 0;
-		virtual void setTimeOffset(byte)  = 0;
 		virtual void update() = 0;
 };
 

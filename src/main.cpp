@@ -16,6 +16,7 @@
 
 #include "periferal/tonegenerator.h"
 #include "periferal/I2c/Communication.h"
+#include "periferal/gps.h"
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
@@ -34,6 +35,7 @@ DroneDetector* droneDetector = new DroneDetector();
 Tone* toneGenerator;
 
 SerialCommunication* communication = new SerialCommunication();
+GPS* gps = new GPS();
 
 void setup() {
 	Serial.begin(115200);

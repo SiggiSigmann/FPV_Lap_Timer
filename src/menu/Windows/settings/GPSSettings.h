@@ -3,7 +3,7 @@
 
 #include "../../AbstractMenu.h"
 #include "../../SubMenuList.h"
-#include "../../../fpv/Scanner.h"
+#include "../../../periferal/gps.h"
 
 class GPSSettings : public SubMenuList{
 	private:

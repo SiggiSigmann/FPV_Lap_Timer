@@ -3,19 +3,19 @@
 GPS::GPS(){}
 
 float* GPS::getPosition(){
-	communication->getFloatArray2("gps.pos");
+	return communication->getFloatArray2("gps.pos");
 }
 
 byte GPS::getSatelites(){
-	communication->getFloatArray2("gps.sat");
+	return communication->getByte("gps.sat");
 }
 
 String GPS::getTime(){
-	communication->getString("gps.time");
+	return communication->getString("gps.time");
 }
 
 String GPS::getDate(){
-	communication->getString("gps.date");
+	return communication->getString("gps.date");
 }
 
 void GPS::setTimeOffset(byte b){
@@ -23,4 +23,5 @@ void GPS::setTimeOffset(byte b){
 }
 
 void GPS::update(){
+	communication->flush();
 }

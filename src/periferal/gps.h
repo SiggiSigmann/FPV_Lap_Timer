@@ -18,4 +18,5 @@ class GPS : public GPSInterface{
 		void update();
 };
 
+extern GPS* gps;
 #endif

@@ -14,6 +14,7 @@ class SerialCommunication{
 		int getInt(String);
 		float* getFloatArray2(String);
 		byte getByte(String);
+		void flush();
 };
 
 extern SerialCommunication* communication;

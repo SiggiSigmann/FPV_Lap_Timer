@@ -18,8 +18,8 @@ class SubMenuList : public MenuWindow{
 		SubMenuList(String name, AbstractMenu*);
 		void buttonUp();
 		void buttonDown();
-		void drawPoint(String, int px=120);			//draw a menupoint (index, name)
-		void drawInfo(String, int px=120);			//draw a menupoint (index, name)
+		void drawPoint(String, int px=125);			//draw a menupoint (index, name)
+		void drawInfo(String, int px=125);			//draw a menupoint (index, name)
 		void draw() final;
 		byte getNumberOfPoints();
 
