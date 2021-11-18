@@ -11,7 +11,7 @@ class MySPI{
 	private:
 		void inline sendBit(boolean bit);	//send a Bit
 	public:
-		void begin();
+		void begin();						//init pins
 		void transfer(byte); 				// transmit byte via spi
 };
 

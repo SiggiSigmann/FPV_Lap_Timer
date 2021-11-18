@@ -6,32 +6,32 @@
 //send data via SPI
 void SPI_RX5808::sendData(){
 	digitalWrite(SSP, LOW);
-  	this->myspi->transfer(info[0]);
-  	this->myspi->transfer(info[1]);
-  	this->myspi->transfer(info[2]);
-  	this->myspi->transfer(info[3]);
+  	this->myspi->transfer(messange[0]);
+  	this->myspi->transfer(messange[1]);
+  	this->myspi->transfer(messange[2]);
+  	this->myspi->transfer(messange[3]);
   	digitalWrite(SSP, HIGH);
 }
 
 //address part are the first 4 Bits in Message
 void SPI_RX5808::setAddress(short address){
-	info[0] = (info[0] & 0xC0) | (address & 0x2F);
+	messange[0] = (messange[0] & 0xC0) | (address & 0x2F);
 }
 
 //Bit 5 in message is r/w control
 void SPI_RX5808::setRW(boolean rw){
-	info[0] = (info[0] & 0xEF) | (rw << 4);
+	messange[0] = (messange[0] & 0xEF) | (rw << 4);
 }
 
 //Bit 8-27 are Data
 void SPI_RX5808::setPayload(long payload){
-	info[0] = (info[0] & 0x1F) | (payload & 0x7)<<5;
+	messange[0] = (messange[0] & 0x1F) | (payload & 0x7)<<5;
 	payload = payload >> 3;
-	info[1] = payload & 0xFF;
+	messange[1] = payload & 0xFF;
 	payload = payload >> 8;
-	info[2] = payload & 0xFF;
+	messange[2] = payload & 0xFF;
 	payload = payload >> 8;
-	info[3] = payload & 0x1F;
+	messange[3] = payload & 0x1F;
 }
 
 
@@ -41,7 +41,7 @@ void SPI_RX5808::setPayload(long payload){
 //start SPI and set Reag A to 8 => defaultmultiplyer
 SPI_RX5808::SPI_RX5808(int rssiPin){
 	//create Array for data
-	info = new byte[4];
+	messange = new byte[4];
 
 	this->rssiPin = rssiPin;
 
@@ -62,15 +62,15 @@ SPI_RX5808::SPI_RX5808(int rssiPin){
 }
 
 SPI_RX5808::~SPI_RX5808(){
-	delete this->info;
+	delete this->messange;
 	delete this->myspi;
 }
 
 //set RX to frequenzy in MHz
 void SPI_RX5808::setFreq(int freq){
-	if(oldChannel == freq) return;
+	if(currentChannel == freq) return;
 
-	oldChannel = freq;
+	currentChannel = freq;
 	
 	setAddress(1);
 	setRW(true);
@@ -124,7 +124,9 @@ void SPI_RX5808::setValideTime(unsigned long time){
 
 //wait till rssi is valid
 void SPI_RX5808::waitTillValid(){
-	while(!isRSSIValid()){delay(1);}
+	while(!isRSSIValid()){
+		delay(1);
+	}
 }
 
 

@@ -10,13 +10,14 @@
  */
 class SPI_RX5808{
 	private:
-		byte* info;
+		byte* messange;							//messange buffer
 		int rssiPin;
-		unsigned long timeSinceChannel = 0;
+		unsigned long timeSinceChannel = 0;		//timestemp when channel was changed
 		unsigned long valideTime = 30;  		// lower and there will be low spices in the rssi values
-		int oldChannel = 0;
+		int currentChannel = 0;					//store current channel to check if retune is needed
 		MySPI* myspi;
 
+		//methods to create and send messange to rx5805
 		void sendData();
 		void setAddress(short address);
 		void setRW(boolean rw);
