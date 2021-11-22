@@ -63,4 +63,6 @@ void loop() {
 	//draw and handel Buttons
 	mainMenu->run();
 	toneGenerator->stop();	//stop playing any tones
+
+	gps->update();			//update to avoid clitching
 }

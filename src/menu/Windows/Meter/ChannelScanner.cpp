@@ -6,6 +6,8 @@ ChannelScanner::ChannelScanner(GUI* parent):Frame("CHANNEL - SCOPE",parent){
 }
 
 void ChannelScanner::draw(){
+	gps->update();				//update to avoid clitching
+
 	//surounding
 	display.drawLine(4,48,124,48,WHITE);
 	display.setCursor(4,55);

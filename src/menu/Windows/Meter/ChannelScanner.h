@@ -6,6 +6,8 @@
 #include "../../../util/util.h"
 #include "../../../fpv/Scanner.h"
 
+#include "../../../periferal/gps.h"
+
 class ChannelScanner : public Frame{
 	private:
 		byte i = 0;					//index of scann
