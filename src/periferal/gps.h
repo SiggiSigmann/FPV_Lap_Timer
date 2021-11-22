@@ -2,13 +2,15 @@
 #define GPSSTUFF_H
 
 #include "Interfaces/GPSInterface.h"
-#include "I2c/Communication.h"
+#include <TinyGPS++.h>
 
 class GPS : public GPSInterface{
 	private:
 		boolean sommertime = false;
 		int timezone = 0;
 		byte minSat = 5;
+
+		TinyGPSPlus gpsEncoder = TinyGPSPlus();
 
 	public:
 		GPS();

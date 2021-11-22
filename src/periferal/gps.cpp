@@ -1,59 +1,61 @@
 #include "gps.h"
 
-GPS::GPS(){}
+GPS::GPS(){
+	Serial2.begin(9600);
+}
 
 float* GPS::getPosition(){
-	return communication->getFloatArray2("gps.pos");
+	
 }
 
 byte GPS::getSatelites(){
-	return communication->getByte("gps.sat");
+	if(!gpsEncoder.satellites.isValid()) return 0;
+	return gpsEncoder.satellites.value();
 }
 
 String GPS::getTime(){
-	return communication->getString("gps.time");
+
 }
 
 String GPS::getDate(){
-	return communication->getString("gps.date");
+	
 }
 
 void GPS::setTimeOffset(int b){
-	communication->getInt("gps.offset:"+String(b));
+	
 }
 
 void GPS::update(){
-	communication->flush();
+	while (Serial2.available() > 0)
+  		gpsEncoder.encode(Serial2.read());
 }
 
 boolean GPS::getSommerTime(){
-	return this->sommertime;
+	return sommertime;
 }
 void GPS::setSommerTime(boolean b){
-	this->sommertime = b;
-	int offsetToSend = timezone;
-	if(sommertime) offsetToSend++; 
-	communication->getByte("gps.offset:"+String((int)offsetToSend));
+	sommertime  = b;
 }
 
 int GPS::getTimeSzone(){
 	return timezone;
 }
+
 void GPS::setTimeSzone(int offset){
-	this->timezone = offset;
-	int offsetToSend = offset;
-	if(sommertime) offsetToSend++; 
-	communication->getByte("gps.offset:"+String(offsetToSend));
+	timezone = offset;
 }
 
 boolean GPS::isValid(){
-	return (this->getSatelites()>=this->minSat);
+	if(getSatelites()>=minSat){
+		return true;
+	}
+	return false;
 }
 
 byte GPS::getMinSat(){
-	return this->minSat;
+	return minSat;
 }
 
 void GPS::setMinSat(byte sat){
-	this->minSat = sat;
+	minSat = sat;
 }

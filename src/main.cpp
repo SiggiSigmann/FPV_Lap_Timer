@@ -12,7 +12,6 @@
 #include "fpv/TrackManager.h"
 
 #include "periferal/tonegenerator.h"
-#include "periferal/I2c/Communication.h"
 #include "periferal/gps.h"
 #include "periferal/display.h"
 
@@ -55,10 +54,6 @@ void setup() {
 	//Define first page
 	Selection* sel = new Selection(mainMenu);
 	mainMenu->setMainScreen(sel);
-
-	//setupSD();
-
-	//setupGPS();
 	
 	//create Tone generator for Beeping
 	toneGenerator = new Tone();
