@@ -1,6 +1,6 @@
 #include "SpeackerCheck.h"
 
-SpeackerCheck::SpeackerCheck(AbstractMenu* m):SubMenuList("Speacker Check",m){
+SpeackerCheck::SpeackerCheck(Window* m):SubMenuList("Speacker Check",m){
 }
 
 void SpeackerCheck::drawMenu(){

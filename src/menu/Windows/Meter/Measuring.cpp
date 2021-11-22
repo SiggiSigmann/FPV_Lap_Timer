@@ -1,6 +1,6 @@
 #include "Measuring.h"
 
-Measuring::Measuring(AbstractMenu* m):SubMenuList("MEASURING",m){
+Measuring::Measuring(Window* m):SubMenuList("MEASURING",m){
 	osci = new ChannelScanner(this);
 	rssiMeter = new RSSIMeter(this);
 }

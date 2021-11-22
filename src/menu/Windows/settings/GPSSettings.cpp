@@ -1,7 +1,7 @@
 #include "GPSSettings.h"
 
 
-GPSSettings::GPSSettings(AbstractMenu* m):SubMenuList("GPS SETTINGS",m){
+GPSSettings::GPSSettings(Window* m):SubMenuList("GPS SETTINGS",m){
 }
 
 void GPSSettings::drawMenu(){

@@ -1,12 +1,12 @@
 #include "Singeldrone.h"
 
-Singeldrone::Singeldrone(AbstractMenu* m):SubMenuList("SINGEL",m){
-	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+Singeldrone::Singeldrone(Window* m):SubMenuList("SINGEL",m){
+	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 
 }
 
 void Singeldrone::drawMenu(){
-	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 	if(!windows){
 		drawInfo("FREQ: " + String(lapTracker->getDrones()[i].getFreq())+"|"+ String(lapTracker->getDrones()[i].getChannel(),HEX));
 		drawInfo("Noise: " + String(lapTracker->getDrones()[i].getNoiseLevel()));
@@ -61,15 +61,15 @@ void Singeldrone::buttonUp(){
 	}else{
 		this->i--;
 	}
-	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void Singeldrone::buttonDown(){
 	i++;
 	i %= lapTracker->getNumberOfDrones();
-	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void Singeldrone::updateDrones(){
-	setExtra(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 }

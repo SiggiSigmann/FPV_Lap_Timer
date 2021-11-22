@@ -1,7 +1,7 @@
 #ifndef METER_H
 #define METER_H
 
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 #include "../../../fpv/Scanner.h"
 #include "..././../RX5808/channels.h"
@@ -16,7 +16,7 @@ class Measuring  : public SubMenuList{
 		ChannelScanner* osci;
 
 	public:
-		Measuring(AbstractMenu*);
+		Measuring(Window*);
 		void drawMenu();
 		void buttonNext();
 };

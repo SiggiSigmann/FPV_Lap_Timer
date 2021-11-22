@@ -1,7 +1,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 #include "ScanSettings.h"
 #include "GPSSettings.h"
@@ -22,7 +22,7 @@ class Settings : public SubMenuList{
 		SpeackerCheck* speackerCheck;
 
 	public:
-		Settings(AbstractMenu*);
+		Settings(Window*);
 		void drawMenu();
 		void buttonNext();
 };

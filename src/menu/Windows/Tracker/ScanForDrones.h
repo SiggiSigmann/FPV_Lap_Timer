@@ -2,7 +2,7 @@
 #define SCANFORDRONES_H
 
 #include <Arduino.h>
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
@@ -24,7 +24,7 @@ class ScanForDrones : public SubMenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(AbstractMenu*);
+		ScanForDrones(Window*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

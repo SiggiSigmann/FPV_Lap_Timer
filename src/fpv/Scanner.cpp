@@ -1,7 +1,7 @@
 #include "Scanner.h"
 
-Scanner::Scanner(SPI_RX5808*rx){
-	this->rx = rx;
+Scanner::Scanner(SPI_RX5808* rx5805){
+	this->rx5805 = rx5805;
 }
 
 void Scanner::captureNoise(){
@@ -10,13 +10,13 @@ void Scanner::captureNoise(){
 
 	//scann
 	for(byte i = 0; i < CHANNELAMOUT ;i++){
-		rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
-		rx->waitTillValid();
+		rx5805->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
+		rx5805->waitTillValid();
 
 		//capture 100 values and calc mean
 		long sum = 0;
 		for(byte j = 0;j<100;j++){
-			sum += rx->getRSSI();
+			sum += rx5805->getRSSI();
 			delay(1);
 		}
 		noise[i] = sum/100;
@@ -71,10 +71,10 @@ int Scanner::scanIdx(byte i){
 	if(i>=CHANNELAMOUT) return -1;
 
 	//set rx to frequenzy and wait till rssi is valid
-	rx->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
-	rx->waitTillValid();
+	rx5805->setFreq(pgm_read_word_near(channelFreqTable+pgm_read_word_near(channelList+i)));
+	rx5805->waitTillValid();
 
-	int rssi = rx->getRSSI();
+	int rssi = rx5805->getRSSI();
 	
 	//denoise
 	//if not denoiced then noise[i] => 0

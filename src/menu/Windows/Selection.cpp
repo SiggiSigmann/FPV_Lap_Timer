@@ -1,6 +1,6 @@
 #include "Selection.h"
 
-Selection::Selection(AbstractMenu* m):SubMenuList("MENU", m){
+Selection::Selection(Window* m):SubMenuList("MENU", m){
 	meter = new Measuring(this);
 
 	lap = new LapMenu(this);

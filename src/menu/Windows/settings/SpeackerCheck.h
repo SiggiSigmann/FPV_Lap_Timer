@@ -2,7 +2,7 @@
 #define SPECKERCHECK_H
 
 #include <Arduino.h>
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 #include "../../../periferal/tonegenerator.h"
 
@@ -13,7 +13,7 @@ class SpeackerCheck : public SubMenuList{
 		byte soundIdx = 0;
 
 	public:
-		SpeackerCheck(AbstractMenu*);
+		SpeackerCheck(Window*);
 		void drawMenu();
 		void buttonNext();
 		void buttonPrev();

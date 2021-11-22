@@ -1,8 +1,8 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(AbstractMenu* m):SubMenuList("SCAN FOR DRONES",m){
+ScanForDrones::ScanForDrones(Window* m):SubMenuList("SCAN FOR DRONES",m){
 
-	this->setExtra("0");
+	this->setExtraInfromation("0");
 }
 
 void ScanForDrones::drawMenu(){
@@ -36,7 +36,7 @@ void ScanForDrones::drawMenu(){
 
 			//execute detection
 			droneDetector->setMeasurements(scanner->getLastScan());
-			this->setExtra(String(droneDetector->getNumberOfDrones()));
+			this->setExtraInfromation(String(droneDetector->getNumberOfDrones()));
 		}
 	}else{
 		i=0;
@@ -104,7 +104,7 @@ void ScanForDrones::buttonNext(){
 
 		case 2:
 			droneDetector->addDrone();
-			this->setExtra(String(droneDetector->getNumberOfDrones()));
+			this->setExtraInfromation(String(droneDetector->getNumberOfDrones()));
 			break;
 
 		case 3:
@@ -115,7 +115,7 @@ void ScanForDrones::buttonNext(){
 				display.drawPixel((drones[lineidx])+84,48-level,WHITE);
 
 				droneDetector->deleteDrone(lineidx);
-				this->setExtra(String(droneDetector->getNumberOfDrones()));
+				this->setExtraInfromation(String(droneDetector->getNumberOfDrones()));
 				lineidx=0;
 			}
 			deleteDrone = true;
@@ -135,7 +135,7 @@ void ScanForDrones::buttonNext(){
 			//reset
 			display.clearDisplay();
 			droneDetector->reset();
-			this->setExtra(String(droneDetector->getNumberOfDrones()));
+			this->setExtraInfromation(String(droneDetector->getNumberOfDrones()));
 			break;
 		case 6:
 			// a trick => switch between edit

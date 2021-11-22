@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-Settings::Settings(AbstractMenu* m):SubMenuList("SETTINGS",m){
+Settings::Settings(Window* m):SubMenuList("SETTINGS",m){
 	scanSettings = new ScanSettings(this);
 	gpsSettings = new GPSSettings(this); 
 	sdcardsettings = new SDCardSettings(this);

@@ -2,7 +2,7 @@
 #define DETECTORSETTINGS_H
 
 #include <Arduino.h>
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 
 #include "../../../fpv/DroneDetector.h"
@@ -12,7 +12,7 @@ class Detectorsettings : public SubMenuList{
 		boolean editNumber;
 
 	public:
-		Detectorsettings(AbstractMenu*);
+		Detectorsettings(Window*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

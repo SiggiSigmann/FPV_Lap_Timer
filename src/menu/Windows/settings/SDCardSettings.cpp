@@ -1,7 +1,7 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(AbstractMenu* m):SubMenuList("SDCard SETTINGS",m){
+SDCardSettings::SDCardSettings(Window* m):SubMenuList("SDCard SETTINGS",m){
 }
 
 void SDCardSettings::drawMenu(){

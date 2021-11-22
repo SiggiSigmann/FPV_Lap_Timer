@@ -1,6 +1,6 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(AbstractMenu* m):SubMenuList("DETECTOR SETTINGS",m){
+Detectorsettings::Detectorsettings(Window* m):SubMenuList("DETECTOR SETTINGS",m){
 }
 
 void Detectorsettings::drawMenu(){

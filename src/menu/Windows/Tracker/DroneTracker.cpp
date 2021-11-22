@@ -1,10 +1,10 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(AbstractMenu* m):SubMenuList("DRONE TRACKER",m){
+DroneTracker::DroneTracker(Window* m):SubMenuList("DRONE TRACKER",m){
 	multi = new Multidrone(this);
 	singel = new Singeldrone(this);
 
-	setExtra(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void DroneTracker::drawMenu(){
@@ -14,7 +14,7 @@ void DroneTracker::drawMenu(){
 	// drawPoint("Settings");
 
 	//lapTracker->update();
-	setExtra(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(droneDetector->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
 
 void DroneTracker::buttonNext(){

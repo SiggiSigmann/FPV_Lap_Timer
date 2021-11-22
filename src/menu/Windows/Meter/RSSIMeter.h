@@ -1,7 +1,7 @@
 #ifndef RSSIMETER_H
 #define RSSIMETER_H
 
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../MenuWindow.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
@@ -16,7 +16,7 @@ class RSSIMeter : public MenuWindow{
 		int old[LASTVALUES] = {0};				// last 120 values
 
 	public:
-		RSSIMeter(AbstractMenu*);
+		RSSIMeter(Window*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

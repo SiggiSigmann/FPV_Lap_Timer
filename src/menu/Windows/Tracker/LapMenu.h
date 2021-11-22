@@ -1,7 +1,7 @@
 #ifndef LAPMENU_H
 #define LAPMENU_H
 
-#include "../../AbstractMenu.h"
+#include "../../Window.h"
 #include "../../SubMenuList.h"
 #include "../../../RX5808/channels.h"
 #include "ScanForDrones.h"
@@ -15,7 +15,7 @@ class LapMenu : public SubMenuList{
 		TrackMenu* tm;
 
 	public:
-		LapMenu(AbstractMenu*);
+		LapMenu(Window*);
 		void drawMenu();
 		void buttonNext();
 };

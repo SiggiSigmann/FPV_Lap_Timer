@@ -1,6 +1,6 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(AbstractMenu* m):SubMenuList("TRACK - MENU",m){
+TrackMenu::TrackMenu(Window* m):SubMenuList("TRACK - MENU",m){
 }
 
 void TrackMenu::drawMenu(){

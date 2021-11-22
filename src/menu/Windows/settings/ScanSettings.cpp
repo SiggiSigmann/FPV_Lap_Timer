@@ -1,6 +1,6 @@
 #include "ScanSettings.h"
 
-ScanSettings::ScanSettings(AbstractMenu* m):SubMenuList("SDCard SETTINGS",m){
+ScanSettings::ScanSettings(Window* m):SubMenuList("SDCard SETTINGS",m){
 }
 
 void ScanSettings::drawMenu(){

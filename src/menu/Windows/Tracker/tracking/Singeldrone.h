@@ -2,7 +2,7 @@
 #define SINGLEDRONE_H
 
 #include <Arduino.h>
-#include "../../../AbstractMenu.h"
+#include "../../../Window.h"
 #include "../../../SubMenuList.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
@@ -15,7 +15,7 @@ class Singeldrone : public SubMenuList{
 		boolean windows = false;
 	
 	public:
-		Singeldrone( AbstractMenu*);
+		Singeldrone( Window*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

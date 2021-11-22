@@ -14,7 +14,7 @@ class Selection : public SubMenuList{
 		Settings* settings;
 
 	public:
-		Selection(AbstractMenu*);
+		Selection(Window*);
 		void drawMenu();
 		void buttonNext();
 };

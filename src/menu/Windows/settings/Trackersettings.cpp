@@ -1,6 +1,6 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(AbstractMenu* m):SubMenuList("TRACKER SETTINGS",m){
+TrackerSettings::TrackerSettings(Window* m):SubMenuList("TRACKER SETTINGS",m){
 }
 
 void TrackerSettings::drawMenu(){

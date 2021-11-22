@@ -15,10 +15,10 @@ class Scanner{
 		int measurement[CHANNELAMOUT] = {0};		//orderd as frequenzy
 		int max=1;
 		
-		SPI_RX5808* rx;
+		SPI_RX5808* rx5805;
 
 	public:
-		Scanner(SPI_RX5808* rx);
+		Scanner(SPI_RX5808* rx5805);
 
 		//noice
 		void captureNoise();

@@ -1,7 +1,7 @@
 #ifndef TRACKERMENU_H
 #define TRACKERMENU_H
 
-#include "../../../AbstractMenu.h"
+#include "../../../Window.h"
 #include "../../../SubMenuList.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../fpv/TrackManager.h"
@@ -12,7 +12,7 @@ class TrackMenu : public SubMenuList{
 
 
 	public:
-		TrackMenu(AbstractMenu*);
+		TrackMenu(Window*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

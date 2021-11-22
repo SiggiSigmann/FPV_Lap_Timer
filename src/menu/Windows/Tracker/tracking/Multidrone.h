@@ -2,7 +2,7 @@
 #define MULTIDRONE_H
 
 #include <Arduino.h>
-#include "../../../AbstractMenu.h"
+#include "../../../Window.h"
 #include "../../../MenuWindow.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../util/util.h"
@@ -13,7 +13,7 @@ class Multidrone : public MenuWindow{
 		boolean showtimes = false;
 	
 	public:
-		Multidrone( AbstractMenu*);
+		Multidrone( Window*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

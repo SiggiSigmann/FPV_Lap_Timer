@@ -1,13 +1,10 @@
 #include <Arduino.h>
-
 #include <Wire.h>
 
 #include "RX5808/SPI_RX5808.h"
 
 #include "menu/MainMenu.h"
 #include "menu/Windows/Selection.h"
-
-#include "periferal/display.h"
 
 #include "fpv/DroneDetector.h"
 #include "fpv/LapTracker.h"
@@ -17,16 +14,17 @@
 #include "periferal/tonegenerator.h"
 #include "periferal/I2c/Communication.h"
 #include "periferal/gps.h"
+#include "periferal/display.h"
 
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-MainMenu* mm;
+MainMenu* mainMenu;
 
 //setup receiver
-SPI_RX5808* rx = new SPI_RX5808(34);
+SPI_RX5808* rx5805 = new SPI_RX5808(34);
 
 //global instances
-Scanner* scanner = new Scanner(rx);
+Scanner* scanner = new Scanner(rx5805);
 LapTracker* lapTracker = new LapTracker();
 TrackManager* trackManager = new TrackManager();
 DroneDetector* droneDetector = new DroneDetector();
@@ -34,7 +32,6 @@ DroneDetector* droneDetector = new DroneDetector();
 //tones
 Tone* toneGenerator;
 
-SerialCommunication* communication = new SerialCommunication();
 GPS* gps = new GPS();
 
 void setup() {
@@ -52,22 +49,23 @@ void setup() {
 	display.setTextColor(WHITE);
 	display.display();
 
-	//main Menu
-	mm = new MainMenu();
+	//create Main Menu
+	mainMenu = new MainMenu();
 
-	//selection
-	Selection* sel = new Selection(mm);
-	mm->setMainScreen(sel);
+	//Define first page
+	Selection* sel = new Selection(mainMenu);
+	mainMenu->setMainScreen(sel);
 
 	//setupSD();
 
 	//setupGPS();
-
+	
+	//create Tone generator for Beeping
 	toneGenerator = new Tone();
 }
 
 void loop() {
 	//draw and handel Buttons
-	mm->run();
-	toneGenerator->stop();
+	mainMenu->run();
+	toneGenerator->stop();	//stop playing any tones
 }

@@ -1,6 +1,6 @@
 #include "LapMenu.h"
 
-LapMenu::LapMenu(AbstractMenu* m):SubMenuList("MENU - LAPTRACKER",m){
+LapMenu::LapMenu(Window* m):SubMenuList("MENU - LAPTRACKER",m){
 	sfc = new ScanForDrones(this);
 	dt = new DroneTracker(this);
 	tm = new TrackMenu(this);

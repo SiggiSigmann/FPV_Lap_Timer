@@ -1,7 +1,7 @@
 #include "RSSIMeter.h"
 
 
-RSSIMeter::RSSIMeter(AbstractMenu* parent):MenuWindow("RSSI - SCOPE",parent){
+RSSIMeter::RSSIMeter(Window* parent):MenuWindow("RSSI - SCOPE",parent){
 }
 
 void RSSIMeter::draw(){

@@ -1,12 +1,12 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone(AbstractMenu* m):MenuWindow("MULTI",m){
-	setExtra(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+Multidrone::Multidrone(Window* m):MenuWindow("MULTI",m){
+	setExtraInfromation(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 	
 }
 
 void Multidrone::draw(){
-	setExtra(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 	//for all existing drones
 	for(byte i=0;i<lapTracker->getNumberOfDrones();i++){
 		byte xVal = 0;
@@ -53,5 +53,5 @@ void Multidrone::buttonDown(){
 }
 
 void Multidrone::updateDrones(){
-	setExtra(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
+	setExtraInfromation(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 }
