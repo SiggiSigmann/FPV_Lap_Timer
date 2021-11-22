@@ -7,6 +7,7 @@
 class GPS : public GPSInterface{
 	private:
 		boolean sommertime = false;
+		boolean timeoverfow = false;
 		int timezone = 0;
 		byte minSat = 5;
 
@@ -14,7 +15,7 @@ class GPS : public GPSInterface{
 
 	public:
 		GPS();
-		float* getPosition();
+		void getPosition(float*);
 		byte getSatelites();
 		String getTime();
 		String getDate();

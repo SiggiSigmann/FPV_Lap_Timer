@@ -4,8 +4,13 @@ GPS::GPS(){
 	Serial2.begin(9600);
 }
 
-float* GPS::getPosition(){
-	
+void GPS::getPosition(float* loction){
+	if(! gpsEncoder.location.isValid()){
+		return ;
+	}
+
+	loction[0] = gpsEncoder.location.lat();
+	loction[1] = gpsEncoder.location.lng();
 }
 
 byte GPS::getSatelites(){
@@ -14,15 +19,28 @@ byte GPS::getSatelites(){
 }
 
 String GPS::getTime(){
+	if(! gpsEncoder.time.isValid()) return "--:--:--";
+	
+	byte hour = gpsEncoder.time.hour()+ sommertime+timezone;
+	timeoverfow = false;
+	if(hour >= 24){
+		hour -=24;
+		timeoverfow= true;
+	}
 
+	return String(hour)+":"+String(gpsEncoder.time.minute())+":"+String(gpsEncoder.time.second());
 }
 
 String GPS::getDate(){
-	
+	if(! gpsEncoder.date.isValid()) return "--.--.----";
+
+	byte day = gpsEncoder.date.day() +timeoverfow;
+
+	return String(day)+"."+String(gpsEncoder.date.month())+"."+String(gpsEncoder.date.year());
 }
 
 void GPS::setTimeOffset(int b){
-	
+	timezone = b;
 }
 
 void GPS::update(){

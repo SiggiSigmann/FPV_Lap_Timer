@@ -10,6 +10,8 @@ MainMenu::MainMenu():GUI(""){
 
 //draw display of active MenuPoint
 void MainMenu::draw(){
+	//noInterrupts()
+
 	//stop beeper
 	digitalWrite(BEEPER,0);
 
@@ -26,6 +28,8 @@ void MainMenu::draw(){
 
 	this->active->draw();
 	display.display();
+
+	//interrupts()
 }
 
 void MainMenu::setMainScreen(GUI* m){

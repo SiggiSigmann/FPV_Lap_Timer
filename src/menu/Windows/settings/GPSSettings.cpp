@@ -7,15 +7,24 @@ GPSSettings::GPSSettings(GUI* m):Menu("GPS SETTINGS",m){
 void GPSSettings::drawMenu(){
 	gps->update();
 
-
+	Serial.println("huaaaa");
 	drawPoint("MinSat: " + String(gps->getMinSat()));
 	drawInfo("IsValid: " + String(gps->isValid()));
 	drawInfo("Sats: " + String(gps->getSatelites()));
-	float* pos = gps->getPosition();
+
+	Serial.println("1");
+	float pos[2] = {0};
+	gps->getPosition(pos);
+	Serial.println("2");
 	drawInfo("LAT: " +  String(pos[0],10));
+	Serial.println("3");
 	drawInfo("LNG: " +  String(pos[1],10));
+
+	Serial.println("4");
 	drawPoint("SummerTime: " + String(gps->getSommerTime()));
 	drawPoint("TimeZone: "+String( gps->getTimeSzone()));
+
+	Serial.println("huaaaa");
 	String date = gps->getDate();
 	drawInfo(gps->getTime() +" "+date.substring(0,6)+date.substring(8,10));
 	
