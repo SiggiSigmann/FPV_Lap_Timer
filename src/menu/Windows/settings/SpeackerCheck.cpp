@@ -1,6 +1,6 @@
 #include "SpeackerCheck.h"
 
-SpeackerCheck::SpeackerCheck(Window* m):SubMenuList("Speacker Check",m){
+SpeackerCheck::SpeackerCheck(GUI* m):Menu("Speacker Check",m){
 }
 
 void SpeackerCheck::drawMenu(){
@@ -22,7 +22,7 @@ void SpeackerCheck::drawMenu(){
 }
 
 void SpeackerCheck::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			playthough = true;
 			playTime=millis();
@@ -57,5 +57,5 @@ void SpeackerCheck::buttonNext(){
 void SpeackerCheck::buttonPrev(){
 	playthough = false;
 	soundIdx=0;
-	SubMenuList::buttonPrev();
+	Menu::buttonPrev();
 }

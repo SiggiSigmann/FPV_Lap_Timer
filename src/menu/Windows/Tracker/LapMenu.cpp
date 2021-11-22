@@ -1,6 +1,6 @@
 #include "LapMenu.h"
 
-LapMenu::LapMenu(Window* m):SubMenuList("MENU - LAPTRACKER",m){
+LapMenu::LapMenu(GUI* m):Menu("MENU - LAPTRACKER",m){
 	sfc = new ScanForDrones(this);
 	dt = new DroneTracker(this);
 	tm = new TrackMenu(this);
@@ -13,7 +13,7 @@ void LapMenu::drawMenu(){
 }	
 
 void LapMenu::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			sfc->acitvateMe();
 			break;

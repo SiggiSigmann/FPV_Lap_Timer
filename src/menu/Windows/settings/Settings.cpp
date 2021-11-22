@@ -1,6 +1,6 @@
 #include "Settings.h"
 
-Settings::Settings(Window* m):SubMenuList("SETTINGS",m){
+Settings::Settings(GUI* m):Menu("SETTINGS",m){
 	scanSettings = new ScanSettings(this);
 	gpsSettings = new GPSSettings(this); 
 	sdcardsettings = new SDCardSettings(this);
@@ -19,7 +19,7 @@ void Settings::drawMenu(){
 }
 
 void Settings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			scanSettings->acitvateMe();
 			break;

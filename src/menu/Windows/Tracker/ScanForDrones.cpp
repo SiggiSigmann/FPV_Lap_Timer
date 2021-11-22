@@ -1,6 +1,6 @@
 #include "ScanForDrones.h"
 
-ScanForDrones::ScanForDrones(Window* m):SubMenuList("SCAN FOR DRONES",m){
+ScanForDrones::ScanForDrones(GUI* m):Menu("SCAN FOR DRONES",m){
 
 	this->setExtraInfromation("0");
 }
@@ -86,7 +86,7 @@ void ScanForDrones::drawMenu(){
 }
 
 void ScanForDrones::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			//scan for Drones
 			droneDetector->reset();
@@ -97,7 +97,7 @@ void ScanForDrones::buttonNext(){
 			//edit if there is someting
 			if(droneDetector->getNumberOfDrones() >0){
 				edit = true;
-				activePoint = 6;
+				activeEntry = 6;
 				time = millis();
 			}
 			break;
@@ -146,7 +146,7 @@ void ScanForDrones::buttonNext(){
 
 void ScanForDrones::buttonUp(){
 	if(!edit && !deleteDrone){
-		SubMenuList::buttonUp();
+		Menu::buttonUp();
 	}else{
 		if(editline){
 			//move line
@@ -182,7 +182,7 @@ void ScanForDrones::buttonUp(){
 void ScanForDrones::buttonDown(){
 	if(!edit&&!deleteDrone){
 		//nomral menu stuff
-		SubMenuList::buttonDown();
+		Menu::buttonDown();
 	}else{
 		if(editline){
 			//move lines
@@ -215,12 +215,12 @@ void ScanForDrones::buttonPrev(){
 		}else{
 			//stop choosing a line
 			edit = false;
-			activePoint = 1;
+			activeEntry = 1;
 			drawline = true;
 		}
 	}else if(deleteDrone){
 		deleteDrone = false;
 	}else{
-		SubMenuList::buttonPrev();
+		Menu::buttonPrev();
 	}
 }

@@ -2,17 +2,16 @@
 #define TRACKERSETTINGS_H
 
 #include <Arduino.h>
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../fpv/LapTracker.h"
 
-class TrackerSettings : public SubMenuList{
+class TrackerSettings : public Menu{
 	private:
 		boolean editUpper = false;
 		boolean editLower = false;
 
 	public:
-		TrackerSettings(Window*);
+		TrackerSettings(GUI*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

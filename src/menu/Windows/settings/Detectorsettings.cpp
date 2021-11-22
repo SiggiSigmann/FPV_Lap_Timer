@@ -1,6 +1,6 @@
 #include "Detectorsettings.h"
 
-Detectorsettings::Detectorsettings(Window* m):SubMenuList("DETECTOR SETTINGS",m){
+Detectorsettings::Detectorsettings(GUI* m):Menu("DETECTOR SETTINGS",m){
 }
 
 void Detectorsettings::drawMenu(){
@@ -11,7 +11,7 @@ void Detectorsettings::drawMenu(){
 }
 
 void Detectorsettings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			editNumber = true;
 			break;
@@ -31,7 +31,7 @@ void Detectorsettings::buttonUp(){
 		}
 		droneDetector->setScannPM(number);
 	}else{
-		SubMenuList::buttonUp();
+		Menu::buttonUp();
 		/*if(this->activePoint == 0 ){
 			this->activePoint= getNumberOfPoints()-1;
 		}else{
@@ -49,7 +49,7 @@ void Detectorsettings::buttonDown(){
 		}
 		droneDetector->setScannPM(number);
 	}else{
-		SubMenuList::buttonDown();
+		Menu::buttonDown();
 		//activePoint++;
 		//activePoint %=getNumberOfPoints();
 	}
@@ -59,6 +59,6 @@ void Detectorsettings::buttonPrev(){
 	if(editNumber){
 		editNumber = false;
 	}else{
-		SubMenuList::acitvateMe();
+		Menu::acitvateMe();
 	}
 }

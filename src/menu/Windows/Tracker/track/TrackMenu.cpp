@@ -1,6 +1,6 @@
 #include "TrackMenu.h"
 
-TrackMenu::TrackMenu(Window* m):SubMenuList("TRACK - MENU",m){
+TrackMenu::TrackMenu(GUI* m):Menu("TRACK - MENU",m){
 }
 
 void TrackMenu::drawMenu(){
@@ -10,7 +10,7 @@ void TrackMenu::drawMenu(){
 }	
 
 void TrackMenu::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 
 			break;
@@ -33,7 +33,7 @@ void TrackMenu::buttonUp(){
 		}
 		trackManager->setselected(number);
 	}else{
-		SubMenuList::buttonUp();
+		Menu::buttonUp();
 
 	}
 }
@@ -47,7 +47,7 @@ void TrackMenu::buttonDown(){
 		}
 		trackManager->setselected(number);
 	}else{
-		SubMenuList::buttonDown();
+		Menu::buttonDown();
 
 	}
 }
@@ -56,7 +56,7 @@ void TrackMenu::buttonPrev(){
 	if(editNumber){
 		editNumber = false;
 	}else{
-		SubMenuList::buttonPrev();
+		Menu::buttonPrev();
 	}
 }
 

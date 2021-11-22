@@ -1,17 +1,16 @@
 #ifndef ScanSettings_H
 #define ScanSettings_H
 
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../RX5808/channels.h"
 #include "../../../fpv/Scanner.h"
 
 
-class ScanSettings : public SubMenuList{
+class ScanSettings : public Menu{
 	private:
 
 	public:
-		ScanSettings(Window*);
+		ScanSettings(GUI*);
 		void drawMenu();
 		void buttonNext();
 };

@@ -1,7 +1,7 @@
 #include "GPSSettings.h"
 
 
-GPSSettings::GPSSettings(Window* m):SubMenuList("GPS SETTINGS",m){
+GPSSettings::GPSSettings(GUI* m):Menu("GPS SETTINGS",m){
 }
 
 void GPSSettings::drawMenu(){
@@ -22,7 +22,7 @@ void GPSSettings::drawMenu(){
 }
 
 void GPSSettings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			editinSat=true;
 			break;
@@ -57,7 +57,7 @@ void GPSSettings::buttonUp(){
 		
 		gps->setMinSat(times);
 	}else{
-		SubMenuList::buttonUp();
+		Menu::buttonUp();
 	}
 }
 
@@ -79,7 +79,7 @@ void GPSSettings::buttonDown(){
 		
 		gps->setMinSat(times);
 	}else{
-		SubMenuList::buttonDown();
+		Menu::buttonDown();
 	}
 }
 
@@ -91,7 +91,7 @@ void GPSSettings::buttonPrev(){
 	}else if(editinSat){
 		editinSat = false;
 	}else{
-		SubMenuList::buttonPrev();
+		Menu::buttonPrev();
 	}
 }
 

@@ -1,21 +1,20 @@
 #ifndef LAPMENU_H
 #define LAPMENU_H
 
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../RX5808/channels.h"
 #include "ScanForDrones.h"
 #include "DroneTracker.h"
 #include "track/TrackMenu.h"
 
-class LapMenu : public SubMenuList{
+class LapMenu : public Menu{
 	private:
 		ScanForDrones* sfc;
 		DroneTracker* dt;
 		TrackMenu* tm;
 
 	public:
-		LapMenu(Window*);
+		LapMenu(GUI*);
 		void drawMenu();
 		void buttonNext();
 };

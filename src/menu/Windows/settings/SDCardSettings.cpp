@@ -1,7 +1,7 @@
 #include "SDCardSettings.h"
 
 
-SDCardSettings::SDCardSettings(Window* m):SubMenuList("SDCard SETTINGS",m){
+SDCardSettings::SDCardSettings(GUI* m):Menu("SDCard SETTINGS",m){
 }
 
 void SDCardSettings::drawMenu(){
@@ -12,7 +12,7 @@ void SDCardSettings::drawMenu(){
 }
 
 void SDCardSettings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			//deleteAll();
 			break;

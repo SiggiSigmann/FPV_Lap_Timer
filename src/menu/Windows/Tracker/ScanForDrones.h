@@ -2,14 +2,13 @@
 #define SCANFORDRONES_H
 
 #include <Arduino.h>
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 #include "../../../fpv/DroneDetector.h"
 #include "../../../fpv/Scanner.h"
 
-class ScanForDrones : public SubMenuList{
+class ScanForDrones : public Menu{
 	private:
 		//scan for drones
 		boolean isScanning = false;
@@ -24,7 +23,7 @@ class ScanForDrones : public SubMenuList{
 		unsigned long time;
 
 	public:
-		ScanForDrones(Window*);
+		ScanForDrones(GUI*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

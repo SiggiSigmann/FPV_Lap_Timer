@@ -1,22 +1,21 @@
 #ifndef METER_H
 #define METER_H
 
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../fpv/Scanner.h"
 #include "..././../RX5808/channels.h"
 #include "ChannelScanner.h"
 #include "RSSIMeter.h"
 
 
-class Measuring  : public SubMenuList{
+class Measuring  : public Menu{
 	private:
 		//options
 		RSSIMeter* rssiMeter;
 		ChannelScanner* osci;
 
 	public:
-		Measuring(Window*);
+		Measuring(GUI*);
 		void drawMenu();
 		void buttonNext();
 };

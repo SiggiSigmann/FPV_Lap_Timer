@@ -1,5 +1,5 @@
-#ifndef SUBMENULIST_H
-#define SUBMENULIST_H
+#ifndef MENU_H
+#define MENU_H
 
 #include "Frame.h"
 

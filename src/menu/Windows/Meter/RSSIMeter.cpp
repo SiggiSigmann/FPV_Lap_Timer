@@ -1,7 +1,7 @@
 #include "RSSIMeter.h"
 
 
-RSSIMeter::RSSIMeter(Window* parent):MenuWindow("RSSI - SCOPE",parent){
+RSSIMeter::RSSIMeter(GUI* parent):Frame("RSSI - SCOPE",parent){
 }
 
 void RSSIMeter::draw(){
@@ -61,6 +61,7 @@ void RSSIMeter::buttonUp(){
 		channel = 39;
 	}
 }
+
 void RSSIMeter::buttonDown(){
 	channel++;
 	channel %= 40;

@@ -1,6 +1,6 @@
 #include "Selection.h"
 
-Selection::Selection(Window* m):SubMenuList("MENU", m){
+Selection::Selection(GUI* m):Menu("MENU", m){
 	meter = new Measuring(this);
 
 	lap = new LapMenu(this);
@@ -14,7 +14,7 @@ void Selection::drawMenu(){
 }	
 
 void Selection::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			meter->acitvateMe();
 			break;

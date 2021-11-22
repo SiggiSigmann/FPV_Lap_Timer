@@ -1,6 +1,6 @@
 #include "ScanSettings.h"
 
-ScanSettings::ScanSettings(Window* m):SubMenuList("SDCard SETTINGS",m){
+ScanSettings::ScanSettings(GUI* m):Menu("SDCard SETTINGS",m){
 }
 
 void ScanSettings::drawMenu(){
@@ -11,7 +11,7 @@ void ScanSettings::drawMenu(){
 }
 
 void ScanSettings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			display.setCursor(18,18);
 			display.drawRect(4,18,8,8,WHITE);

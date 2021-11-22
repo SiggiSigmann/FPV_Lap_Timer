@@ -1,18 +1,17 @@
 #ifndef OSC_H
 #define OSC_H
 
-#include "../../Window.h"
-#include "../../MenuWindow.h"
+#include "../../Frame.h"
 #include "../../../RX5808/channels.h"
 #include "../../../util/util.h"
 #include "../../../fpv/Scanner.h"
 
-class ChannelScanner : public MenuWindow{
+class ChannelScanner : public Frame{
 	private:
 		byte i = 0;					//index of scann
 		
 	public:
-		ChannelScanner(Window*);
+		ChannelScanner(GUI*);
 		void draw();
 		void buttonNext();
 		void buttonUp();

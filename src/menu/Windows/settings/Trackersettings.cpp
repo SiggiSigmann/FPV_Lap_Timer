@@ -1,6 +1,6 @@
 #include "Trackersettings.h"
 
-TrackerSettings::TrackerSettings(Window* m):SubMenuList("TRACKER SETTINGS",m){
+TrackerSettings::TrackerSettings(GUI* m):Menu("TRACKER SETTINGS",m){
 }
 
 void TrackerSettings::drawMenu(){
@@ -10,7 +10,7 @@ void TrackerSettings::drawMenu(){
 }
 
 void TrackerSettings::buttonNext(){
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			editUpper = true;
 			break;
@@ -41,7 +41,7 @@ void TrackerSettings::buttonUp(){
 		}
 		lapTracker->setLower(number);
 	}else{
-		SubMenuList::buttonUp();
+		Menu::buttonUp();
 		/*if(this->activePoint == 0 ){
 			this->activePoint= getNumberOfPoints()-1;
 		}else{
@@ -66,7 +66,7 @@ void TrackerSettings::buttonDown(){
 		}
 		lapTracker->setLower(number);
 	}else{
-		SubMenuList::buttonDown();
+		Menu::buttonDown();
 		//activePoint++;
 		//activePoint %=getNumberOfPoints();
 	}
@@ -78,6 +78,6 @@ void TrackerSettings::buttonPrev(){
 	}else if(editLower){
 		editLower = false;
 	}else{
-		SubMenuList::buttonPrev();
+		Menu::buttonPrev();
 	}
 }

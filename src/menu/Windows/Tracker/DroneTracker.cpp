@@ -1,6 +1,6 @@
 #include "DroneTracker.h"
 
-DroneTracker::DroneTracker(Window* m):SubMenuList("DRONE TRACKER",m){
+DroneTracker::DroneTracker(GUI* m):Menu("DRONE TRACKER",m){
 	multi = new Multidrone(this);
 	singel = new Singeldrone(this);
 
@@ -20,7 +20,7 @@ void DroneTracker::drawMenu(){
 void DroneTracker::buttonNext(){
 	byte* dr = droneDetector->getDroneFreqs();
 
-	switch (activePoint){
+	switch (activeEntry){
 		case 0:
 			lapTracker->reset();
 			for(int i =0;i<droneDetector->getNumberOfDrones();i++){
@@ -55,10 +55,10 @@ void DroneTracker::buttonNext(){
 
 void DroneTracker::buttonPrev(){
 	lapTracker->stopThread();
-	SubMenuList::buttonPrev();	
+	Menu::buttonPrev();	
 }
 
 void DroneTracker::acitvateMe(){
 	lapTracker->startThread();
-	SubMenuList::acitvateMe();	
+	Menu::acitvateMe();	
 }

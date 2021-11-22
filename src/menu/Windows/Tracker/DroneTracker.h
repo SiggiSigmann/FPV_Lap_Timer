@@ -2,8 +2,7 @@
 #define DRONETRACKER_H
 
 #include <Arduino.h>
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../fpv/Scanner.h"
 #include "../../../fpv/DroneDetector.h"
 #include "../../../fpv/LapTracker.h"
@@ -12,7 +11,7 @@
 #include "tracking/Multidrone.h"
 #include "tracking/Singeldrone.h"
 
-class DroneTracker : public SubMenuList{
+class DroneTracker : public Menu{
 	private:
 		Multidrone* multi;
 		Singeldrone* singel;
@@ -20,7 +19,7 @@ class DroneTracker : public SubMenuList{
 		boolean ok = false;
 	
 	public:
-		DroneTracker(Window*);
+		DroneTracker(GUI*);
 		void drawMenu();
 		void buttonNext();
 

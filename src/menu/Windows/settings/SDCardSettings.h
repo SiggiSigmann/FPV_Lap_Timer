@@ -1,15 +1,13 @@
 #ifndef SDCARDSET_H
 #define SDCARDSET_H
 
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 
-
-class SDCardSettings : public SubMenuList{
+class SDCardSettings : public Menu{
 	private:
 
 	public:
-		SDCardSettings(Window*);
+		SDCardSettings(GUI*);
 		void drawMenu();
 		void buttonNext();
 };

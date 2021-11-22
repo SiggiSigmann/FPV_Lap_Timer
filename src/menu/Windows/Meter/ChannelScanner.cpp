@@ -1,7 +1,7 @@
 #include "ChannelScanner.h"
 
 
-ChannelScanner::ChannelScanner(Window* parent):MenuWindow("CHANNEL - SCOPE",parent){
+ChannelScanner::ChannelScanner(GUI* parent):Frame("CHANNEL - SCOPE",parent){
 
 }
 
@@ -61,7 +61,7 @@ void ChannelScanner::buttonDown(){
 }
 
 void ChannelScanner::buttonPrev(){
-	MenuWindow::buttonPrev();
+	Frame::buttonPrev();
 	
 	//reset counter
 	i=0;

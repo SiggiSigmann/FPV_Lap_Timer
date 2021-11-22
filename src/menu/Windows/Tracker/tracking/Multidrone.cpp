@@ -1,6 +1,6 @@
 #include "Multidrone.h"
 
-Multidrone::Multidrone(Window* m):MenuWindow("MULTI",m){
+Multidrone::Multidrone(GUI* m):Frame("MULTI",m){
 	setExtraInfromation(String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 	
 }

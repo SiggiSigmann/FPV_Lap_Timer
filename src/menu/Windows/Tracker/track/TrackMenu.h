@@ -1,18 +1,17 @@
 #ifndef TRACKERMENU_H
 #define TRACKERMENU_H
 
-#include "../../../Window.h"
-#include "../../../SubMenuList.h"
+#include "../../../Menu.h"
 #include "../../../../RX5808/channels.h"
 #include "../../../../fpv/TrackManager.h"
 
-class TrackMenu : public SubMenuList{
+class TrackMenu : public Menu{
 	private:
 		boolean editNumber = false;
 
 
 	public:
-		TrackMenu(Window*);
+		TrackMenu(GUI*);
 		void drawMenu();
 		void buttonNext();
 		void buttonUp();

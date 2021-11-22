@@ -2,18 +2,17 @@
 #define SPECKERCHECK_H
 
 #include <Arduino.h>
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../periferal/tonegenerator.h"
 
-class SpeackerCheck : public SubMenuList{
+class SpeackerCheck : public Menu{
 	private:
 		boolean playthough = false;
 		unsigned long playTime = 0;
 		byte soundIdx = 0;
 
 	public:
-		SpeackerCheck(Window*);
+		SpeackerCheck(GUI*);
 		void drawMenu();
 		void buttonNext();
 		void buttonPrev();

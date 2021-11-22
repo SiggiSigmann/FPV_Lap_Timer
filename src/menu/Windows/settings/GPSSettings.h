@@ -1,17 +1,16 @@
 #ifndef GPSSETTINGS_H
 #define GPSSETTINGS_H
 
-#include "../../Window.h"
-#include "../../SubMenuList.h"
+#include "../../Menu.h"
 #include "../../../periferal/gps.h"
 
-class GPSSettings : public SubMenuList{
+class GPSSettings : public Menu{
 	private:
 		boolean editSommerTime=false;
 		boolean editTimeSzone=false;
 		boolean editinSat = false;
 	public:
-		GPSSettings(Window*);
+		GPSSettings(GUI*);
 		void drawMenu();
 		void buttonNext();
 		void buttonPrev();

@@ -1,6 +1,6 @@
 #include "Singeldrone.h"
 
-Singeldrone::Singeldrone(Window* m):SubMenuList("SINGEL",m){
+Singeldrone::Singeldrone(GUI* m):Menu("SINGEL",m){
 	setExtraInfromation(String(i)+"/"+String(lapTracker->getNumberOfDrones()) + " " + String(timeForOneScan));
 
 }

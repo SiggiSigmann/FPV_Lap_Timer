@@ -1,7 +1,7 @@
 #ifndef MAINMENU_H
 #define MAINMENU_H
 
-#include "Window.h"
+#include "GUI.h"
 #include "pins.h"
 
 #define LONGEPRESS 1000
@@ -10,9 +10,9 @@
 /**
  * Main Menu class to handel draw and buttons
  */
-class MainMenu : public Window{
+class MainMenu : public GUI{
 	private:
-		Window* active;						//holds instance of MenuPoint which is corrently active
+		GUI* active;						//holds instance of MenuPoint which is corrently active
 
 		//Buttonstuff
 		boolean up=false;
@@ -32,14 +32,14 @@ class MainMenu : public Window{
 
 		unsigned long last = millis();
 
-		void acitvate(Window* activateion);
+		void acitvate(GUI* activateion);
 		void acitvateMe();
 
 	public:
 		MainMenu();
 		void draw();
-		void setMainScreen(Window* m);		//Fiven Menu will be the main screen and dispülayd after startup
-		void run();							//hav to be calles in Main loop to draw display and process buttons
+		void setMainScreen(GUI* m);		//Fiven Menu will be the main screen and dispülayd after startup
+		void run();							//have to be calles in Main loop to draw display and process buttons
 
 		//Button stuff
 		void processButton();

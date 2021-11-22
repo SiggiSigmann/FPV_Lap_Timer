@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu():Window(""){
+MainMenu::MainMenu():GUI(""){
 	pinMode(NEXTBUTTON,OUTPUT);
 	pinMode(PREVBUTTON,OUTPUT);
 	pinMode(DOWNBUTTON,OUTPUT);
@@ -28,7 +28,7 @@ void MainMenu::draw(){
 	display.display();
 }
 
-void MainMenu::setMainScreen(Window* m){
+void MainMenu::setMainScreen(GUI* m){
 	active = m;
 }
 
@@ -45,7 +45,7 @@ void MainMenu::buttonUp(){
 void MainMenu::buttonDown(){
 	this->active->buttonDown();
 }
-void MainMenu::acitvate(Window* activateion){
+void MainMenu::acitvate(GUI* activateion){
 	this->active = activateion;
 }
 void MainMenu::acitvateMe(){
