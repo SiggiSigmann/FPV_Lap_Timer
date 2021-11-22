@@ -1,5 +1,5 @@
-#ifndef ABSTRACTMENU_H
-#define ABSTRACTMENU_H
+#ifndef GUI_H
+#define GUI_H
 
 #include "../periferal/display.h"
 #include <Arduino.h>
@@ -7,24 +7,29 @@
 /**
  * Can be inhered from to create a MenuPoint
  */
-class AbstractMenu{
-	protected:
-		String name, extra = "";
-	
-	public:
-		AbstractMenu(String name);
+class GUI{
+	private:
+		String headline, extraInformation = "";
 
+	protected:
+		GUI(String headline);
+
+	public:
 		virtual void draw()  = 0;
+		
+		//buttonhandler
 		virtual void buttonNext()  = 0;
 		virtual void buttonPrev()  = 0;
 		virtual void buttonUp()  = 0;
 		virtual void buttonDown()  = 0;
-		virtual void acitvate(AbstractMenu* activateion) = 0;
+
+		//activation
+		virtual void acitvate(GUI* activateion) = 0;
 		virtual void acitvateMe() = 0;
 
-		String getName();
-		String getExtra();
-		void setExtra(String);
+		String getHeadline();
+		String getExtraInfromation();
+		void setExtraInfromation(String);
 
 };
 #endif

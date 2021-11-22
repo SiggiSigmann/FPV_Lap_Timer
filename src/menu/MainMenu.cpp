@@ -1,6 +1,6 @@
 #include "MainMenu.h"
 
-MainMenu::MainMenu():AbstractMenu(""){
+MainMenu::MainMenu():Window(""){
 	pinMode(NEXTBUTTON,OUTPUT);
 	pinMode(PREVBUTTON,OUTPUT);
 	pinMode(DOWNBUTTON,OUTPUT);
@@ -18,9 +18,9 @@ void MainMenu::draw(){
 
 	display.fillRect(0,0,128,16,BLACK);
 	display.setCursor(0,0);
-	display.print(active->getName());
+	display.print(active->getHeadline());
 	display.print(":");
-	display.print(active->getExtra());
+	display.print(active->getExtraInfromation());
 	display.print("|");
 	display.print(String(fps));
 
@@ -28,7 +28,7 @@ void MainMenu::draw(){
 	display.display();
 }
 
-void MainMenu::setMainScreen(AbstractMenu* m){
+void MainMenu::setMainScreen(Window* m){
 	active = m;
 }
 
@@ -45,7 +45,7 @@ void MainMenu::buttonUp(){
 void MainMenu::buttonDown(){
 	this->active->buttonDown();
 }
-void MainMenu::acitvate(AbstractMenu* activateion){
+void MainMenu::acitvate(Window* activateion){
 	this->active = activateion;
 }
 void MainMenu::acitvateMe(){
