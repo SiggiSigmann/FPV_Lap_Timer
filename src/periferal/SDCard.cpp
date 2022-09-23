@@ -37,6 +37,7 @@ boolean SDCard::initSDCard(){
   sd->end();
   if (!sd->begin(SS)) {
     Serial.println("Card failed, or not present");
+    this->cardType = "";
     this->sdCardExistsLastTime = false;
     this->cardSize=0;
 		this->numSectors=0;
