@@ -7,6 +7,7 @@
 #include "Detectorsettings.h"
 #include "Trackersettings.h"
 #include "SpeackerCheck.h"
+#include "SDSettings.h"
 
 
 
@@ -17,6 +18,7 @@ class Settings : public Menu{
 		Detectorsettings* detectionSettings;
 		TrackerSettings* trakersettings;
 		SpeackerCheck* speackerCheck;
+		SDSettings* sdSettings;
 
 	public:
 		Settings(GUI*);

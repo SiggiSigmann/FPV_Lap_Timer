@@ -5,6 +5,7 @@ Settings::Settings(GUI* m):Menu("SETTINGS",m){
 	gpsSettings = new GPSSettings(this); 
 	detectionSettings = new Detectorsettings(this);
 	trakersettings = new TrackerSettings(this);
+	sdSettings = new SDSettings(this);
 	speackerCheck = new SpeackerCheck(this);
 }
 
@@ -13,6 +14,7 @@ void Settings::drawMenu(){
 	drawPoint("Detector Setting");
 	drawPoint("Tracker Setting");
 	drawPoint("GPS");
+	drawPoint("SD Settings");
 	drawPoint("SpeakerSettings");
 }
 
@@ -35,7 +37,13 @@ void Settings::buttonNext(){
 			break;
 
 		case 4:
+			sdSettings->acitvateMe();
+			break;
+
+		case 5:
 			speackerCheck->acitvateMe();
 			break;
+		
+
 	}
 }
