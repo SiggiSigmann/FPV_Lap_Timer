@@ -14,7 +14,7 @@ void SDSettings::drawMenu(){
 	drawInfo("sec size: " + String(sdCard->getSectorSize()));
 	drawInfo("total kb: " + String(sdCard->getTotalBytes()));
 	drawInfo("used kb: " + String(sdCard->getUsedBytes()));
-	
+
 }
 
 void SDSettings::buttonNext(){

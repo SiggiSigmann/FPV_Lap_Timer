@@ -5,12 +5,19 @@ Menu::Menu(String headline, GUI* parent):Frame(headline, parent){
 
 //select next menu entry, if end is reach jump to first and vice versa
 void Menu::buttonUp(){
-	if(this->activeEntry ==0){
+
+	if(this->activeEntry == 0){
+		Serial.println(this->activeEntry);
 		//jump to bottom
-		this->activeEntry = activeEntry-1;
+		this->activeEntry = numberOfMenuEntries-1;
 
 		//move offset
-		entryOffsetToScrall = numberOfMenuEntries-4;
+		if(numberOfMenuEntries>4){
+			entryOffsetToScrall = numberOfMenuEntries-4;
+		}else{
+			entryOffsetToScrall = 0;
+		}
+		
 	}else{
 		this->activeEntry--;
 
@@ -49,14 +56,14 @@ boolean Menu::isMenuEntryDrawingNeeded(){
 
 void Menu::drawPoint(String name, int px){
 	currentMenuEntry++;
-	//cehck if drawing is not needed
+	//check if drawing is not needed
 	if(!this->isMenuEntryDrawingNeeded()){
 		return;
 	}
 
 	//calc x position
 	byte menuX = 18;
-	menuX += (drawingIdx*12);				//ech
+	menuX += (drawingIdx*12);
 
 	//draw
 	display.fillRect(4,menuX,px,8,BLACK);
@@ -105,20 +112,23 @@ void Menu::drawScrollBar(){
 		display.drawFastVLine(1,18,44,WHITE);
 
 		//calc sliderlength
-		//if there are more then 11 operion then the siderlength will be fix
+		//if there are more then 10 operion then the siderlength will be fix
+		//44 pixel are availabel
+		//increment is 7 pixel per new point
 		byte sliderlength;
-		if(numberOfMenuEntries>11){
+		if(numberOfMenuEntries>10){
 			sliderlength = 4;
 		}else{
-			sliderlength = 44 / (numberOfMenuEntries-3);
+			sliderlength = 44-((numberOfMenuEntries-4)*7);
 		}
-		//calc position
 
+		//calc position
 		//calc pixels per option which are not shown (therfore the -4)
-		int position = numberOfMenuEntries*(44-sliderlength);
+		int remainingPixelsToslide = 44-sliderlength;
+		int pixelsToslideForOne = remainingPixelsToslide / (numberOfMenuEntries);
 		
 		//calc the offset amount of pixels
-		position /= (numberOfMenuEntries-4);
+		int position = pixelsToslideForOne * activeEntry;
 		position+=18;
 
 		//enshure to reach bottom end
@@ -126,6 +136,7 @@ void Menu::drawScrollBar(){
 			position = 62-sliderlength;
 		}
 
+		Serial.println(String(sliderlength)+"\t" +String(position));
 		display.fillRect(0,position,3,sliderlength,WHITE);
 	}
 }
