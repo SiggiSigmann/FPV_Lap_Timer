@@ -7,27 +7,20 @@ GPSSettings::GPSSettings(GUI* m):Menu("GPS SETTINGS",m){
 void GPSSettings::drawMenu(){
 	gps->update();
 
-	Serial.println("huaaaa");
 	drawPoint("MinSat: " + String(gps->getMinSat()));
 	drawInfo("IsValid: " + String(gps->isValid()));
 	drawInfo("Sats: " + String(gps->getSatelites()));
 
-	Serial.println("1");
 	float pos[2] = {0};
 	gps->getPosition(pos);
-	Serial.println("2");
 	drawInfo("LAT: " +  String(pos[0],10));
-	Serial.println("3");
 	drawInfo("LNG: " +  String(pos[1],10));
 
-	Serial.println("4");
 	drawPoint("SummerTime: " + String(gps->getSommerTime()));
 	drawPoint("TimeZone: "+String( gps->getTimeSzone()));
 
-	Serial.println("huaaaa");
 	String date = gps->getDate();
 	drawInfo(gps->getTime() +" "+date.substring(0,6)+date.substring(8,10));
-	
 }
 
 void GPSSettings::buttonNext(){
@@ -48,7 +41,6 @@ void GPSSettings::buttonNext(){
 }
 
 void GPSSettings::buttonUp(){
-	Serial.println(String(editinSat));
 	if(editSommerTime){
 		gps->setSommerTime(!gps->getSommerTime());
 	}else if(editTimeSzone){
@@ -58,12 +50,10 @@ void GPSSettings::buttonUp(){
 		}
 		gps->setTimeSzone(times);
 	}else if(editinSat){
-		Serial.println("up");
 		int times = gps->getMinSat()-1;
 		if(times <= 0){
 			times= (15);
 		}
-		
 		gps->setMinSat(times);
 	}else{
 		Menu::buttonUp();

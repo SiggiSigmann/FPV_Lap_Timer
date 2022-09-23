@@ -95,7 +95,7 @@ void LapTracker::resetTimes(){
 void updateTracker(void * pvParameters ){
 	unsigned long lastscannTime = millis();
 	while(true){
-		//Serial.print("hua");
+
 		lapTracker->update();
 		yield();					//let cpu do importent stuff
 		timeForOneScan = millis()-lastscannTime;

@@ -4,7 +4,6 @@ SDCard::SDCard(){
   pinMode(SS, OUTPUT);
 }
 
-
 boolean SDCard::sdCardExists(){
   return this->sdCardExistsLastTime;
 }
@@ -36,7 +35,6 @@ uint64_t SDCard::getUsedBytes(){
 boolean SDCard::initSDCard(){
   sd->end();
   if (!sd->begin(SS)) {
-    Serial.println("Card failed, or not present");
     this->cardType = "";
     this->sdCardExistsLastTime = false;
     this->cardSize=0;
@@ -47,7 +45,6 @@ boolean SDCard::initSDCard(){
     return false;
   }
   this->sdCardExistsLastTime = true;
-  Serial.println("card initialized.");
   return true;
 }
 
@@ -78,31 +75,90 @@ void SDCard::update(){
 	this->sectorSize = sd->sectorSize();
 	this->totalBytes = sd->totalBytes()/1000;
 	this->usedBytes = sd->usedBytes()/1000;
+
+  File root = sd->open("/");
+  File file = root.openNextFile();
+  boolean tracksExists = false;
+  boolean lapsExists = false;
+  boolean settings = false;
+  while(file){
+    if(file.isDirectory()){
+      if(String(file.name()).equals("tracks")) tracksExists = true;
+      if(String(file.name()).equals("laps")) lapsExists = true;
+    }else{
+      if(String(file.name()).equals("settings")) settings = true;
+    }
+    file = root.openNextFile();
+  }
+
+  this->isInit = tracksExists & lapsExists & settings;
+
+  File tracks = sd->open("/tracks");
+  file = tracks.openNextFile();
+  this->numberOfTracks = 0;
+  while(file){
+    if(!file.isDirectory()){
+      this->numberOfTracks++;
+    } 
+    file = tracks.openNextFile();
+  }
+
+  File laps = sd->open("/laps");
+  file = laps.openNextFile();
+  this->numberOfLaps = 0;
+  while(file){
+    if(!file.isDirectory()){
+      this->numberOfLaps++;
+    } 
+    file = laps.openNextFile();
+  }
+  
 }
 
+void SDCard::clean(){
+  sd->rmdir("/tracks");
+  sd->rmdir("/laps");
+  sd->remove("/settings");
+  this->isInit = false;
+}
 
-/*void printContentOfFile(){
-	 Serial.print("Initializing SD card...");
-  // make sure that the default chip select pin is set to
-  // output, even if you don't use it:
-  
-  
-  // see if the card is present and can be initialized:
-  this->initSDCard();
-  
-  // open the file. note that only one file can be open at a time,
-  // so you have to close this one before opening another.
-  File dataFile = this->sd->open("/datalog.txt");
-
-  // if the file is available, write to it:
-  if (dataFile) {
-    while (dataFile.available()) {
-      Serial.write(dataFile.read());
+void SDCard::initialize(){
+  File root = sd->open("/");
+  File file = root.openNextFile();
+  boolean tracksExists = false;
+  boolean lapsExists = false;
+  boolean settings = false;
+  while(file){
+    if(file.isDirectory()){
+      if(String(file.name()).equals("tracks")) tracksExists = true;
+      if(String(file.name()).equals("laps")) lapsExists = true;
+    }else{
+      if(String(file.name()).equals("settings")) settings = true;
     }
-    dataFile.close();
-  }  
-  // if the file isn't open, pop up an error:
-  else {
-    Serial.println("error opening datalog.txt");
-  } 
-}*/
+    file = root.openNextFile();
+  }
+
+  this->isInit = tracksExists & lapsExists & settings;
+
+  if(!tracksExists) tracksExists = sd->mkdir("/tracks");
+  if(!lapsExists) lapsExists = sd->mkdir("/laps");
+  if(!settings){
+    File newFile = sd->open("/settings", FILE_WRITE);
+    settings = newFile;
+    newFile.close();
+  }
+
+  this->isInit = tracksExists & lapsExists;
+}
+
+boolean SDCard::getInit(){
+  return this->isInit;
+}
+
+int SDCard::getNumberOfTracks(){
+  return numberOfTracks;
+}
+
+int SDCard::getNumberOfLaps(){
+  return numberOfLaps;
+}

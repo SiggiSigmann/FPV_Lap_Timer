@@ -5,9 +5,8 @@ Menu::Menu(String headline, GUI* parent):Frame(headline, parent){
 
 //select next menu entry, if end is reach jump to first and vice versa
 void Menu::buttonUp(){
-
 	if(this->activeEntry == 0){
-		Serial.println(this->activeEntry);
+
 		//jump to bottom
 		this->activeEntry = numberOfMenuEntries-1;
 
@@ -136,7 +135,7 @@ void Menu::drawScrollBar(){
 			position = 62-sliderlength;
 		}
 
-		Serial.println(String(sliderlength)+"\t" +String(position));
+
 		display.fillRect(0,position,3,sliderlength,WHITE);
 	}
 }
