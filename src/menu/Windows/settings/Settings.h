@@ -8,7 +8,7 @@
 #include "Trackersettings.h"
 #include "SpeackerCheck.h"
 #include "SDSettings.h"
-
+#include "ToastSettings.h"
 
 
 class Settings : public Menu{
@@ -19,6 +19,7 @@ class Settings : public Menu{
 		TrackerSettings* trakersettings;
 		SpeackerCheck* speackerCheck;
 		SDSettings* sdSettings;
+		ToastSettings* toastSettings;
 
 	public:
 		Settings(GUI*);

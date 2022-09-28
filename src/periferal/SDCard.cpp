@@ -42,6 +42,8 @@ boolean SDCard::initSDCard(){
 		this->sectorSize=0;
 		this->totalBytes=0;
 		this->usedBytes=0;
+    currentFile = "";
+
     return false;
   }
   this->sdCardExistsLastTime = true;
@@ -49,7 +51,10 @@ boolean SDCard::initSDCard(){
 }
 
 void SDCard::update(){
-  if(!this->initSDCard()) return;
+  if(!this->initSDCard()){
+    toast->setToast("Error");
+    return;
+  } 
 
   uint8_t cardType = sd->cardType();
   switch (cardType){
@@ -116,9 +121,28 @@ void SDCard::update(){
 }
 
 void SDCard::clean(){
-  sd->rmdir("/tracks");
-  sd->rmdir("/laps");
-  sd->remove("/settings");
+  File laps = sd->open("/laps");
+  File file = laps.openNextFile();
+  this->numberOfLaps = 0;
+  while(file){
+    if(!file.isDirectory()){
+      sd->remove(file.name());
+    } 
+    file = laps.openNextFile();
+  }
+  if(!sd->rmdir("/tracks"))  toast->setToast("rm tracks error");
+
+  laps = sd->open("/tracks");
+  file = laps.openNextFile();
+  this->numberOfLaps = 0;
+  while(file){
+    if(!file.isDirectory()){
+      sd->remove(file.name());
+    } 
+    file = laps.openNextFile();
+  }
+  if(!sd->rmdir("/laps"))  toast->setToast("rm laps error");;
+  if(!sd->remove("/settings"))  toast->setToast("rm settings error"););
   this->isInit = false;
 }
 
@@ -148,7 +172,11 @@ void SDCard::initialize(){
     newFile.close();
   }
 
-  this->isInit = tracksExists & lapsExists;
+  if(!tracksExists) toast->setToast("tracks folder error");
+  if(!lapsExists)  toast->setToast("laps folder error");
+  if(!settings)  toast->setToast("settings file error");
+
+  this->isInit = tracksExists & lapsExists & settings;
 }
 
 boolean SDCard::getInit(){
@@ -161,4 +189,33 @@ int SDCard::getNumberOfTracks(){
 
 int SDCard::getNumberOfLaps(){
   return numberOfLaps;
+}
+
+String SDCard::getCurrentFile(){
+  return currentFile;
+}
+
+void SDCard::generateNewFile(){
+  File laps = sd->open("/laps");
+  File file = laps.openNextFile();
+  this->numberOfLaps = 0;
+  while(file){
+    if(!file.isDirectory()){
+      this->numberOfLaps++;
+    } 
+    file = laps.openNextFile();
+  }
+  currentFile = "/laps/"+String(this->numberOfLaps)+".txt";
+
+  File newFile = sd->open(currentFile, FILE_WRITE);
+  if(!newFile){
+    toast->setToast("new File Error");
+  }
+  newFile.close();
+}
+
+void SDCard::appendToNewFile(String message){
+  File newFile = sd->open(currentFile, FILE_APPEND);
+  newFile.print(message);
+  newFile.close();
 }

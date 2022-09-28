@@ -27,6 +27,8 @@ void MainMenu::draw(){
 	display.print(String(fps));
 
 	this->active->draw();
+
+	toast->drawToast();
 	display.display();
 
 	//interrupts()

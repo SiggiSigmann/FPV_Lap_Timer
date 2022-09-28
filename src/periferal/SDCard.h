@@ -4,6 +4,7 @@
 #include <arduino.h>
 #include <SPI.h>
 #include <SD.h>
+#include "../menu/Toast.h"
 
 class SDCard {
 	private:
@@ -19,12 +20,15 @@ class SDCard {
 		uint64_t usedBytes=0;
 		int numberOfTracks=0;
 		int numberOfLaps=0;
+		String currentFile="";
 	public:
 		SDCard();
 		void update();
+		void clean();
+		void initialize();
+		boolean getInit();
 
 		boolean sdCardExists();
-		boolean getInit();
 		String getCardType();
 		uint64_t getCardSize();
 		size_t getNumSectors();
@@ -33,12 +37,12 @@ class SDCard {
 		uint64_t getUsedBytes();
 		int getNumberOfTracks();
 		int getNumberOfLaps();
-		void clean();
-		void initialize();
+		String getCurrentFile();
+
+		void generateNewFile();
+		void appendToNewFile(String);
+
 };
-/*
-*/
 
 extern SDCard* sdCard;
-
 #endif

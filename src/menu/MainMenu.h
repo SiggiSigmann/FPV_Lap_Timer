@@ -3,6 +3,7 @@
 
 #include "GUI.h"
 #include "pins.h"
+#include "Toast.h"
 
 #define LONGEPRESS 1000
 #define FREQUENZE 100

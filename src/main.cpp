@@ -3,6 +3,7 @@
 
 #include "RX5808/SPI_RX5808.h"
 
+#include "menu/Toast.h"
 #include "menu/MainMenu.h"
 #include "menu/Windows/Selection.h"
 
@@ -24,6 +25,7 @@ SPI_RX5808* rx5805 = new SPI_RX5808(34);
 Tone* toneGenerator;
 GPS* gps = new GPS();
 SDCard* sdCard = new SDCard();
+Toast* toast = new Toast();
 
 //global instances
 Scanner* scanner = new Scanner(rx5805);

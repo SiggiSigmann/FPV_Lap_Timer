@@ -7,6 +7,7 @@ Settings::Settings(GUI* m):Menu("SETTINGS",m){
 	trakersettings = new TrackerSettings(this);
 	sdSettings = new SDSettings(this);
 	speackerCheck = new SpeackerCheck(this);
+	toastSettings = new ToastSettings(this);
 }
 
 void Settings::drawMenu(){
@@ -16,6 +17,7 @@ void Settings::drawMenu(){
 	drawPoint("GPS");
 	drawPoint("SD Settings");
 	drawPoint("SpeakerSettings");
+	drawPoint("Toast Settings");
 }
 
 void Settings::buttonNext(){
@@ -44,6 +46,8 @@ void Settings::buttonNext(){
 			speackerCheck->acitvateMe();
 			break;
 		
-
+		case 6:
+			toastSettings->acitvateMe();
+			break;
 	}
 }
